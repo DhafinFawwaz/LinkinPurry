@@ -27,6 +27,13 @@
 ## 🔨 Instalasi
 
 ## 🔨 Menjalankan Server
+Make sure Docker is installed and running on your machine. Then, run the following command to start the server:
+
+```bash
+docker-compose up
+```
+
+Now, you can access the server at `http://localhost:8080`.
 
 ## 📄 Screenshots
 
