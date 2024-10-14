@@ -6,8 +6,20 @@ class Database {
     private $preparedStatements = array();
     private $queryResult;
 
+    private static $DBConnectSleepDuration = 2;
+
     public function __construct(string $db, string $port, string $dbname, string $user, string $password){
-        $this->dbconn = pg_connect("host=".$db." port=".$port." dbname=".$dbname." user=".$user." password=".$password);
+        
+        while (!$this->dbconn) {
+            $this->dbconn = pg_connect("host=".$db." port=".$port." dbname=".$dbname." user=".$user." password=".$password);
+            if(!$this->dbconn) {
+                echo "Failed to connect to database, retry in 2 seconds...\n";
+                sleep(Database::$DBConnectSleepDuration);
+            } else {
+                // echo "Database connected!\n";
+                break;
+            }
+        }
         
     }
 
