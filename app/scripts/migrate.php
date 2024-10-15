@@ -2,8 +2,7 @@
 
 require_once __DIR__ . "/../lib/database.php";
 
-// TODO: env loader
-$db = new Database("db", "5432", "job", "postgres", "12345678");
+$db = new Database($_ENV["DB_NAME"], $_ENV["DB_PORT"], $_ENV["POSTGRES_DB"], $_ENV["POSTGRES_USER"], $_ENV["POSTGRES_PASSWORD"]);
 $db->migrate();
 
 echo "Database migrated successfully\n";
