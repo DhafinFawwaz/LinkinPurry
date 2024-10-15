@@ -4,6 +4,7 @@ RewriteEngine On
 
 # Stop processing if already in the /public directory
 RewriteRule ^public/ - [L]
+RewriteRule ^uploads/ - [L]
 RewriteRule favicon.ico - [L]
 
 # Push every other request to index.php

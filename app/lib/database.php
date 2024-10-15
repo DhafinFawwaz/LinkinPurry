@@ -5,9 +5,12 @@ class Database {
     private $dbconn;
     private $preparedStatements = array();
     private $queryResult;
+    public function getCurrentQueryResult() {
+        return $this->queryResult;
+    }
 
     private static $DBConnectSleepDuration = 2;
-
+    
     public function __construct(string $db, string $port, string $dbname, string $user, string $password){
         
         while (!$this->dbconn) {
@@ -51,7 +54,7 @@ class Database {
             foreach($files as $file) {
                 $content = file_get_contents($file);
                 echo $content."\n";
-                $this->queryNoParam($content);
+                pg_query($this->dbconn, $content);
             }
         } catch(Exception $e) {
             echo $e;

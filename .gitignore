@@ -1,2 +1,6 @@
+!.keep
+
 postgres-data
 .env
+app/uploads/images/*
+app/uploads/pdf/*
