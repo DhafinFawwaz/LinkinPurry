@@ -1,12 +1,6 @@
 <?php
-require_once __DIR__ . "/../lib/controller.php";
-class Register extends Controller {
-
-    // set this from .env
-    private static $authSecret = '123';
-    public static function setAuthSecret(string $newAuthSecret) {
-        Register::$authSecret = $newAuthSecret;
-    }
+require_once __DIR__ . "/../../lib/controller.php";
+class RegisterJobseeker extends Controller {
 
     private static function hasLetterAndNumber($str) { 
         return preg_match('/[a-zA-Z]/', $str) 
@@ -26,26 +20,30 @@ class Register extends Controller {
 
         $submitted_password = $_POST['password'];
         if(!$submitted_password) { $data["error"]["password"] = 'Please enter a password.'; }
-        if(strlen($submitted_password) < 8) {$data["error"]["password"] = "Password atleast 8 characters";}
-        if(!Register::hasLetterAndNumber($submitted_password)) {$data["error"]["password"] = "Password must contain number and letter.";}
+        if(strlen($submitted_password) < 8) {$data["error"]["password"] = "Atleast 8 characters";}
+        if(!self::hasLetterAndNumber($submitted_password)) {$data["error"]["password"] = "At least one letter and one number.";}
+
+        $confirm_password = $_POST['confirmpassword'];
+        if(!$confirm_password) { $data["error"]["confirmpassword"] = 'Please confirm your password.'; }
+        if($submitted_password !== $confirm_password) { $data["error"]["confirmpassword"] = 'Passwords do not match.'; }
 
         $role = "jobseeker";
 
         if(isset($data["error"])) {
-            $this->view("register.php", $data);
+            $this->view("register/register-jobseeker.php", $data);
             return;
         }
 
         $hashedSubmitedPassword = password_hash($submitted_password, PASSWORD_DEFAULT);
         try {
-            User::insertUser($email, $hashedSubmitedPassword, $role, $username);
+            User::insertJobseeker($email, $hashedSubmitedPassword, $role, $username);
         } catch (Exception $e) {
             $data["error"]["email"] = 'Email is taken.';
-            $this->view("register.php", $data);
+            $this->view("register/register-jobseeker.php", $data);
             return;
         }
 
-        $this->redirect("login");
+        $this->redirect("/login");
     }
 
 }

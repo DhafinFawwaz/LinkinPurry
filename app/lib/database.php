@@ -71,19 +71,23 @@ class Database {
         echo "Checking database...\n";
         if(!$this->isTableExists("User")) {
             echo "Users relation not found. Migrating Database...\n";
-            try{
-                $files = glob(__DIR__."/../database/migration/*.sql");
-                foreach($files as $file) {
-                    $content = file_get_contents($file);
-                    echo $content."\n";
-                    pg_query($this->dbconn, $content);
-                }
-                echo "Database migrated successfully\n";
-            } catch(Exception $e) {
-                echo $e;
-            }
+            $this->forceMigrate();
         }
         echo "Database is ready!\n";
+    }
+
+    public function forceMigrate() {
+        try{
+            $files = glob(__DIR__."/../database/migration/*.sql");
+            foreach($files as $file) {
+                $content = file_get_contents($file);
+                echo $content."\n";
+                pg_query($this->dbconn, $content);
+            }
+            echo "Database migrated successfully\n";
+        } catch(Exception $e) {
+            echo $e;
+        }
     }
 
 }

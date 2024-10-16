@@ -29,8 +29,12 @@ class User extends Model {
      * @param string $password atleast 8 characters, must contain a number and a letter
      * @return void
      */
-    public static function insertUser(string $email, string $password, string $role, string $username) {
+    public static function insertJobseeker(string $email, string $password, string $role, string $username) {
         Model::DB()->query("INSERT INTO \"User\" (email, password, role, nama) VALUES ($1, $2, $3, $4)", [$email, $password, $role, $username]);
+    }
+
+    public static function insertCompany(string $email, string $password, string $username, string $location, string $about) {
+        Model::DB()->query("CALL create_user_company($1, $2, $3, $4, $5);", [$email, $password, $username, $location, $about]);
     }
 
     public function toJsonString(): string {

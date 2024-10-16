@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="/public/global.css"> -->
 </head>
 <body>
-    <form action="login" method="post">
+    <form action="/login" method="post">
 
         <label for="email">Email:</label>
         <input id="email" name="email" required="" type="email"  value="<?php if(isset($data["form"]["email"])) echo $data["form"]["email"] ?>"/>
@@ -20,7 +20,8 @@
         <button type="submit">Login</button>
     </form>
     <div>Don't have an account?</div>
-    <a href="/register">Register</a>
+    <a href="/register/company">Register as Company</a>
+    <a href="/register/jobseeker">Register as jobseeker</a>
 
 </body>
 </html>

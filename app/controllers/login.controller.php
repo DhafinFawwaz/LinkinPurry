@@ -32,7 +32,7 @@ class Login extends Controller {
             $data["error"]["password"] = 'Wrong password.';
         } else { 
             $_SESSION['user'] = $userToCheck;
-            $this->redirect('profile');
+            $this->redirect('/profile');
         }
 
 
