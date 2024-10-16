@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/handler.php";
 class Route {
     private static $route404 = array();
     private static $routes = array(
@@ -19,15 +20,39 @@ class Route {
         Route::$route404["404"] = $callback;
     }
 
-    public static function GET(string $route, callable $callback) { Route::$routes["GET"][$route] = $callback;}
-    public static function POST(string $route, callable $callback) { Route::$routes["POST"][$route] = $callback;}
-    public static function PUT(string $route, callable $callback) { Route::$routes["PUT"][$route] = $callback;}
-    public static function HEAD(string $route, callable $callback) { Route::$routes["HEAD"][$route] = $callback;}
-    public static function DELETE(string $route, callable $callback) { Route::$routes["DELETE"][$route] = $callback;}
-    public static function PATCH(string $route, callable $callback) { Route::$routes["PATCH"][$route] = $callback;}
-    public static function OPTIONS(string $route, callable $callback) { Route::$routes["OPTIONS"][$route] = $callback;}
-    public static function CONNECT(string $route, callable $callback) { Route::$routes["CONNECT"][$route] = $callback;}
-    public static function TRACE(string $route, callable $callback) { Route::$routes["TRACE"][$route] = $callback;}
+
+    private static function arrayOfClassToInstance(array $array) {
+        $result = array();
+        foreach($array as $a) {
+            if(is_string($a))
+                $result[] = new $a();
+            else
+                $result[] = $a;
+        }
+        return $result;
+    }
+
+    private static function registerRoute(string $route, string $httpMethod, $handler) {
+        
+        if(is_callable($handler)) {
+            Route::$routes[$httpMethod][$route] = $handler;
+        } else if(is_string($handler)) {
+            /** @var IHandler */
+            $instance = new $handler();
+            Route::$routes[$httpMethod][$route] = $instance;
+        } else if(is_array($handler)) {
+            Route::$routes[$httpMethod][$route] = Route::arrayOfClassToInstance($handler);
+        }
+    }
+    public static function GET(string $route, $handler) { Route::registerRoute($route, "GET", $handler);}
+    public static function POST(string $route, $handler) { Route::registerRoute($route, "POST", $handler); }
+    public static function PUT(string $route, $handler) { Route::registerRoute($route, "PUT", $handler);}
+    public static function HEAD(string $route, $handler) { Route::registerRoute($route, "HEAD", $handler);}
+    public static function DELETE(string $route, $handler) { Route::registerRoute($route, "DELETE", $handler);}
+    public static function PATCH(string $route, $handler) { Route::registerRoute($route, "DELETE", $handler);}
+    public static function OPTION(string $route, $handler) { Route::registerRoute($route, "OPTION", $handler);}
+    public static function CONNECT(string $route, $handler) { Route::registerRoute($route, "CONNECT", $handler);}
+    public static function TRACE(string $route, $handler) { Route::registerRoute($route, "TRACE", $handler);}
 
 
     public static function clean(string $url) {
@@ -50,6 +75,24 @@ class Route {
             (Route::$route404["404"])();
             return;
         }
-        (Route::$routes[$httpMethod][$route])();
+
+        $handler = Route::$routes[$httpMethod][$route];
+        if(is_callable($handler)) {
+            $handler();
+        } else if(is_subclass_of($handler, IHandler::class)) {
+            /** @var IHandler */
+            $con = $handler;
+            $con->handle();
+        } else if(is_array($handler)) {
+            foreach($handler as $h) {
+                if(is_callable($h)) {
+                    $h();
+                } else if(is_subclass_of($h, IHandler::class)) {
+                    /** @var IHandler */
+                    $con = $h;
+                    $con->handle();
+                }
+            }
+        }
     }
 }

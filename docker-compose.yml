@@ -12,6 +12,7 @@ services:
       db:
         condition: service_healthy
     env_file: .env
+    command: sh -c "php scripts/migrate.php & apache2-foreground"
 
 
   db:
