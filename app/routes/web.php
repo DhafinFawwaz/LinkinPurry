@@ -30,3 +30,7 @@ Route::get("/profile",  [Authenticated::class, function() {
 Route::post("/logout", [Authenticated::class, Logout::class]);
 
 
+Route::get("/register/jobseeker", [NotAuthenticated::class, function(){
+    return view("register/register-jobseeker.php");
+}]);
+
