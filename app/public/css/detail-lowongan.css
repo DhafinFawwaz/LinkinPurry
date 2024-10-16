@@ -150,7 +150,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* .button-attachment {
+.button-attachment {
     background-color: #0073b1;
     color: white;
     padding: 8px 16px;
@@ -163,7 +163,7 @@ body {
 
 .button-attachment:hover {
     background-color: #005b8f;
-} */
+}
 
 /* Modal styling */
 .modal {
@@ -266,6 +266,14 @@ body {
     font-size: 16px;
     display: inline-block;
     transition: background-color 0.3s ease;
+}
+
+.error-message {
+    color: #cc112e;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+    white-space: nowrap;
 }
 
 .replace-btn:hover {
