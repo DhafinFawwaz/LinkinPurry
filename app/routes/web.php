@@ -4,6 +4,7 @@ require_once __DIR__ . '/../lib/view.php';
 require_once __DIR__ . '/../lib/authenticated.php';
 require_once __DIR__ . '/../lib/not-authenticated.php';
 require_once __DIR__ . '/../controllers/login.controller.php';
+require_once __DIR__ . '/../controllers/profile.controller.php';
 require_once __DIR__ . '/../controllers/register/register-jobseeker.controller.php';
 require_once __DIR__ . '/../controllers/register/register-company.controller.php';
 require_once __DIR__ . '/../controllers/logout.controller.php';
@@ -31,8 +32,7 @@ Route::get("/register/company", [NotAuthenticated::class, function(){
 }]);
 Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
 
-Route::get("/profile",  [Authenticated::class, function() {
-    return view("profile.php");
-}]);
+Route::get("/profile",  [Authenticated::class, Profile::class]);
+Route::post("/profile",  [Authenticated::class, Profile::class]);
 
 Route::post("/logout", [Authenticated::class, Logout::class]);

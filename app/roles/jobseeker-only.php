@@ -1,0 +1,12 @@
+<?php
+require_once __DIR__ . "/handler.php";
+
+class JobseekerOnly implements IHandler {
+    public function handle() {
+        session_start();
+        if(isset($_SESSION['user']) && $_SESSION['user']->role != 'jobseeker') {
+            header("Location: /profile");
+            exit;
+        }
+    }
+}

@@ -3,13 +3,15 @@ require_once __DIR__ . "/model.php";
 require_once __DIR__ . "/image.php";
 
 class User extends Model {
+    public int $id;
     public string $email;
     public string $password;
     public string $username;
     public string $role;
     public Image $profilePicture;
 
-    public function __construct(string $email, string $password, string $role, string $username) {
+    public function __construct(int $userId, string $email, string $password, string $role, string $username) {
+        $this->id = $userId;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
@@ -19,7 +21,8 @@ class User extends Model {
     public static function getUserByEmail(string $email) {
         Model::DB()->query("SELECT * FROM \"User\" WHERE email = $1", array($email));
         $res = Model::DB()->fetchRow();
-        return new User($res[1], $res[2], $res[3], $res[4]);
+        if(!$res) return null;
+        return new User($res[0], $res[1], $res[2], $res[3], $res[4]);
     }
 
     /**
@@ -35,6 +38,10 @@ class User extends Model {
 
     public static function insertCompany(string $email, string $password, string $username, string $location, string $about) {
         Model::DB()->query("CALL create_user_company($1, $2, $3, $4, $5);", [$email, $password, $username, $location, $about]);
+    }
+
+    public function save() {
+        Model::DB()->query("UPDATE \"User\" SET nama=$1 WHERE user_id=$2", array($this->username, $this->id));
     }
 
     public function toJsonString(): string {

@@ -14,3 +14,15 @@ BEGIN
     INSERT INTO "Company_Detail" (user_id, lokasi, about) VALUES (inserted_user_id, lokasi, about);
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE update_user_company(
+    user_id_to_update INT,
+    new_nama VARCHAR(255),
+    new_lokasi VARCHAR(255),
+    new_about TEXT
+) AS $$
+BEGIN
+    UPDATE "User" SET nama = new_nama WHERE user_id = user_id_to_update;
+    UPDATE "Company_Detail" SET lokasi = new_lokasi, about = new_about WHERE user_id = user_id_to_update;
+END;
+$$ LANGUAGE plpgsql;
