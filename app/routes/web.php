@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/../lib/route.php';
 require_once __DIR__ . '/../lib/view.php';
-require_once __DIR__ . '/../lib/authenticated.php';
-require_once __DIR__ . '/../lib/not-authenticated.php';
+require_once __DIR__ . '/../auth/authenticated.php';
+require_once __DIR__ . '/../auth/not-authenticated.php';
 require_once __DIR__ . '/../controllers/login.controller.php';
 require_once __DIR__ . '/../controllers/profile.controller.php';
 require_once __DIR__ . '/../controllers/register/register-jobseeker.controller.php';
@@ -36,3 +36,8 @@ Route::get("/profile",  [Authenticated::class, Profile::class]);
 Route::post("/profile",  [Authenticated::class, Profile::class]);
 
 Route::post("/logout", [Authenticated::class, Logout::class]);
+
+
+//
+Route::get("/<int>/<int>",  [Authenticated::class, Profile::class]);
+Route::get("/<int>/<int>",  [Authenticated::class, Profile::class]);

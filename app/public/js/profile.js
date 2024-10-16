@@ -5,6 +5,10 @@ const usernameInput = document.getElementById("username");
 const locationInput = document.getElementById("location");
 const aboutInput = document.getElementById("about");
 
+const currentUsername = usernameInput.value;
+const currentLocation = locationInput.value;
+const currentAbout = aboutInput.value;
+
 editProfileButton.addEventListener("click", () => {
     editProfileButton.hidden = true;
     saveProfileButton.hidden = false;
@@ -16,6 +20,10 @@ editProfileButton.addEventListener("click", () => {
 });
 
 cancelProfileButton.addEventListener("click", () => {
+    usernameInput.value = currentUsername;
+    locationInput.value = currentLocation;
+    aboutInput.value = currentAbout;
+
     editProfileButton.hidden = false;
     saveProfileButton.hidden = true;
     cancelProfileButton.hidden = true;

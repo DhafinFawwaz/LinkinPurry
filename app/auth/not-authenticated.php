@@ -1,6 +1,5 @@
 <?php
-
-require_once __DIR__ . "/handler.php";
+require_once __DIR__ . "/../lib/handler.php";
 
 class NotAuthenticated implements IHandler {
     public function handle() {
