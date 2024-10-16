@@ -84,17 +84,58 @@ $application = [
 
         <!-- apply button -->
         <div class="apply-button-action">
-            <!-- <a href="apply.php?job_id=<?= $job['id'] ?>" class="button">Apply</a> -->
-
-            <?php if ($job_seeker_applied): ?>
-                <a href="#application-status" class="button">View Your Application</a>
+            <?php if (!$job['is_open']): ?>
+                <div class="apply-closed">
+                    <img src="../public/assets/no_accepting.svg" alt="apply-closed">
+                    <p>No longer accepting applications</p>
+                </div>
             <?php else: ?>
-                <!-- <a href="apply.php?job_id=<?= $job['id'] ?>" class="button">Apply</a> -->
-                <a href="_blank" class="button">Apply</a>
+                <?php if ($job_seeker_applied): ?>
+                    <a href="#application-status" class="button">View Your Application</a>
+                <?php elseif (!$job_seeker_applied): ?>
+                    <button id="applyBtn" class="button">Apply</button>
+                <?php endif; ?>
             <?php endif; ?>
+        </div>
+        
+        <!-- Modal Structure -->
+        <div id="applyModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>Apply to <?= $company['nama'] ?></h2>
+                <form id="applicationForm" action="submit-application.php" method="post" enctype="multipart/form-data">
+                    <!-- Resume Upload -->
+                    <div class="form-group">
+                        <label for="cv">Resume *
+                            <span><br>PDF (2 MB)</span>
+                        </label>
+                        <div class="upload-box">
+                            <div class="file-type">PDF</div>
+                            <span id="resumeFileName">No file chosen</span>
+                        </div>
+                        <button type="button" class="replace-btn" onclick="document.getElementById('cv').click();">Upload resume</button>
+                        <input type="file" id="cv" name="cv" accept=".pdf" required onchange="updateFileName('cv', 'resumeFileName')">
+                    </div>
 
+                    <!-- Video Upload -->
+                    <div class="form-group">
+                        <label for="video">Video (Optional)
+                            <span><br>MP4 (30 MB)</span>
+                        </label>
+                        <div class="upload-box">
+                            <div class="file-type mp4">MP4</div>
+                            <span id="videoFileName">No file chosen</span>
+                        </div>
+                        <button type="button" class="replace-btn" onclick="document.getElementById('video').click();">Upload video</button>
+                        <input type="file" id="video" name="video" accept="video/mp4" onchange="updateFileName('video', 'videoFileName')">
+                    </div>
 
-            <!-- <button class="apply-button">Apply</button> -->
+                    <!-- <input type="hidden" name="job_id" value="<?= $job['id'] ?>"> -->
+                    <div class="submit-button">
+                        <button type="submit" class="button">Submit Application</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <!-- job details -->
@@ -122,9 +163,39 @@ $application = [
                 </ul>
             </section>
         <?php endif; ?>
-
-
     </section>
+    
 
+    <script>
+        // script untuk popup halaman lamaran
+        var modal = document.getElementById("applyModal");
+        var btn = document.getElementById("applyBtn");
+        var span = document.getElementById("closeModal");
+
+        // tampilkan popup
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // tutup popup
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // tutup popup saat klik daerah luar
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // update nama uploaded file
+        function updateFileName(inputId, labelId) {
+            var input = document.getElementById(inputId);
+            var label = document.getElementById(labelId);
+            var fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
+            label.textContent = fileName;
+        }
+    </script>
 </body>
 </html>

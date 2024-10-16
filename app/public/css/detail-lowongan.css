@@ -84,7 +84,7 @@ body {
 .apply-button-action {
     margin-top: 20px;
 }
-
+/* 
 .apply-button {
     width: 20%;
     background-color: #0073b1;
@@ -99,6 +99,16 @@ body {
 
 .apply-button:hover {
     background-color: #005f8b;
+} */
+
+.apply-closed {
+    color: #cc112e;
+    display: flex;
+    align-items: center;
+}
+
+.apply-closed p {
+    margin-left: 5px;
 }
 
 .button {
@@ -106,6 +116,7 @@ body {
     color: white;
     padding: 10px 20px;
     text-decoration: none;
+    border: none;
     border-radius: 30px;
     font-size: 16px;
     display: inline-block;
@@ -139,7 +150,7 @@ body {
     margin-bottom: 10px;
 }
 
-.button-attachment {
+/* .button-attachment {
     background-color: #0073b1;
     color: white;
     padding: 8px 16px;
@@ -152,4 +163,115 @@ body {
 
 .button-attachment:hover {
     background-color: #005b8f;
+} */
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* Dimmed background */
+}
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 744px;
+    border-radius: 10px;
+}
+.modal-content h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: #000000E6;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* .button {
+    padding: 10px 20px;
+    background-color: #0073b1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #005582;
+} */
+.form-group {
+    margin-bottom: 30px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #000000E6;
+}
+.form-group label span {
+    color: #666;
+    font-size: 12px;
+}
+.form-group input[type="file"] {
+    display: none; /* Hide the actual file input */
+}
+.upload-box {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    border-radius: 10px;
+    /* padding: 10px; */
+    background-color: #f1f1f1;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+.upload-box .file-type {
+    display: flex;
+    align-items: center;
+    background-color: #cc112e;
+    color: white;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 20px 8px;
+}
+.upload-box .file-type.mp4 {
+    background-color: #0073b1;
+}
+.upload-box span {
+    color: #000000E6;
+    margin-left: 20px;
+    font-size: 14px;
+}
+.replace-btn {
+    /* border: none; */
+    border-color: #0A66C2;
+    background-color: #ffffff;
+    color: #0A66C2;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.replace-btn:hover {
+    background-color: #e0eeff;
+}
+
+.submit-button {
+    text-align: end;
 }
