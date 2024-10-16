@@ -25,6 +25,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
+    max-height: min-content;
 }
 
 #job-picks, #notes {
@@ -124,8 +125,8 @@ body {
     align-items: center;
     /* background-color: #f9f9f9; */
     /* padding: 15px; */
-    border-radius: 8px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* border-radius: 8px; */
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
     transition: transform 0.2s;
 }
@@ -163,6 +164,45 @@ body {
 }
 
 
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    background-color: #fff;
+    border: 1px solid #cccaca;
+    color: #333;
+    padding: 7px 11px;
+    margin: 0 4px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.pagination-button:hover {
+    background-color: #0B65C2;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.pagination-button.active {
+    background-color: #0b66c3;
+    color: #fff;
+    border-color: #0B65C2;
+}
+
+.pagination-button:disabled {
+    background-color: #f1f1f1;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+
+
 /* Notes Section */
 #notes h2 {
     font-size: 16px;
@@ -193,3 +233,102 @@ body {
         height: 80px;
     }
 } */
+
+
+/* Styling untuk mobile devices dengan lebar maksimal 768px (misal untuk ukuran smartphone) */
+@media (max-width: 768px) {
+    /* Mengubah grid layout menjadi stack layout (tumpukan vertikal) */
+    body {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    #profile {
+        grid-column: 1;
+        margin-bottom: 20px;
+    }
+
+    #main-content {
+        grid-column: 1;
+        margin-bottom: 20px;
+        padding-inline: 5px;
+    }
+
+    #notes {
+        grid-column: 1;
+    }
+
+    .profile-picture img {
+        width: 72px;
+        height: 72px;
+        margin-left: 12px;
+    }
+
+    .profile-info {
+        padding-inline: 12px;
+    }
+
+    .profile-info h1 {
+        font-size: 20px;
+    }
+
+    .profile-info p {
+        font-size: 12px;
+    }
+
+    .filter-sort-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-sort-container input,
+    .filter-sort-container select {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+    #job-picks h2 {
+        font-size: 18px;
+    }
+
+    .job-picks p {
+        font-size: 14px;
+    }
+
+    .job-list {
+        margin-bottom: 15px;
+    }
+
+    .job-card {
+        flex-direction: row;
+        align-items: flex-start;
+        padding-top: 10px;
+    }
+
+    .job-card-details {
+        padding-block: 8px;
+    }
+
+    .job-card h3 {
+        font-size: 18px;
+    }
+
+    .job-card p {
+        font-size: 14px;
+    }
+
+    /* Sesuaikan ukuran teks di bagian notes */
+    #notes h2 {
+        font-size: 18px;
+    }
+
+    #notes p {
+        font-size: 12px;
+    }
+
+    .notes {
+        padding: 15px;
+    }
+}
