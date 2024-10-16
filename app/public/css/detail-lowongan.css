@@ -275,3 +275,10 @@ body {
 .submit-button {
     text-align: end;
 }
+
+/* mobile devices */
+@media (max-width: 768px) {
+    .modal-content{
+        width: 100%;
+    }
+}
