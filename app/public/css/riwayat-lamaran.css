@@ -77,3 +77,29 @@ a {
 }
 
 
+/* Mobile size */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        padding-inline: 16px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    /* .job-card img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    .job-title {
+        font-size: 14px;
+    }
+    .company-info {
+        font-size: 12px;
+    } */
+    .status {
+        width: 60px;
+        font-size: 12px;
+        padding: 8px;
+    }
+}
