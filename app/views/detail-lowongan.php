@@ -27,7 +27,7 @@ Equal Opportunity Employer
 NTT DATA is proud to be an Equal Opportunity Employer with a global culture that embraces diversity. We are committed to providing an environment free of unfair discrimination and harassment. We do not discriminate based on age, race, colour, gender, sexual orientation, religion, nationality, disability, pregnancy, marital status, veteran status, or any other protected category. Join our growing global team and accelerate your career with us. Apply today.
 
 ',
-    'jenis_pekerjaan' => 'Mid-Senior level',
+    'jenis_pekerjaan' => 'Full-time',
     'jenis_lokasi' => 'Hybrid',
     'is_open' => true,
     'created_at' => '1 week ago',
@@ -36,14 +36,14 @@ NTT DATA is proud to be an Equal Opportunity Employer with a global culture that
 ];
 
 // Simulasi apakah job seeker sudah melamar
-$job_seeker_applied = true; // Ubah ke false jika belum melamar
+$job_seeker_applied = false; // Ubah ke false jika belum melamar
 
 // Data Lamaran jika sudah melamar
 $application = [
     'cv' => '/path/to/cv.pdf',
     'video' => '/path/to/video.mp4',
-    'status' => 'Under review',
-    'alasan' => 'Your application is being reviewed by our team.'
+    'status' => 'waiting',
+    'alasan' => 'your application is being reviewed by our team.'
 ];
 ?>
 
@@ -54,7 +54,7 @@ $application = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Details - <?= $job['posisi'] ?></title>
 
-    <link rel="stylesheet" href="../public/css/detail_lowongan.css">
+    <link rel="stylesheet" href="../public/css/detail-lowongan.css">
 </head>
 <body>
 
@@ -84,9 +84,8 @@ $application = [
 
         <!-- apply button -->
         <div class="apply-button-action">
-            <!-- <a href="apply.php?job_id=<?= $job['id'] ?>" class="button">Apply Now</a> -->
+            <!-- <a href="apply.php?job_id=<?= $job['id'] ?>" class="button">Apply</a> -->
 
-            <!-- if job_seeker_applied then show button to scroll down to application status below, text on button: "view your application" -->
             <?php if ($job_seeker_applied): ?>
                 <a href="#application-status" class="button">View Your Application</a>
             <?php else: ?>
