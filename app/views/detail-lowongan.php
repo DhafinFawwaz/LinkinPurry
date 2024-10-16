@@ -84,17 +84,60 @@ $application = [
 
         <!-- apply button -->
         <div class="apply-button-action">
-            <!-- <a href="apply.php?job_id=<?= $job['id'] ?>" class="button">Apply</a> -->
-
-            <?php if ($job_seeker_applied): ?>
-                <a href="#application-status" class="button">View Your Application</a>
+            <?php if (!$job['is_open']): ?>
+                <div class="apply-closed">
+                    <img src="../public/assets/no_accepting.svg" alt="apply-closed">
+                    <p>No longer accepting applications</p>
+                </div>
             <?php else: ?>
-                <!-- <a href="apply.php?job_id=<?= $job['id'] ?>" class="button">Apply</a> -->
-                <a href="_blank" class="button">Apply</a>
+                <?php if ($job_seeker_applied): ?>
+                    <a href="#application-status" class="button">View Your Application</a>
+                <?php elseif (!$job_seeker_applied): ?>
+                    <button id="applyBtn" class="button">Apply</button>
+                <?php endif; ?>
             <?php endif; ?>
+        </div>
+        
+        <!-- modal structure -->
+        <div id="applyModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>Apply to <?= $company['nama'] ?></h2>
+                <form id="applicationForm" action="submit-application.php" method="post" enctype="multipart/form-data">
+                    <!-- resume  -->
+                    <div class="form-group">
+                        <label for="cv">Resume *
+                            <span><br>PDF (2 MB)</span>
+                        </label>
+                        <div class="upload-box">
+                            <div class="file-type">PDF</div>
+                            <span id="resumeFileName">No file chosen</span>
+                        </div>
+                        <button type="button" class="replace-btn" onclick="document.getElementById('cv').click();">Upload resume</button>
+                        <input type="file" id="cv" name="cv" accept=".pdf" onchange="updateFileName('cv', 'resumeFileName')">
 
+                        <div id="error-message" class="error-message"></div>
+                    </div>
 
-            <!-- <button class="apply-button">Apply</button> -->
+                    <!-- video -->
+                    <div class="form-group">
+                        <label for="video">Video (Optional)
+                            <span><br>MP4 (30 MB)</span>
+                        </label>
+                        <div class="upload-box">
+                            <div class="file-type mp4">MP4</div>
+                            <span id="videoFileName">No file chosen</span>
+                        </div>
+                        <button type="button" class="replace-btn" onclick="document.getElementById('video').click();">Upload video</button>
+                        <input type="file" id="video" name="video" accept="video/mp4" onchange="updateFileName('video', 'videoFileName')">
+                    </div>
+
+                    <!-- <input type="hidden" name="job_id" value="<?= $job['id'] ?>"> -->
+                    <div class="submit-button">
+                        <button type="submit" class="button">Submit Application</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <!-- job details -->
@@ -104,7 +147,7 @@ $application = [
             <p><?= $job['deskripsi'] ?></p>
         </div>
 
-        <!-- Application Status -->
+        <!-- application status -->
         <?php if ($job_seeker_applied): ?>
             <section id="application-status">
                 <h2>Your Application</h2>
@@ -122,9 +165,110 @@ $application = [
                 </ul>
             </section>
         <?php endif; ?>
-
-
     </section>
+    
 
+    <script>
+        // script untuk popup halaman lamaran
+        var modal = document.getElementById("applyModal");
+        var btn = document.getElementById("applyBtn");
+        var span = document.getElementById("closeModal");
+
+        const applicationForm = document.getElementById("applicationForm");
+        const resumeFileName = document.getElementById("resumeFileName");
+        const videoFileName = document.getElementById("videoFileName");
+        const closeModal = document.getElementById("closeModal");
+        const errorMessages = document.getElementById("error-message");
+        
+        // reset saat close
+        function resetForm() {
+            applicationForm.reset();
+            resumeFileName.textContent = "No file chosen";
+            videoFileName.textContent = "No file chosen";
+        }
+
+        // tampilkan popup
+        btn.onclick = function() {
+            modal.style.display = "block";
+            // clear error message
+            errorMessages.style.display = "none";
+        }
+
+        // tutup popup
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+            console.log("anu");
+            resetForm();
+        }
+
+        // tutup popup saat klik daerah luar
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                resetForm();
+            }
+        }
+
+        // update nama uploaded file
+        function updateFileName(inputId, labelId) {
+            var input = document.getElementById(inputId);
+            var label = document.getElementById(labelId);
+            var fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
+            label.textContent = fileName;
+        }
+
+        // error message
+
+
+        // handle submit
+        applicationForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah submit form secara default
+
+            // Simulasi pengiriman data
+            const formData = new FormData(applicationForm);
+            const cvUpload = document.getElementById('cv');
+            const errorMessages = document.getElementById("error-message");
+            // const cv = formData.get('cv');  
+            // const video = formData.get('video');
+
+            // clear error message
+            errorMessages.style.display = "none";
+
+            // cek uploaded file
+            if (!cvUpload.files.length) {
+                errorMessages.style.display = "block";
+                errorMessages.textContent = "A resume is required";
+                return;
+            }
+
+            // // Update status pelamar menjadi true setelah submit
+            // job_seeker_applied = true;
+
+            // // Tutup modal setelah submit
+            // modal.style.display = "none";
+
+            // // Reset form
+            // resetForm();
+
+            // Tampilkan section aplikasi lamaran setelah submit
+            // const applicationStatusSection = document.getElementById('application-status');
+            // applicationStatusSection.style.display = "block";  // Menampilkan bagian status lamaran
+
+            // // Simulasi menampilkan data lamaran yang disubmit (update halaman secara dinamis)
+            // document.querySelector("#application-status ul").innerHTML = `
+            //     <li>Status: waiting</li>
+            //     <li>Attachments:
+            //         <a href="${URL.createObjectURL(cv)}" target="_blank" class="button-attachment">CV</a>
+            //         ${video ? `<a href="${URL.createObjectURL(video)}" target="_blank" class="button-attachment">Video</a>` : ''}
+            //     </li>   
+            //     <li>Next Step: your application is being reviewed by our team.</li>
+            // `;
+
+            // alert("Application submitted successfully!");
+
+            console.log("Form submitted");  
+        });
+
+    </script>
 </body>
 </html>
