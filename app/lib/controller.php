@@ -8,4 +8,13 @@ abstract class Controller implements IHandler{
         header('Location: ' . $url, replace: true);
         exit();
     }
+
+    function getUrlPath() {
+        $route = Route::clean($_SERVER['REQUEST_URI']);
+        $parts = parse_url($route);
+        $routeArr = $parts["path"];
+        $partsArr = explode("/", $routeArr);
+        array_shift($partsArr);
+        return $partsArr;
+    }
 }

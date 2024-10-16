@@ -23,9 +23,9 @@
         <input id="confirmpassword" name="confirmpassword" required="" type="password" minlength="8" value="<?php if(isset($data["form"]["confirmpassword"])) echo $data["form"]["confirmpassword"] ?>"/>
         <div id="confirmpassword-message"><?php if(isset($data["error"]["confirmpassword"])) echo $data["error"]["confirmpassword"] ?></div>
 
-        <label for="lokasi">Lokasi:</label>
-        <input id="lokasi" name="lokasi" type="text" value="<?php if(isset($data["form"]["lokasi"])) echo $data["form"]["lokasi"] ?>"/>
-        <div id="lokasi-message"><?php if(isset($data["error"]["lokasi"])) echo $data["error"]["lokasi"] ?></div>
+        <label for="location">Lokasi:</label>
+        <input id="location" name="location" type="text" value="<?php if(isset($data["form"]["location"])) echo $data["form"]["location"] ?>"/>
+        <div id="location-message"><?php if(isset($data["error"]["location"])) echo $data["error"]["location"] ?></div>
 
         <label for="about">About:</label>
         <input id="about" name="about" type="text" value="<?php if(isset($data["form"]["about"])) echo $data["form"]["about"] ?>"/>

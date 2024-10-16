@@ -31,7 +31,12 @@ class Login extends Controller {
         if (!password_verify($submitted_password, $hashedPasswordInDB)) { 
             $data["error"]["password"] = 'Wrong password.';
         } else { 
-            $_SESSION['user'] = $userToCheck;
+            if($userToCheck->role == 'company') {
+                $company = Company::fromUser($userToCheck);
+                $_SESSION['user'] = $company;
+            } else {
+                $_SESSION['user'] = $userToCheck;
+            }
             $this->redirect('/profile');
         }
 

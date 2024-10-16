@@ -33,7 +33,8 @@ class Route {
     }
 
     private static function registerRoute(string $route, string $httpMethod, $handler) {
-        
+
+
         if(is_callable($handler)) {
             Route::$routes[$httpMethod][$route] = $handler;
         } else if(is_string($handler)) {
@@ -59,24 +60,69 @@ class Route {
         // remove last '/'
         if($url[strlen($url)-1] == "/")
             $url = substr($url, 0, strlen($url)-1);
+        
+        // whatever/<int>/<int>
+        // /<int>
+
+
+
         return $url;
+    }
+
+    public static function isPathArrayMatch(array $pathArr, array $patternArr) {
+        if(count($pathArr) != count($patternArr)) return false;
+
+        for($i = 0; $i < count($pathArr); $i++) {
+            if($patternArr[$i] == "{int}") {
+                if(!is_numeric($pathArr[$i])) {
+                    return false;
+                }
+            } else if($patternArr[$i] == "{string}") {
+                if(is_numeric($pathArr[$i])) {
+                    return false;
+                }
+            } else if($patternArr[$i] != $pathArr[$i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static function handle() {
         $route = Route::clean($_SERVER['REQUEST_URI']);
+        $parts = parse_url($route);
+        $route = $parts["path"];
+
         $httpMethod = $_SERVER['REQUEST_METHOD'];
         if(!array_key_exists($httpMethod, Route::$routes)) {
             // echo "HTTP Method not allowed: " . $httpMethod;
             (Route::$route404["404"])();
             return;
         }
-        if(!array_key_exists($route, Route::$routes[$httpMethod])) {
-            // echo "Route not found: " . $route;
+        
+        $handler = null;
+        
+        $routeSplit = explode("/", $route);
+        array_shift($routeSplit);
+        // echo json_encode($routeSplit) . "\n";
+        
+        foreach(Route::$routes[$httpMethod] as $key => $value) {
+            $pathSplit = explode("/", $key);
+            array_shift($pathSplit);
+
+            // echo json_encode($pathSplit) . "\n"; // ["{int}","{int}"]
+            if(self::isPathArrayMatch($routeSplit, $pathSplit)) {
+                $handler = $value;
+            }
+        }
+        
+        if(!$handler) {
             (Route::$route404["404"])();
             return;
         }
 
-        $handler = Route::$routes[$httpMethod][$route];
+
         if(is_callable($handler)) {
             $handler();
         } else if(is_subclass_of($handler, IHandler::class)) {
