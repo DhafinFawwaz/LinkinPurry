@@ -8,6 +8,8 @@ require_once __DIR__ . '/../controllers/profile.controller.php';
 require_once __DIR__ . '/../controllers/register/register-jobseeker.controller.php';
 require_once __DIR__ . '/../controllers/register/register-company.controller.php';
 require_once __DIR__ . '/../controllers/logout.controller.php';
+require_once __DIR__ . '/../controllers/lamaran.controller.php';
+require_once __DIR__ . '/../controllers/lowongan.controller.php';
 
 
 
@@ -38,6 +40,11 @@ Route::post("/profile",  [Authenticated::class, Profile::class]);
 Route::post("/logout", [Authenticated::class, Logout::class]);
 
 
-//
-Route::get("/<int>/<int>",  [Authenticated::class, Profile::class]);
-Route::get("/<int>/<int>",  [Authenticated::class, Profile::class]);
+// currently only support {int} and {string}
+
+// /lowongan_id
+Route::get("/{int}",  [Authenticated::class, Lowongan::class]);
+
+// /lowongan_id/lamaran_id
+Route::get("/{int}/{int}",  [Authenticated::class, Lamaran::class]);
+
