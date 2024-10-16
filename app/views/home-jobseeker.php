@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
-    <link rel="stylesheet" href="../public/css/home_jobseeker.css">
+    <link rel="stylesheet" href="../public/css/home-jobseeker.css">
 </head>
 <body>
     <!-- profile -->
@@ -119,6 +119,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="pagination">
+                <button class="pagination-button prev" disabled>&lt;</button>
+                <button class="pagination-button active" data-page="1">1</button>
+                <button class="pagination-button" data-page="2">2</button>
+                <button class="pagination-button" disabled>...</button>
+                <button class="pagination-button" data-page="9">9</button>
+                <button class="pagination-button" data-page="10">10</button>
+                <button class="pagination-button next">&gt;</button>
+            </div>
+
         </section>
     </section>
 
