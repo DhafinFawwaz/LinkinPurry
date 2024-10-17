@@ -14,6 +14,9 @@ require_once __DIR__ . '/../controllers/home-company.controller.php';
 require_once __DIR__ . '/../controllers/tambah-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/edit-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan-company.controller.php';
+require_once __DIR__ . '/../controllers/home-jobseeker.controller.php';
+require_once __DIR__ . '/../controllers/detail-lowongan-jobseeker.controller.php';
+require_once __DIR__ . '/../controllers/riwayat-lamaran.controller.php';
 
 
 
@@ -49,6 +52,15 @@ Route::post("/edit-lowongan-company",  [Authenticated::class, EditLowonganCompan
 
 Route::get("/detail-lowongan-company",  [Authenticated::class, DetailLowonganCompanyController::class]);
 Route::post("/detail-lowongan-company",  [Authenticated::class, DetailLowonganCompanyController::class]);
+
+Route::get("/home-jobseeker", [Authenticated::class, HomeJobseekerController::class]);
+Route::post("/home-jobseeker", [Authenticated::class, HomeJobseekerController::class]);
+
+Route::get("/detail-lowongan-jobseeker", [Authenticated::class, DetailLowonganJobseekerController::class]);
+Route::post("/detail-lowongan-jobseeker", [Authenticated::class, DetailLowonganJobseekerController::class]);
+
+Route::get("/riwayat-lamaran", [Authenticated::class, RiwayatLamaranController::class]);
+Route::post("/riwayat-lamaran", [Authenticated::class, RiwayatLamaranController::class]);
 
 Route::get("/profile",  [Authenticated::class, ProfileController::class]);
 Route::post("/profile",  [Authenticated::class, ProfileController::class]);
