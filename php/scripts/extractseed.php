@@ -11,11 +11,3 @@ function extract_zip($zip_path, $extract_to) {
     }
 }
 
-$save_to = 'downloads/dataset.zip';
-$extract_to = 'uploads';
-
-if (!is_dir('uploads')) {
-    mkdir('downloads', 0777, true);
-}
-
-extract_zip($save_to, $extract_to);
