@@ -30,6 +30,16 @@ class Lowongan extends Model {
         self::DB()->query("INSERT INTO \"Lowongan\" (company_id, posisi, deskripsi, jenis_pekerjaan, jenis_lokasi) VALUES ($1, $2, $3, $4, $5)", [$company_id, $posisi, $deskripsi, $jenis_pekerjaan, $jenis_lokasi]);
     }
 
+    public static function getAllLowongan() {
+        self::DB()->query("SELECT l.*, u.nama as company_name, cd.lokasi as company_location 
+        FROM \"Lowongan\" l 
+        JOIN \"User\" u ON l.company_id = u.user_id
+        LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id
+        WHERE l.is_open = true 
+        ORDER BY l.created_at DESC", []);
+        return self::DB()->fetchAll();
+    }
+
     public function jsonSerialize(): string {
         return json_encode($this);
     }

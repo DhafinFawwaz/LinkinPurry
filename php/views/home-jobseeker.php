@@ -58,66 +58,23 @@
             </div>
 
             <div class="job-list">
-                <div class="job-card">
-                    <div class="job-picture">
-                        <img src="../public/assets/company_profile.svg" alt="job-picture">
-                    </div>
-                    <div class="job-card-details">
-                        <h3>Job Title</h3>
-                        <p>Company Name</p>
-                        <p class="loc">Location</p>
-                    </div>
-                </div>
-                <div class="job-card">
-                    <div class="job-picture">
-                        <img src="../public/assets/company_profile.svg" alt="job-picture">
-                    </div>
-                    <div class="job-card-details">
-                        <h3>Job Title</h3>
-                        <p>Company Name</p>
-                        <p class="loc">Location</p>
-                    </div>
-                </div>
-                <div class="job-card">
-                    <div class="job-picture">
-                        <img src="../public/assets/company_profile.svg" alt="job-picture">
-                    </div>
-                    <div class="job-card-details">
-                        <h3>Job Title</h3>
-                        <p>Company Name</p>
-                        <p class="loc">Location</p>
-                    </div>
-                </div>
-                <div class="job-card">
-                    <div class="job-picture">
-                        <img src="../public/assets/company_profile.svg" alt="job-picture">
-                    </div>
-                    <div class="job-card-details">
-                        <h3>Job Title</h3>
-                        <p>Company Name</p>
-                        <p class="loc">Location</p>
-                    </div>
-                </div>
-                <div class="job-card">
-                    <div class="job-picture">
-                        <img src="../public/assets/company_profile.svg" alt="job-picture">
-                    </div>
-                    <div class="job-card-details">
-                        <h3>Job Title</h3>
-                        <p>Company Name</p>
-                        <p class="loc">Location</p>
-                    </div>
-                </div>
-                <div class="job-card">
-                    <div class="job-picture">
-                        <img src="../public/assets/company_profile.svg" alt="job-picture">
-                    </div>
-                    <div class="job-card-details">
-                        <h3>Job Title</h3>
-                        <p>Company Name</p>
-                        <p class="loc">Location</p>
-                    </div>
-                </div>
+                <?php if (isset($lowonganList) && !empty($lowonganList)): ?>
+                    <!-- <?php var_dump($lowonganList); ?> -->
+                    <?php foreach ($lowonganList as $lowongan): ?>
+                        <div class="job-card">
+                            <div class="job-picture">
+                                <img src="../public/assets/company_profile.svg" alt="job-picture">
+                            </div>
+                            <div class="job-card-details">
+                                <h3><?= $lowongan['posisi'] ?></h3>
+                                <p><?= $lowongan['company_name'] ?></p>
+                                <p class="loc"><?= $lowongan['company_location'] ?: 'Location not specified' ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No jobs available at the moment.</p>
+                <?php endif; ?>
             </div>
 
             <div class="pagination">
