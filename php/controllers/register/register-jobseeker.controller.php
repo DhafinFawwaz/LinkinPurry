@@ -27,8 +27,6 @@ class RegisterJobseeker extends Controller {
         if(!$confirm_password) { $data["error"]["confirmpassword"] = 'Please confirm your password.'; }
         if($submitted_password !== $confirm_password) { $data["error"]["confirmpassword"] = 'Passwords do not match.'; }
 
-        $role = "jobseeker";
-
         if(isset($data["error"])) {
             $this->view("register/register-jobseeker.php", $data);
             return;
@@ -36,7 +34,7 @@ class RegisterJobseeker extends Controller {
 
         $hashedSubmitedPassword = password_hash($submitted_password, PASSWORD_DEFAULT);
         try {
-            User::insertJobseeker($email, $hashedSubmitedPassword, $role, $username);
+            User::insertJobseeker($email, $hashedSubmitedPassword, $username);
         } catch (Exception $e) {
             $data["error"]["email"] = 'Email is taken.';
             $this->view("register/register-jobseeker.php", $data);

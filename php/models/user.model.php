@@ -41,7 +41,8 @@ class User extends Model {
      * @param string $password atleast 8 characters, must contain a number and a letter
      * @return void
      */
-    public static function insertJobseeker(string $email, string $password, string $role, string $username) {
+    public static function insertJobseeker(string $email, string $password, string $username) {
+        $role = "jobseeker";
         self::DB()->query("INSERT INTO \"User\" (email, password, role, nama) VALUES ($1, $2, $3, $4)", [$email, $password, $role, $username]);
     }
 

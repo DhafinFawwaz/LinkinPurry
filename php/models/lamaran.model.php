@@ -25,6 +25,10 @@ class Lamaran extends Model {
         $this->created_at = $created_at;
     }
 
+    public static function insertLamaran(int $user_id, int $lowongan_id, CV $cv, Video $video) {
+        Model::DB()->query("INSERT INTO \"Lamaran\" (user_id, lowongan_id, cv_id, video_id) VALUES ($1, $2, $3, $4)", array($user_id, $lowongan_id, $cv->path, $video->path));
+    }
+
     public function save() {
         Model::DB()->query("UPDATE \"Lamaran\" SET status = $1, status_reason = $2 WHERE lamaran_id = $3", array($this->status, $this->status_reason, $this->lamaran_id));
     }
