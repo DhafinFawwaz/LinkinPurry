@@ -1,8 +1,8 @@
 -- Insert Users
 INSERT INTO "User" (email, password, role, nama) VALUES
 -- $2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6 itu hasil hash dari 'password123'
-('jobseeker1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'jobseeker', 'John Doe'),
-('jobseeker2@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'jobseeker', 'Jane Smith'),
+('jobseeker1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'jobseeker', 'Jane Doe'), -- no way zzz reference
+('jobseeker2@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'jobseeker', 'John Smith'),
 ('company1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'company', 'Tech Innovations'),
 ('company2@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'company', 'Creative Solutions');
 
@@ -17,14 +17,4 @@ INSERT INTO "Lowongan" (company_id, posisi, deskripsi, jenis_pekerjaan, jenis_lo
 (3, 'UX Designer', 'Designing user-friendly interfaces for applications.', 'part time', 'remote'),
 (4, 'Graphic Designer', 'Creating visual concepts and designs for clients.', 'internship', 'hybrid');
 
--- Insert Attachments for Job Openings
-INSERT INTO "Attachment_Lowongan" (lowongan_id, file_path) VALUES
-(1, '/uploads/attachments/Software_Engineer_Job_Description.pdf'),
-(2, '/uploads/attachments/UX_Designer_Job_Description.pdf'),
-(3, '/uploads/attachments/Graphic_Designer_Job_Description.pdf');
-
--- Insert Applications
-INSERT INTO "Lamaran" (user_id, lowongan_id, cv_path, video_path) VALUES
-(1, 1, '/uploads/cv/John_Doe_CV.pdf', '/uploads/videos/John_Doe_Intro.mp4'),
-(2, 2, '/uploads/cv/Jane_Smith_CV.pdf', NULL),
-(1, 3, '/uploads/cv/John_Doe_CV.pdf', '/uploads/videos/John_Doe_Intro.mp4');
+-- Insert Attachments Lowongan dan Lamaran pakai seed.php

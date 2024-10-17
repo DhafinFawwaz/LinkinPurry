@@ -2,18 +2,35 @@
 
 require_once __DIR__ . "/../lib/database.php";
 require_once __DIR__ . "/../models/user.model.php";
+require_once __DIR__ . "/../models/lamaran.model.php";
+require_once __DIR__ . "/../models/attachment-lowongan.model.php";
+require_once __DIR__ . "/../models/cv.model.php";
+require_once __DIR__ . "/../models/video.model.php";
+require_once __DIR__ . "/../models/attachment.model.php";
+
+function getFileNames($path){
+    $namesList = [];
+    $dirHandle = opendir($path);
+    while (($file = readdir($dirHandle)) !== false) {
+        if ($file != '.' && $file != '..') {
+            $namesList[] = $file;
+        }
+    }
+    return $namesList;
+}
 
 function insert_seed_to_db(){
-    // $db = new Database($_ENV["DB_NAME"], $_ENV["DB_PORT"], $_ENV["POSTGRES_DB"], $_ENV["POSTGRES_USER"], $_ENV["POSTGRES_PASSWORD"]);
-    // User::insertJobseeker('jobseeker1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'John Doe');
+    // mungkin nanti sesuaikan dengan jumlah user dan lowongan idk
+    $db = new Database($_ENV["DB_NAME"], $_ENV["DB_PORT"], $_ENV["POSTGRES_DB"], $_ENV["POSTGRES_USER"], $_ENV["POSTGRES_PASSWORD"]);
+    $cvFolder = "uploads/cv";
+    $videosFolder = "uploads/videos";
+    $attachmentsFolder = "uploads/attachments";
+    $cvPaths = getFileNames($cvFolder);
+    $videosPaths = getFileNames($videosFolder);
+    $attachmentsPaths = getFileNames($attachmentsFolder);
 
-    // User::insertCompany('jobseeker1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'John Doe', 'Jakarta', 'We are a company');
-
-    // Lowongan::insertLowongan(1, 'Software Engineer', 'We are looking for a software engineer', 'full time', 'on-site');
-
-    // Lamaran::insertLamaran(1, 1, new CV(1, null), new Video(1, null));
-
-    // AttachmentLowongan::insertAttachmentLowongan(1, new Attachment(1, 'file_path'));
-    
-
+    for ($i = 0; $i < 6; $i++){
+        Lamaran::insertLamaran((($i % 2) + 1), (($i % 3) + 1), new CV(($cvFolder . '/' . $cvPaths[$i]), null), new Video(($videosFolder . '/' . $videosPaths[$i]), null));
+        AttachmentLowongan::insertAttachmentLowongan((($i % 3) + 1), new Attachment(($attachmentsFolder . '/' . $attachmentsPaths[$i]), null));
+    }
 }
