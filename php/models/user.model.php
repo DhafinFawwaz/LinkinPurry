@@ -16,11 +16,22 @@ class User extends Model {
         $this->username = $username;
     }
 
-    public static function getUserByEmail(string $email) {
-        Model::DB()->query("SELECT * FROM \"User\" WHERE email = $1", array($email));
-        $res = Model::DB()->fetchRow();
+    public static function fromSqlRow(array $row) {
+        return new User($row[0], $row[1], $row[2], $row[3], $row[4]);
+    }
+
+    public static function getUserById(int $userId) {
+        self::DB()->query("SELECT * FROM \"User\" WHERE user_id = $1", array($userId));
+        $res = self::DB()->fetchRow();
         if(!$res) return null;
-        return new User($res[0], $res[1], $res[2], $res[3], $res[4]);
+        return self::fromSqlRow($res);
+    }
+
+    public static function getUserByEmail(string $email) {
+        self::DB()->query("SELECT * FROM \"User\" WHERE email = $1", array($email));
+        $res = self::DB()->fetchRow();
+        if(!$res) return null;
+        return self::fromSqlRow($res);
     }
 
     /**
@@ -31,15 +42,15 @@ class User extends Model {
      * @return void
      */
     public static function insertJobseeker(string $email, string $password, string $role, string $username) {
-        Model::DB()->query("INSERT INTO \"User\" (email, password, role, nama) VALUES ($1, $2, $3, $4)", [$email, $password, $role, $username]);
+        self::DB()->query("INSERT INTO \"User\" (email, password, role, nama) VALUES ($1, $2, $3, $4)", [$email, $password, $role, $username]);
     }
 
     public static function insertCompany(string $email, string $password, string $username, string $location, string $about) {
-        Model::DB()->query("CALL create_user_company($1, $2, $3, $4, $5);", [$email, $password, $username, $location, $about]);
+        self::DB()->query("CALL create_user_company($1, $2, $3, $4, $5);", [$email, $password, $username, $location, $about]);
     }
 
     public function save() {
-        Model::DB()->query("UPDATE \"User\" SET nama=$1 WHERE user_id=$2", array($this->username, $this->id));
+        self::DB()->query("UPDATE \"User\" SET nama=$1 WHERE user_id=$2", array($this->username, $this->id));
     }
 
     public function jsonSerialize(): string {

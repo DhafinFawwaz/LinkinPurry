@@ -5,14 +5,14 @@ require_once __DIR__ . "/cv.model.php";
 
 class Lamaran extends Model {
     
-    private int $lamaran_id;
-    private int $user_id;
-    private int $lowongan_id;
-    private CV $cv;
-    private Video $video;
-    private string $status = 'waiting'; // 'accepted', 'rejected', 'waiting'
-    private string $status_reason;
-    private DateTime $created_at;
+    public int $lamaran_id;
+    public int $user_id;
+    public int $lowongan_id;
+    public CV $cv;
+    public Video $video;
+    public string $status = 'waiting'; // 'accepted', 'rejected', 'waiting'
+    public string $status_reason;
+    public DateTime $created_at;
 
     public function __construct(int $lamaran_id, int $user_id, int $lowongan_id, CV $cv, Video $video, string $status, string $status_reason, DateTime $created_at) {
         $this->lamaran_id = $lamaran_id;
