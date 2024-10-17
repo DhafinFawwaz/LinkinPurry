@@ -26,7 +26,7 @@ class Lamaran extends Model {
     }
 
     public static function insertLamaran(int $user_id, int $lowongan_id, CV $cv, Video $video) {
-        Model::DB()->query("INSERT INTO \"Lamaran\" (user_id, lowongan_id, cv_id, video_id) VALUES ($1, $2, $3, $4)", array($user_id, $lowongan_id, $cv->path, $video->path));
+        Model::DB()->query("INSERT INTO \"Lamaran\" (user_id, lowongan_id, cv_path, video_path) VALUES ($1, $2, $3, $4)", array($user_id, $lowongan_id, $cv->path, $video->path));
     }
 
     public function save() {

@@ -32,8 +32,8 @@
 
             <select id="job-type-filter" onchange="filterAndSortJobs()">
                 <option value="">All Job Types</option>
-                <option value="full-time">Full Time</option>
-                <option value="part-time">Part Time</option>
+                <option value="full time">Full Time</option>
+                <option value="part time">Part Time</option>
                 <option value="internship">Internship</option>
             </select>
 
@@ -59,7 +59,6 @@
 
             <div class="job-list">
                 <?php if (isset($lowonganList) && !empty($lowonganList)): ?>
-                    <!-- <?php var_dump($lowonganList); ?> -->
                     <?php foreach ($lowonganList as $lowongan): ?>
                         <div class="job-card" onclick="window.location.href='/detail-lowongan-jobseeker?id=<?= $lowongan['lowongan_id'] ?>'">
                             <div class="job-picture">
@@ -100,6 +99,7 @@
         </div>
     </section>
 
+    <script src="../public/js/home-jobseeker.js"></script>
 </body>
 </html>
 

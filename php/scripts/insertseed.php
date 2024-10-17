@@ -2,6 +2,22 @@
 
 require_once __DIR__ . "/../lib/database.php";
 require_once __DIR__ . "/../models/user.model.php";
+require_once __DIR__ . "/../models/lamaran.model.php";
+require_once __DIR__ . "/../models/attachment-lowongan.model.php";
+require_once __DIR__ . "/../models/cv.model.php";
+require_once __DIR__ . "/../models/video.model.php";
+require_once __DIR__ . "/../models/attachment.model.php";
+
+function getFileNames($path){
+    $namesList = [];
+    $dirHandle = opendir($path);
+    while (($file = readdir($dirHandle)) !== false) {
+        if ($file != '.' && $file != '..') {
+            $namesList[] = $file;
+        }
+    }
+    return $namesList;
+}
 
 function insert_seed_to_db(){
     $db = new Database($_ENV["DB_NAME"], $_ENV["DB_PORT"], $_ENV["POSTGRES_DB"], $_ENV["POSTGRES_USER"], $_ENV["POSTGRES_PASSWORD"]);
