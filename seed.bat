@@ -1,0 +1,1 @@
+docker exec -it if3110-tubes-2024-k02-06-php-1 sh -c "php scripts/seed.php"

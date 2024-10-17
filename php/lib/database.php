@@ -69,11 +69,14 @@ class Database {
 
     public function migrate(){
         echo "Checking database...\n";
+        $isMigrating = false;
         if(!$this->isTableExists("User")) {
             echo "Users relation not found. Migrating Database...\n";
+            $isMigrating = true;
             $this->forceMigrate();
         }
         echo "Database is ready!\n";
+        return $isMigrating;
     }
 
     public function forceMigrate() {
