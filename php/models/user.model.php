@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/model.php";
-require_once __DIR__ . "/image.model.php";
 
 class User extends Model {
     public int $id;
@@ -8,7 +7,6 @@ class User extends Model {
     public string $password;
     public string $username;
     public string $role;
-    public File $profilePicture;
 
     public function __construct(int $userId, string $email, string $password, string $role, string $username) {
         $this->id = $userId;

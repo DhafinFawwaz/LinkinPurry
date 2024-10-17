@@ -6,14 +6,12 @@ class File implements JsonSerializable {
         self::$uploadDir = $dir;
     }
 
-    public string $imageName;
-    public string $imageUrl;
-    public $imageFile; // This is a binary data of the image. May come from $_FILES["image"]["image_name"]
+    public string $path;
+    public $bin; // This is a binary data of the image. May come from $_FILES["image"]["image_name"]
     
-    public function __construct(string $imageName, string $imageUrl, $imageFile) {
-        $this->imageName = $imageName;
-        $this->imageUrl = $imageUrl;
-        $this->imageFile = $imageFile;
+    public function __construct(string $url, $bin) {
+        $this->path = $url;
+        $this->bin = $bin;
     }
 
     /**
@@ -22,7 +20,7 @@ class File implements JsonSerializable {
      * @return void
      */
     public function save(){
-        move_uploaded_file($this->imageFile, File::$uploadDir . $this->imageName);
+        move_uploaded_file($this->bin, File::$uploadDir . $this->path);
     }
 
     /**
@@ -30,14 +28,13 @@ class File implements JsonSerializable {
      * @return void
      */
     public function delete(){
-        unlink(File::$uploadDir . $this->imageName);
+        unlink(File::$uploadDir . $this->path);
     }
 
     
     public function jsonSerialize(): mixed {
         return [
-            "fileName" => $this->imageName,
-            "fileUrl" => $this->imageUrl
+            "path" => $this->path
         ];
     }
 }

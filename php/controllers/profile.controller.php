@@ -8,11 +8,11 @@ class ProfileController extends Controller {
         if($user->role === "company") {
             $this->handleCompany($user);
         } else {
-            $this->handleUser($user);
+            $this->handleJobseeker($user);
         }
     }
 
-    private function handleUser(User $user) {
+    private function handleJobseeker(User $user) {
         $data["form"]["username"] = $user->username;
         $data["form"]["role"] = $user->role;
         
@@ -22,6 +22,7 @@ class ProfileController extends Controller {
             $user->save();
             $_SESSION['user'] = $user;
         }
+
 
         return $this->view("profile.php", $data);
     }

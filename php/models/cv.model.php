@@ -9,8 +9,7 @@ class CV extends File {
     
     public function jsonSerialize(): mixed {
         return [
-            "cvName" => $this->imageName,
-            "cvUrl" => $this->imageUrl
+            "cv_path" => $this->path
         ];
     }
 }

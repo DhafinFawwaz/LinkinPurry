@@ -12,7 +12,7 @@
     <form action="/profile" method="post">
         <label for="username">Nama:</label>
         <input disabled id="username" name="username" value="<?php if(isset($data["form"]["username"])) echo $data["form"]["username"] ?>"/>
-        
+
         <?php 
         if($data["form"]["role"] == "company") {
             $location = $data["form"]["location"] ?? "";

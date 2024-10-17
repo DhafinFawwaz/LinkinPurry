@@ -9,8 +9,7 @@ class Video extends File {
     
     public function jsonSerialize(): mixed {
         return [
-            "videoName" => $this->imageName,
-            "videoUrl" => $this->imageUrl
+            "video_path" => $this->path
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
+require_once __DIR__ . "/../models/lamaran.model.php";
 class LamaranController extends Controller {
     public function handle(){
         echo "Lamaran<br>";
@@ -10,6 +11,8 @@ class LamaranController extends Controller {
 
         echo "Lowongan ID: $lowongan_id <br>";
         echo "Lamaran ID: $lamaran_id <br>";
+
+        $lamaran = Lamaran::getLamaranById($lamaran_id);
     }
 
 }
