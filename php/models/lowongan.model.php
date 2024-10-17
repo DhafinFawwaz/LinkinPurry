@@ -40,6 +40,18 @@ class Lowongan extends Model {
         return self::DB()->fetchAll();
     }
 
+    public static function getLowonganDetailsById($id) {
+        self::DB()->query(
+            "SELECT l.*, u.nama as company_name, cd.lokasi as company_location
+            FROM \"Lowongan\" l
+            JOIN \"User\" u ON l.company_id = u.user_id
+            LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id
+            WHERE l.lowongan_id = $1", 
+            [$id]
+        );
+        return self::DB()->fetchAll();
+    }
+
     public function jsonSerialize(): string {
         return json_encode($this);
     }

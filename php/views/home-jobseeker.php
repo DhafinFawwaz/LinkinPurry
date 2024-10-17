@@ -61,7 +61,7 @@
                 <?php if (isset($lowonganList) && !empty($lowonganList)): ?>
                     <!-- <?php var_dump($lowonganList); ?> -->
                     <?php foreach ($lowonganList as $lowongan): ?>
-                        <div class="job-card">
+                        <div class="job-card" onclick="window.location.href='/detail-lowongan-jobseeker?id=<?= $lowongan['lowongan_id'] ?>'">
                             <div class="job-picture">
                                 <img src="../public/assets/company_profile.svg" alt="job-picture">
                             </div>
