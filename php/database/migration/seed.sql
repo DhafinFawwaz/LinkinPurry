@@ -1,9 +1,10 @@
 -- Insert Users
 INSERT INTO "User" (email, password, role, nama) VALUES
-('jobseeker1@example.com', 'password123', 'jobseeker', 'John Doe'),
-('jobseeker2@example.com', 'password123', 'jobseeker', 'Jane Smith'),
-('company1@example.com', 'password123', 'company', 'Tech Innovations'),
-('company2@example.com', 'password123', 'company', 'Creative Solutions');
+-- $2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6 itu hasil hash dari 'password123'
+('jobseeker1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'jobseeker', 'John Doe'),
+('jobseeker2@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'jobseeker', 'Jane Smith'),
+('company1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'company', 'Tech Innovations'),
+('company2@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'company', 'Creative Solutions');
 
 -- Insert Company Details
 INSERT INTO "Company_Detail" (user_id, lokasi, about) VALUES
@@ -16,7 +17,6 @@ INSERT INTO "Lowongan" (company_id, posisi, deskripsi, jenis_pekerjaan, jenis_lo
 (3, 'UX Designer', 'Designing user-friendly interfaces for applications.', 'part time', 'remote'),
 (4, 'Graphic Designer', 'Creating visual concepts and designs for clients.', 'internship', 'hybrid');
 
--- path masih belum tahu mau gimana, ini seeding dari ch4t9pt
 -- Insert Attachments for Job Openings
 INSERT INTO "Attachment_Lowongan" (lowongan_id, file_path) VALUES
 (1, '/uploads/attachments/Software_Engineer_Job_Description.pdf'),
