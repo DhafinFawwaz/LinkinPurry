@@ -12,8 +12,8 @@
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Tambah Lowongan</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/tambah-lowongan-company">Tambah Lowongan</a></li>
         </ul>
     </nav>
 
