@@ -25,6 +25,10 @@ class Lamaran extends Model {
         $this->created_at = $created_at;
     }
 
+    public function save() {
+        Model::DB()->query("UPDATE \"Lamaran\" SET status = $1, status_reason = $2 WHERE lamaran_id = $3", array($this->status, $this->status_reason, $this->lamaran_id));
+    }
+
     public static function fromSqlRow(array $row) {
         return new Lamaran($row[0], $row[1], $row[2], new CV( $row[3], null), new Video($row[4], null), $row[5], $row[6], new DateTime($row[7]));
 

@@ -4,13 +4,47 @@ require_once __DIR__ . "/../models/lamaran.model.php";
 require_once __DIR__ . "/../models/user.model.php";
 class LamaranController extends Controller {
     public function handle(){
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            return $this->handlePost();
+        } else {
+            return $this->handleGet();
+        }
+    }
 
+
+    public function handlePost() {
+        if(!isset($_POST["status"])) {
+            $this->redirect("/not-found");
+            return;
+        }
+        if(!isset($_POST["status_reason"])) {
+            $this->redirect("/not-found");
+            return;
+        }
+        
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[0];
         $lamaran_id = $pathArr[1];
-
         $company = $this->getCurrentUser();
+        $lamaran = Lamaran::getLamaranDetails($company->id, $lowongan_id, $lamaran_id);
+        if(!$lamaran) {
+            $this->redirect("/not-found"); // either not found or not owned by this company
+            return;
+        }
 
+        $lamaran->status = $_POST["status"];
+        $lamaran->status_reason = $_POST["status_reason"];
+        $lamaran->save();
+
+        $this->refreshPage();
+    }
+
+
+    public function handleGet() {
+        $pathArr = $this->getUrlPath();
+        $lowongan_id = $pathArr[0];
+        $lamaran_id = $pathArr[1];
+        $company = $this->getCurrentUser();
         $lamaran = Lamaran::getLamaranDetails($company->id, $lowongan_id, $lamaran_id);
         if(!$lamaran) {
             $this->redirect("/not-found"); // either not found or not owned by this company
@@ -36,11 +70,3 @@ class LamaranController extends Controller {
     }
 
 }
-
-// Pada halaman ini, tampilkan:
-// Data job seeker yang melamar: nama dan email
-// Attachment lamaran:
-// CV. Tampilkan dalam bentuk PDF embed, terserah dengan metode apa saja.
-// Video perkenalan (jika ada). Tampilkan dalam bentuk video player.
-// Status lamaran, beserta alasan/tindak lanjutnya (jika ada)
-// Pada halaman ini juga, company dapat melakukan approve/reject serta memberikan alasan/tindak lanjutnya hanya untuk lamaran yang masih berstatus waiting. Alasan/tindak lanjut ini dalam bentuk rich text HTML.

@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . "/file.model.php";
 
-class Video extends File {
+class Attachment extends File {
     public function getUploadDir() {
-        return __DIR__ . "/../uploads/videos/";
+        return __DIR__ . "/../uploads/attachments/";
     }
     
     public function jsonSerialize(): mixed {

@@ -9,6 +9,11 @@ abstract class Controller implements IHandler{
         exit();
     }
 
+    function refreshPage() {
+        $this->redirect($_SERVER["REQUEST_URI"]); // refresh page
+    }
+
+
     function getUrlPath() {
         $route = Route::clean($_SERVER['REQUEST_URI']);
         $parts = parse_url($route);

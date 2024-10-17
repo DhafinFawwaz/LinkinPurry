@@ -1,9 +1,8 @@
 <?php
 
 class File implements JsonSerializable {
-    private static string $uploadDir = __DIR__ . "/../uploads/files/";
-    public static function setUploadDir(string $dir){
-        self::$uploadDir = $dir;
+    public function getUploadDir() {
+        return __DIR__ . "/../uploads/files/";
     }
 
     public string $path;
@@ -20,7 +19,7 @@ class File implements JsonSerializable {
      * @return void
      */
     public function save(){
-        move_uploaded_file($this->bin, File::$uploadDir . $this->path);
+        move_uploaded_file($this->bin, $this->getUploadDir() . $this->path);
     }
 
     /**
@@ -28,7 +27,7 @@ class File implements JsonSerializable {
      * @return void
      */
     public function delete(){
-        unlink(File::$uploadDir . $this->path);
+        unlink($this->getUploadDir() . $this->path);
     }
 
     

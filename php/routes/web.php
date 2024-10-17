@@ -47,4 +47,5 @@ Route::get("/{int}",  [Authenticated::class, LowonganController::class]);
 
 // /lowongan_id/lamaran_id
 Route::get("/{int}/{int}",  [Authenticated::class, LamaranController::class]);
+Route::post("/{int}/{int}",  [Authenticated::class, LamaranController::class]);
 

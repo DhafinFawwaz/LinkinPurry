@@ -9,37 +9,35 @@
 </head>
 <body>
     Detail Lamaran <br>
-
     
     <?php 
         echo "<p>Jobseeker: " . $data["jobseeker"]["username"] . "</p>";
         echo "<p>Email: " . $data["jobseeker"]["email"] . "</p>";
-        echo "<embed style='max-height: 20rem;' src='/uploads/pdf/" . $data["lamaran"]["cv_path"] . "' width='800px' height='2100px' />";
+        echo "<embed style='max-height: 20rem;' src='" . $data["lamaran"]["cv_path"] . "' width='800px' height='2100px' />";
         echo "<video width='320' height='240' controls>";
-        echo "<source src='/uploads/videos/" . $data["lamaran"]["video_path"] . "' type='video/mp4'>";
+        echo "<source src='" . $data["lamaran"]["video_path"] . "' type='video/mp4'>";
         echo "</video>";
 
-        echo "<p>Status: " . $data["lamaran"]["status"] . "</p>";
-        echo "<p>Status Reason: " . $data["lamaran"]["status_reason"] . "</p>";
+        if($data["lamaran"]["status"] != 'waiting') {
+            echo "<p>Status: " . $data["lamaran"]["status"] . "</p>";
+            echo "<p>Status Reason: </p>";
+            echo $data["lamaran"]["status_reason"];
+        } else {
+            $formAction = $data["form"]["action"];
+            echo "<p>Status: " . $data["lamaran"]["status"] . "</p>";
+            echo <<<EOD
+<form action='$formAction' method='post'>
+    <div class="container">
+        <div id="quillEditor" style='max-height: 20rem'></div>
+    </div>
+    <textarea name="status_reason" style="display:none" id="hiddenArea"></textarea>
 
-        echo "<form action='" . $data["form"]["action"] . "'method='post'>";
+    <button type="submit" name="status" value="accepted">Accept</button>
+    <button type="submit" name="status" value="rejected">Reject</button>
+</form>
+EOD;
+        }
     ?>
-    
-<!-- if masih $lamaran->status == 'waiting', show form approve/reject -->
-<!-- $lamaran->status_reason rich text html -->
-
-        <button type="submit">Approve</button>
-        <button type="submit">Reject</button>
-    </form>
-
-    <form method="post">
-        <div class="container">
-            <div id="quillEditor">
-            </div>
-        </div>
-        <textarea name="text" style="display:none" id="hiddenArea"></textarea>
-        <button type="submit" class="button">Submit</button>
-    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <script>
@@ -49,12 +47,13 @@
         };
 
         const quill = new Quill('#quillEditor', options);
+        
 
         const textarea = document.querySelector('#hiddenArea');
         const form = document.querySelector("form");
         form.addEventListener("submit", (e) => {
-        // will still trigger basic form submission and textarea value in formdata will be updated, see network inspect after submit
-        textarea.value = quill.root.innerHTML;
+            // will still trigger basic form submission and textarea value in formdata will be updated, see network inspect after submit
+            textarea.value = quill.root.innerHTML;
         })
     </script>
 </body>
