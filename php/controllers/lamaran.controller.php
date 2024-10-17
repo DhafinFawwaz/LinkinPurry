@@ -9,20 +9,22 @@ class LamaranController extends Controller {
         $lowongan_id = $pathArr[0];
         $lamaran_id = $pathArr[1];
 
-        $lamaran = Lamaran::getLamaranById($lamaran_id);
+        $company = $this->getCurrentUser();
+
+        $lamaran = Lamaran::getLamaranDetails($company->id, $lowongan_id, $lamaran_id);
         if(!$lamaran) {
-            $this->redirect("/not-found");
+            $this->redirect("/not-found"); // either not found or not owned by this company
             return;
         }
             
-        $user = $lamaran->getUser();
+        $jobseeker = $lamaran->getUser();
 
         $data = array();
         $data["form"] = $_POST;
         $data["form"]["action"] = "/$lowongan_id/$lamaran_id";
         
-        $data["jobseeker"]["username"] = $user->username;
-        $data["jobseeker"]["email"] = $user->email;
+        $data["jobseeker"]["username"] = $jobseeker->username;
+        $data["jobseeker"]["email"] = $jobseeker->email;
         
         $data["lamaran"]["cv_path"] = $lamaran->cv->path;
         $data["lamaran"]["video_path"] = $lamaran->video->path;
@@ -30,7 +32,7 @@ class LamaranController extends Controller {
         $data["lamaran"]["status"] = $lamaran->status;
         $data["lamaran"]["status_reason"] = $lamaran->status_reason;
 
-
+        return $this->view("detail-lamaran.php", $data);
     }
 
 }

@@ -2,5 +2,13 @@
 
 postgres-data
 .env
+
 app/uploads/images/*
-app/uploads/pdf/*
+app/uploads/attachments/*
+app/uploads/cv/*
+app/uploads/videos/*
+
+php/uploads/images/*
+php/uploads/attachments/*
+php/uploads/cv/*
+php/uploads/videos/*

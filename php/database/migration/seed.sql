@@ -19,12 +19,12 @@ INSERT INTO "Lowongan" (company_id, posisi, deskripsi, jenis_pekerjaan, jenis_lo
 -- path masih belum tahu mau gimana, ini seeding dari ch4t9pt
 -- Insert Attachments for Job Openings
 INSERT INTO "Attachment_Lowongan" (lowongan_id, file_path) VALUES
-(1, '/attachments/Software_Engineer_Job_Description.pdf'),
-(2, '/attachments/UX_Designer_Job_Description.pdf'),
-(3, '/attachments/Graphic_Designer_Job_Description.pdf');
+(1, '/uploads/attachments/Software_Engineer_Job_Description.pdf'),
+(2, '/uploads/attachments/UX_Designer_Job_Description.pdf'),
+(3, '/uploads/attachments/Graphic_Designer_Job_Description.pdf');
 
 -- Insert Applications
 INSERT INTO "Lamaran" (user_id, lowongan_id, cv_path, video_path) VALUES
-(1, 1, '/cv/John_Doe_CV.pdf', '/videos/John_Doe_Intro.mp4'),
-(2, 2, '/cv/Jane_Smith_CV.pdf', NULL),
-(1, 3, '/cv/John_Doe_CV.pdf', '/videos/John_Doe_Intro.mp4');
+(1, 1, '/uploads/cv/John_Doe_CV.pdf', '/uploads/videos/John_Doe_Intro.mp4'),
+(2, 2, '/uploads/cv/Jane_Smith_CV.pdf', NULL),
+(1, 3, '/uploads/cv/John_Doe_CV.pdf', '/uploads/videos/John_Doe_Intro.mp4');

@@ -17,4 +17,10 @@ abstract class Controller implements IHandler{
         array_shift($partsArr);
         return $partsArr;
     }
+
+    function getCurrentUser() {
+        /** @var User */
+        $user = $_SESSION["user"];
+        return $user;
+    }
 }
