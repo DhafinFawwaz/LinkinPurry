@@ -116,23 +116,27 @@ class Route {
             return;
         }
 
-
+        $res = null;
         if(is_callable($handler)) {
-            $handler();
+            $res = $handler();
         } else if(is_subclass_of($handler, IHandler::class)) {
             /** @var IHandler */
             $con = $handler;
-            $con->handle();
+            $res = $con->handle();
         } else if(is_array($handler)) {
             foreach($handler as $h) {
                 if(is_callable($h)) {
-                    $h();
+                    $res = $h();
                 } else if(is_subclass_of($h, IHandler::class)) {
                     /** @var IHandler */
                     $con = $h;
-                    $con->handle();
+                    $res = $con->handle();
                 }
             }
+        }
+        if(is_subclass_of($res, JsonSerializable::class)) {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($res);
         }
     }
 }
