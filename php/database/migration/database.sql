@@ -20,8 +20,8 @@ CREATE TABLE "Lowongan" (
     company_id INT REFERENCES "User" (user_id) ON DELETE CASCADE,
     posisi VARCHAR(255) NOT NULL,
     deskripsi TEXT NOT NULL,
-    jenis_pekerjaan VARCHAR(100) NOT NULL,
-    jenis_lokasi VARCHAR(100) NOT NULL,
+    jenis_pekerjaan VARCHAR(100) CHECK (jenis_pekerjaan IN ('full time', 'part time', 'internship')) NOT NULL,
+    jenis_lokasi VARCHAR(100) CHECK (jenis_lokasi IN ('on-site', 'hybrid', 'remote')) NOT NULL,
     is_open BOOLEAN DEFAULT true,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
