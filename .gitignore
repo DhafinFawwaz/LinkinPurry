@@ -13,3 +13,5 @@ php/uploads/attachments/*
 php/uploads/cv/*
 php/uploads/videos/*
 php/downloads
+
+dataset-generator/data.json

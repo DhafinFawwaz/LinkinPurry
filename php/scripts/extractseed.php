@@ -11,3 +11,16 @@ function extract_zip($zip_path, $extract_to) {
     }
 }
 
+function move_files($source, $destination){
+    if(is_dir($source)){
+        $files = scandir($source);
+        foreach($files as $file){
+            if($file != '.' && $file != '..'){
+                move_files($source . '/' . $file, $destination . '/' . $file);
+            }
+        }
+        rmdir($source);
+    } else {
+        rename($source, $destination);
+    }
+}
