@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__ . "/model.php";
 
-class Image implements JsonSerializable {
-    private static string $uploadDir = __DIR__ . "/../uploads/images/";
+class File implements JsonSerializable {
+    private static string $uploadDir = __DIR__ . "/../uploads/files/";
     public static function setUploadDir(string $dir){
-        Image::$uploadDir = $dir;
+        self::$uploadDir = $dir;
     }
 
     public string $imageName;
@@ -23,7 +22,7 @@ class Image implements JsonSerializable {
      * @return void
      */
     public function save(){
-        move_uploaded_file($this->imageFile, Image::$uploadDir . $this->imageName);
+        move_uploaded_file($this->imageFile, File::$uploadDir . $this->imageName);
     }
 
     /**
@@ -31,14 +30,14 @@ class Image implements JsonSerializable {
      * @return void
      */
     public function delete(){
-        unlink(Image::$uploadDir . $this->imageName);
+        unlink(File::$uploadDir . $this->imageName);
     }
 
     
     public function jsonSerialize(): mixed {
         return [
-            "imageName" => $this->imageName,
-            "imageUrl" => $this->imageUrl
+            "fileName" => $this->imageName,
+            "fileUrl" => $this->imageUrl
         ];
     }
 }

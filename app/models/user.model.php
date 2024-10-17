@@ -8,7 +8,7 @@ class User extends Model {
     public string $password;
     public string $username;
     public string $role;
-    public Image $profilePicture;
+    public File $profilePicture;
 
     public function __construct(int $userId, string $email, string $password, string $role, string $username) {
         $this->id = $userId;
