@@ -60,12 +60,6 @@ class Route {
         // remove last '/'
         if($url[strlen($url)-1] == "/")
             $url = substr($url, 0, strlen($url)-1);
-        
-        // whatever/<int>/<int>
-        // /<int>
-
-
-
         return $url;
     }
 

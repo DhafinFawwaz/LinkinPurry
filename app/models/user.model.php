@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/model.php";
-require_once __DIR__ . "/image.php";
+require_once __DIR__ . "/image.model.php";
 
 class User extends Model {
     public int $id;
@@ -44,7 +44,7 @@ class User extends Model {
         Model::DB()->query("UPDATE \"User\" SET nama=$1 WHERE user_id=$2", array($this->username, $this->id));
     }
 
-    public function toJsonString(): string {
+    public function jsonSerialize(): string {
         return json_encode($this);
     }
 }

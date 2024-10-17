@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
-require_once __DIR__ . "/../models/company.php";
-class Profile extends Controller {
+require_once __DIR__ . "/../models/company.model.php";
+class ProfileController extends Controller {
     public function handle(){
         /** @var User */
         $user = $_SESSION['user'];

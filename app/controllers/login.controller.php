@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . "/../models/user.php";
+require_once __DIR__ . "/../models/user.model.php";
 require_once __DIR__ . "/../lib/controller.php";
-class Login extends Controller {
+class LoginController extends Controller {
     public function handle(){
         $data = array();
         $data["form"] = $_POST;

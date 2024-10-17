@@ -20,7 +20,7 @@ Route::on404(function(){
 Route::get("/login", [NotAuthenticated::class, function(){
     return view(path: "login.php");
 }]);
-Route::post("/login", [NotAuthenticated::class, Login::class]);
+Route::post("/login", [NotAuthenticated::class, LoginController::class]);
 
 
 Route::get("/register/jobseeker", [NotAuthenticated::class, function(){
@@ -34,17 +34,17 @@ Route::get("/register/company", [NotAuthenticated::class, function(){
 }]);
 Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
 
-Route::get("/profile",  [Authenticated::class, Profile::class]);
-Route::post("/profile",  [Authenticated::class, Profile::class]);
+Route::get("/profile",  [Authenticated::class, ProfileController::class]);
+Route::post("/profile",  [Authenticated::class, ProfileController::class]);
 
-Route::post("/logout", [Authenticated::class, Logout::class]);
+Route::post("/logout", [Authenticated::class, LogoutController::class]);
 
 
 // currently only support {int} and {string}
 
 // /lowongan_id
-Route::get("/{int}",  [Authenticated::class, Lowongan::class]);
+Route::get("/{int}",  [Authenticated::class, LowonganController::class]);
 
 // /lowongan_id/lamaran_id
-Route::get("/{int}/{int}",  [Authenticated::class, Lamaran::class]);
+Route::get("/{int}/{int}",  [Authenticated::class, LamaranController::class]);
 

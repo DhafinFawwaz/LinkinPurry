@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
-class Lowongan extends Controller {
+class LowonganController extends Controller {
     public function handle(){
         echo "Lowongan<br>";
 
