@@ -8,17 +8,6 @@ require_once __DIR__ . "/../models/cv.model.php";
 require_once __DIR__ . "/../models/video.model.php";
 require_once __DIR__ . "/../models/attachment.model.php";
 
-function getFileNames($path){
-    $namesList = [];
-    $dirHandle = opendir($path);
-    while (($file = readdir($dirHandle)) !== false) {
-        if ($file != '.' && $file != '..') {
-            $namesList[] = $file;
-        }
-    }
-    return $namesList;
-}
-
 function insert_seed_to_db(){
     $db = new Database($_ENV["DB_NAME"], $_ENV["DB_PORT"], $_ENV["POSTGRES_DB"], $_ENV["POSTGRES_USER"], $_ENV["POSTGRES_PASSWORD"]);
 
@@ -28,7 +17,6 @@ function insert_seed_to_db(){
     $db->queryNoParam("TRUNCATE \"Lowongan\" CASCADE");
     $db->queryNoParam("TRUNCATE \"User\" CASCADE");
     
-    // read json in uploads/data.json
     $data = json_decode(file_get_contents('downloads/data.json'), true);
 
     $users = $data['jobseeker'];
@@ -54,24 +42,5 @@ function insert_seed_to_db(){
             }
         }
     }
-
-    // for ($i = 0; $i < 10; $i++) {
-    //     User::insertJobseeker('jobseeker1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'John Doe');
-    // }
-
-    // for ($i = 0; $i < 10; $i++) {
-    //     User::insertCompany('jobseeker1@example.com', '$2y$10$G2aIX05s4Gsa50DAcEIHuu0jpTrpOhaZKQOVcnfp7tfgk3Mt8Oom6', 'John Doe', 'Jakarta', 'We are a company');
-
-    //     for($j = 0; $j < 10; $j++){
-    //         Lowongan::insertLowongan(1, 'Software Engineer', 'We are looking for a software engineer', 'full time', 'on-site');
-    //         AttachmentLowongan::insertAttachmentLowongan(1, new Attachment(1, 'file_path'));
-            
-    //         for ($i = 0; $i < 10; $i++) {
-    //             Lamaran::insertLamaran(1, 1, new CV(1, null), new Video(1, null));
-    //         }
-    //     }
-    // }
-    
-    
 
 }
