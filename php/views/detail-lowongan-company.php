@@ -11,8 +11,8 @@
     <!-- nav -->
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="/home-company">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
         </ul>
     </nav>
     <div><a href="#">Edit Lowongan</a></div>

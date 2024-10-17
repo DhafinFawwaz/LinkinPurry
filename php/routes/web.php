@@ -10,6 +10,10 @@ require_once __DIR__ . '/../controllers/register/register-company.controller.php
 require_once __DIR__ . '/../controllers/logout.controller.php';
 require_once __DIR__ . '/../controllers/lamaran.controller.php';
 require_once __DIR__ . '/../controllers/lowongan.controller.php';
+require_once __DIR__ . '/../controllers/home-company.controller.php';
+require_once __DIR__ . '/../controllers/tambah-lowongan-company.controller.php';
+require_once __DIR__ . '/../controllers/edit-lowongan-company.controller.php';
+require_once __DIR__ . '/../controllers/detail-lowongan-company.controller.php';
 
 
 
@@ -33,6 +37,18 @@ Route::get("/register/company", [NotAuthenticated::class, function(){
     return view("register/register-company.php");
 }]);
 Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
+
+Route::get("/home-company",  [Authenticated::class, HomeCompanyController::class]);
+Route::post("/home-company",  [Authenticated::class, HomeCompanyController::class]);
+
+Route::get("/tambah-lowongan-company",  [Authenticated::class, TambahLowonganCompanyController::class]);
+Route::post("/tambah-lowongan-company",  [Authenticated::class, TambahLowonganCompanyController::class]);
+
+Route::get("/edit-lowongan-company",  [Authenticated::class, EditLowonganCompanyController::class]);
+Route::post("/edit-lowongan-company",  [Authenticated::class, EditLowonganCompanyController::class]);
+
+Route::get("/detail-lowongan-company",  [Authenticated::class, DetailLowonganCompanyController::class]);
+Route::post("/detail-lowongan-company",  [Authenticated::class, DetailLowonganCompanyController::class]);
 
 Route::get("/profile",  [Authenticated::class, ProfileController::class]);
 Route::post("/profile",  [Authenticated::class, ProfileController::class]);
