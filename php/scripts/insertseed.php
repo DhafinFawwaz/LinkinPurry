@@ -45,6 +45,9 @@ function insert_seed_to_db(){
             }
         }
     }
+
+    $db->queryNoParam('SELECT setval(pg_get_serial_sequence("User", \'user_id\'), MAX(id)) FROM "User";');
+    $db->queryNoParam('SELECT setval(pg_get_serial_sequence("Company_Detail", \'user_id\'), MAX(id)) FROM "User";');
 }
 
 // manual/test
