@@ -4,12 +4,19 @@ require_once __DIR__ . "/../models/lowongan.model.php";
 
 class HomeJobseekerController extends Controller {
     public function handle() {
+        /** @var User */
+        $user = $_SESSION['user'];
+
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             return $this->filterLowongan();
         }
     
         $lowonganList = Lowongan::getAllLowongan();
-        return $this->view("home-jobseeker.php", ["lowonganList" => $lowonganList]);
+        return $this->view("home-jobseeker.php", [
+            "user" => $user,
+            "lowonganList" => $lowonganList
+        ]);
     }
     
     public function filterLowongan() {

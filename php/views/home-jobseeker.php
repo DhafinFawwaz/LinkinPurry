@@ -17,9 +17,10 @@
                 <img src="../public/assets/jobseeker_profile.svg" alt="profile-picture">
             </div>
             <div class="profile-info">
-                <h1>Your Name Here</h1>
-                <p>Job Title</p>
-                <p>Location</p>
+                <!-- Tampilkan informasi user jobseeker -->
+                <h1><?= isset($user->username) ? $user->username : 'Your Name Here' ?></h1>
+                <p>I'm not just an ordinary jobseeker</p>
+                <p><?= isset($user->email) ? $user->email : 'Job Title' ?></p>
             </div>
         </div>
     </section>
