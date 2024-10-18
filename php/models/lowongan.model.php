@@ -52,7 +52,38 @@ class Lowongan extends Model {
         return self::DB()->fetchAll();
     }
 
-    public static function filterLowongan($search, $jobType, $locationType, $sortByDate) {
+    // untuk pagination
+    public static function countFilterLowongan($search, $jobType, $locationType){
+        $query = "SELECT COUNT(*) AS total
+        FROM \"Lowongan\" l
+        WHERE l.is_open = true";
+        
+        $params = [];
+        $index = 1; // buat placeholder parameter PostgreSQL ($1, $2, dll)
+    
+        if (!empty($search)) {
+            $query .= " AND l.posisi ILIKE '%' || $" . $index . " || '%'";
+            $params[] = $search;
+            $index++;
+        }
+    
+        if (!empty($jobType)) {
+            $query .= " AND l.jenis_pekerjaan = $" . $index;
+            $params[] = $jobType;
+            $index++;
+        }
+    
+        if (!empty($locationType)) {
+            $query .= " AND l.jenis_lokasi = $" . $index;
+            $params[] = $locationType;
+            $index++;
+        }
+
+        self::DB()->query($query, $params);
+        return self::DB()->fetchAll();
+    }
+
+    public static function filterLowongan($search, $jobType, $locationType, $sortByDate, $page) {
         $query = "SELECT l.*, u.nama as company_name, cd.lokasi as company_location 
         FROM \"Lowongan\" l 
         JOIN \"User\" u ON l.company_id = u.user_id
@@ -86,6 +117,11 @@ class Lowongan extends Model {
             $query .= " ORDER BY l.created_at DESC";
         }
     
+        $query .= " LIMIT 10 OFFSET $" . $index; $index++; // apakah masih perlu ++ lagi ??
+        
+        // asumsi $page sudah bertipe integer
+        $params[] = ($page - 1) * 10;
+
         self::DB()->query($query, $params);
         return self::DB()->fetchAll();
     }
