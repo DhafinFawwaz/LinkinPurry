@@ -33,16 +33,16 @@
 
             <select id="job-type-filter" onchange="filterAndSortJobs()">
                 <option value="">All Job Types</option>
-                <option value="full time">Full Time</option>
-                <option value="part time">Part Time</option>
-                <option value="internship">Internship</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Internship">Internship</option>
             </select>
 
             <select id="location-type-filter" onchange="filterAndSortJobs()">
                 <option value="">All Locations</option>
-                <option value="on-site">On-Site</option>
-                <option value="hybrid">Hybrid</option>
-                <option value="remote">Remote</option>
+                <option value="On-Site">On-Site</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Remote">Remote</option>
             </select>
 
             <select id="sort-by-date" onchange="filterAndSortJobs()">
