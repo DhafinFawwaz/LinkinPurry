@@ -17,7 +17,7 @@ class HomeCompanyController extends Controller {
         $locationType = $_POST['locationType'] ?? '';
         $sortByDate = $_POST['sortByDate'] ?? 'desc';
 
-        $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate);
+        $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate, 1);
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
                 echo "
