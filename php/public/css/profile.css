@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+/* Profile Section */
+
+main {
+    width: 100%;
+    max-width: 60rem;
+}
+body {
+    background-color: #f3f2ee;
+}
+
+#profile {
+    background-color: #fff;
+    gap: 20px;
+    margin: 2rem 2rem 2rem 2rem;
+    border-radius: 10px;
+    padding: 0 0 1rem 0;
+
+}
+.profile {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+}
+
+.banner img {
+    width: 100%;
+    height: 8rem;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+.profile-picture {
+    height: 3rem;
+    position: relative;
+}
+.profile-picture > div {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    translate: 0 -50%;
+    margin-left: 1rem;
+}
+
+.profile-picture img {
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid white;
+}
+
+.profile-info {
+    padding-inline: 16px;
+}
+
+.profile-info h1 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.profile-info p {
+    font-size: 14px;
+    color: #888;
+    margin: 5px 0;
+}
+
+.icon-button {
+    height: 2.4rem;
+    width: 2.4rem;
+    border: none; 
+    border-radius: 5rem;
+    cursor: pointer;
+    background-color: #fff;
+}
+.icon-button>svg{
+    padding: 0.5rem;
+}
+.icon-button:hover {
+    background-color: #f3f2ee;
+}
+.edit-button {
+    right: 0;
+    position: absolute;
+    margin: 1rem;
+}
+
+.close-button {
+    width: 3rem;
+    height: 3rem;
+}
+.close-button>svg{
+    padding: 0.5rem;
+}
+
+.edit-popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    z-index: 50;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.popup-content {
+    background-color: white;
+    max-width: 60rem;
+    padding: 2rem;
+    color: black;
+    opacity: 100%;
+    z-index: 50;
+}
+.popup-content>div {
+    display: flex;
+    justify-content: space-between;
+}
+.black-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 20%;
+    background-color: black;
+    z-index: 20;
+    padding: 0;
+    margin: 0;
+}
+.close-button {
+    width: 2.4rem;
+    height: 2.4rem;
+    translate: 1rem -1rem;
+}
+.close-button>svg{
+    scale: 1.2;
+}
+
+.show {
+    visibility: visible;
+    opacity: 100%;
+}
+.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+.show>.popup-content{
+    transition-duration: inherit;
+    transition-timing-function: inherit;
+    scale: 1;
+}
+.hide>.popup-content{
+    transition-duration: inherit;
+    transition-timing-function: inherit;
+    scale: 0.5;
+}
+
+/* Styling untuk mobile devices dengan lebar maksimal 768px (misal untuk ukuran smartphone) */
+@media (max-width: 768px) {
+
+    #profile {
+        grid-column: 1;
+        margin: 0 1rem 1rem 1rem;
+    }
+
+    .banner img {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    #main-content {
+        grid-column: 1;
+        margin-bottom: 20px;
+        padding-inline: 5px;
+    }
+
+    .profile-info {
+        padding-inline: 12px;
+    }
+
+    .profile-info h1 {
+        font-size: 20px;
+    }
+
+    .profile-info p {
+        font-size: 12px;
+    }
+
+}

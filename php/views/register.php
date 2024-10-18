@@ -26,11 +26,11 @@
                 <form method="post" class="auth__form" action="/register">
                     <div class="form__switch">
                         <div>
-                            <input hidden type="radio" id="jobseeker__switch" name="role" value="jobseeker" checked>
+                            <input hidden type="radio" id="jobseeker__switch" name="role" value="jobseeker" <?php if(isset($data["form"]["roles"]) && $data["form"]["roles"] == 'jobseeker') echo 'checked' ?>>
                             <label class="role__switch" for="jobseeker__switch">Jobseeker</label>
                         </div>
                         <div>
-                            <input hidden type="radio" id="company__switch" name="role" value="company">
+                            <input hidden type="radio" id="company__switch" name="role" value="company" <?php if(isset($data["form"]["roles"]) && $data["form"]["roles"] == 'jobseeker') echo 'checked' ?>>
                             <label class="role__switch" for="company__switch">Company</label>
                         </div>
                     </div>

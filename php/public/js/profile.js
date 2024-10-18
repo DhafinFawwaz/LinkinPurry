@@ -44,3 +44,19 @@ cancelProfileButton.addEventListener("click", () => {
         aboutInput.disabled = true;
     } catch (e) {}
 });
+
+
+const editPopUpSection = document.getElementsByClassName("edit-popup")[0];
+const editButton = document.getElementsByClassName("edit-button")[0];
+const closeButton = document.getElementsByClassName("close-button")[0];
+const blackBg = document.getElementsByClassName("black-bg")[0];
+editButton.addEventListener("click", () => {
+    editPopUpSection.classList.remove("hide");
+    editPopUpSection.classList.add("show");
+});
+function close() {
+    editPopUpSection.classList.remove("show");
+    editPopUpSection.classList.add("hide");
+}
+closeButton.addEventListener("click", close);
+blackBg.addEventListener("click", close);
