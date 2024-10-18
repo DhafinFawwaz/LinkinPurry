@@ -32,9 +32,15 @@ attachments_paths = os.listdir(attachments_folder)
 
 def get_attachment_path():
     if(len(attachments_paths) == 0 or random.random() < 0.2):
-        return ""
+        return []
     else: 
-        return "/uploads/attachments/"+attachments_paths.pop()
+        res = []
+        try:
+            amount = random.randint(1, 5)
+            for i in range(amount):
+                res.append("/uploads/attachments/"+attachments_paths.pop())
+        except: pass
+        return res
 
 def get_video_path():
     return "/uploads/videos/"+videos_paths.pop()
