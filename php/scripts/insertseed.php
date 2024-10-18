@@ -34,7 +34,10 @@ function insert_seed_to_db(){
             $db->query("INSERT INTO \"Lowongan\" (company_id, posisi, deskripsi, jenis_pekerjaan, jenis_lokasi) VALUES ($1, $2, $3, $4, $5) RETURNING lowongan_id", [$company['company_id'], $lowongan['posisi'], $lowongan['deskripsi'], $lowongan['jenis_pekerjaan'], $lowongan['jenis_lokasi']]);
             $lowongan_id = $db->fetchRow()[0];
 
-            $db->query("INSERT INTO \"Attachment_Lowongan\" (lowongan_id, file_path) VALUES ($1, $2)", [$lowongan_id, $lowongan['attachment_path']]);
+            $attachments = $lowongan['attachment_path'];
+            foreach($attachments as $attachment){
+                $db->query("INSERT INTO \"Attachment_Lowongan\" (lowongan_id, file_path) VALUES ($1, $2)", [$lowongan_id, $attachment]);
+            }
 
             $lamarans = $lowongan['lamaran'];
             foreach($lamarans as $lamaran){
