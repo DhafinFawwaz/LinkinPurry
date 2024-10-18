@@ -14,17 +14,6 @@ if (isset($lowongan[0])) {
     header("Location: /home-jobseeker");
     exit();
 }
-
-// Simulasi apakah job seeker sudah melamar
-$job_seeker_applied = false; // Ubah ke false jika belum melamar
-
-// Data Lamaran jika sudah melamar
-$application = [
-    'cv' => '/path/to/cv.pdf',
-    'video' => '/path/to/video.mp4',
-    'status' => 'waiting',
-    'alasan' => 'your application is being reviewed by our team.'
-];
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +21,7 @@ $application = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Details - <?= $job['posisi'] ?></title>
+    <title>Job Details - <?= htmlspecialchars($posisi) ?></title>
 
     <link rel="stylesheet" href="../public/css/detail-lowongan.css">
 </head>
@@ -70,9 +59,9 @@ $application = [
                     <p>No longer accepting applications</p>
                 </div>
             <?php else: ?>
-                <?php if ($job_seeker_applied): ?>
+                <?php if ($jobseekerHasApplied): ?>
                     <a href="#application-status" class="button">View Your Application</a>
-                <?php elseif (!$job_seeker_applied): ?>
+                <?php elseif (!$jobseekerHasApplied): ?>
                     <button id="applyBtn" class="button">Apply</button>
                 <?php endif; ?>
             <?php endif; ?>
@@ -127,19 +116,19 @@ $application = [
         </div>
 
         <!-- application status -->
-        <?php if ($job_seeker_applied): ?>
+        <?php if ($jobseekerHasApplied): ?>
             <section id="application-status">
                 <h2>Your Application</h2>
                 <ul>
-                    <li>Status: <?= $application['status'] ?></li>
+                    <li>Status: <?= $lamaranStatus[0]['status'] ?></li>
                     <li>Attachments:
-                        <a href="<?= $application['cv'] ?>" target="_blank" class="button-attachment">CV</a>
-                        <?php if (!empty($application['video'])): ?>
-                            <a href="<?= $application['video'] ?>" target="_blank" class="button-attachment">Video</a>
+                        <a href="<?= $lamaranStatus[0]['cv_path'] ?>" target="_blank" class="button-attachment">CV</a>
+                        <?php if (!empty($lamaranStatus[0]['video_path'])): ?>
+                            <a href="<?= $lamaranStatus[0]['video_path'] ?>" target="_blank" class="button-attachment">Video</a>
                         <?php endif; ?>
                     </li>
-                    <?php if (!empty($application['alasan'])): ?>
-                        <li>Next Step: <?= $application['alasan'] ?></li>
+                    <?php if (!empty($lamaranStatus[0]['status_reason'])): ?>
+                        <li>Next Step: <?= $lamaranStatus[0]['status_reason'] ?></li>
                     <?php endif; ?>
                 </ul>
             </section>

@@ -13,8 +13,7 @@
         
         <?php if (!empty($riwayatLamaran)) : ?>
             <?php foreach ($riwayatLamaran as $application) : ?>
-                
-                <div class="job-card">
+                <div class="job-card" onclick="window.location.href='/detail-lowongan-jobseeker?id=<?= $application['lowongan_id'] ?>'">
                     <div class="job-profile">
                         <img src="../public/assets/company_profile.svg" alt="company-profile">
                         <div class="job-info">
