@@ -28,7 +28,9 @@ class Database {
 
     public function query(string $query, array $params){
         if(!array_key_exists($query, $this->preparedStatements)){
-            pg_prepare($this->dbconn, $query, $query);
+            try {
+                pg_prepare($this->dbconn, $query, $query);
+            } catch(Exception $e) {}
             $this->preparedStatements[$query] = true;
         }
 
@@ -45,6 +47,7 @@ class Database {
     public function queryNoParam(string $query) {
         $this->query($query, array());
     }
+
 
     public function fetchRow() {
         return pg_fetch_row($this->queryResult);

@@ -37,7 +37,7 @@ class LoginController extends Controller {
             } else {
                 $_SESSION['user'] = $userToCheck;
             }
-            $this->redirect('/profile');
+            $this->redirect('/');
         }
 
 

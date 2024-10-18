@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linkedin</title>
 
-    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="/public/css/auth.css">
 </head>
 <body>
 
@@ -19,22 +19,22 @@
     
             <div class="card">
                 <h1 class="content__title ">Login</h1>
-                <form method="post" class="login__form" action="/login">
+                <form method="post" class="auth__form" action="/login">
                     
                     <div class="form__input">
                         <input id="email" name="email" required="" autofocus="" type="text" value="<?php if(isset($data["form"]["email"])) echo $data["form"]["email"] ?>">
-                        <label for="email">Email atau telepon</label>
-                        <div class="error__label"><?php if(isset($data["error"]["email"])) echo $data["error"]["email"] ?></div>
+                        <label for="email">Email</label>
+                        <div id="email-message" class="error__label"><?php if(isset($data["error"]["email"])) echo $data["error"]["email"] ?></div>
                     </div>
 
                     <div class="form__input">
                         <input id="password" name="password" required="" autofocus="" type="password" value="<?php if(isset($data["form"]["password"])) echo $data["form"]["password"] ?>">
                         <label for="password">Password</label>
-                        <div class="error__label"><?php if(isset($data["error"]["password"])) echo $data["error"]["password"] ?></div>
+                        <div id="password-message" class="error__label"><?php if(isset($data["error"]["password"])) echo $data["error"]["password"] ?></div>
                     </div>
                 
                     <div class="form__bottom">
-                        <button class="button1" data-litms-control-urn="login-submit" aria-label="Login" type="submit">Login </button>
+                        <button id="submit-button" class="button1" type="submit" disabled>Login </button>
                     </div>
             
                 </form>
@@ -59,6 +59,7 @@
             
     </div>
 
+    <script src="/public/js/auth-page.js"></script>
 </body>
 </html>
 

@@ -7,8 +7,7 @@ require_once __DIR__ . '/../auth/jobseeker-only.php';
 require_once __DIR__ . '/../auth/not-authenticated.php';
 require_once __DIR__ . '/../controllers/login.controller.php';
 require_once __DIR__ . '/../controllers/profile.controller.php';
-require_once __DIR__ . '/../controllers/register/register-jobseeker.controller.php';
-require_once __DIR__ . '/../controllers/register/register-company.controller.php';
+require_once __DIR__ . '/../controllers/register.controller.php';
 require_once __DIR__ . '/../controllers/logout.controller.php';
 require_once __DIR__ . '/../controllers/detail-lamaran.controller.php';
 require_once __DIR__ . '/../controllers/lowongan.controller.php';
@@ -31,17 +30,22 @@ Route::get("/login", [NotAuthenticated::class, function(){
 }]);
 Route::post("/login", [NotAuthenticated::class, LoginController::class]);
 
-
-Route::get("/register/jobseeker", [NotAuthenticated::class, function(){
-    return view("register/register-jobseeker.php");
+Route::get("/register", [NotAuthenticated::class, function(){
+    return view("register.php");
 }]);
-Route::post("/register/jobseeker", [NotAuthenticated::class, RegisterJobseeker::class]);
+Route::post("/register", [NotAuthenticated::class, Register::class]);
 
 
-Route::get("/register/company", [NotAuthenticated::class, function(){
-    return view("register/register-company.php");
-}]);
-Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
+// Route::get("/register/jobseeker", [NotAuthenticated::class, function(){
+//     return view("register/register-jobseeker.php");
+// }]);
+// Route::post("/register/jobseeker", [NotAuthenticated::class, RegisterJobseeker::class]);
+
+
+// Route::get("/register/company", [NotAuthenticated::class, function(){
+//     return view("register/register-company.php");
+// }]);
+// Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
 
 Route::get("/home-company",  [CompanyOnly::class, HomeCompanyController::class]);
 Route::post("/home-company",  [CompanyOnly::class, HomeCompanyController::class]);

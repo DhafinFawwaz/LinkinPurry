@@ -61,7 +61,7 @@
                         <h1 class="header__content__heading ">Login</h1>
                         <p class="header__content__subheading "></p>
                     </div>
-                    <form method="post" class="login__form" action="/checkpoint/lg/login-submit" novalidate="">
+                    <form method="post" class="auth__form" action="/checkpoint/lg/login-submit" novalidate="">
                     
                         <input name="csrfToken" value="ajax:4190473608964218407" type="hidden">  
                         
