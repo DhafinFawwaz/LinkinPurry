@@ -52,6 +52,20 @@ class Lamaran extends Model {
         return new Lamaran($row[9], $row[10], $row[0], new CV( $row[11], null), new Video($row[12], null), $row[13], $row[14], new DateTime($row[15]));
     }
 
+    public static function getRiwayatLamaranByUserId(int $user_id) {
+        Model::DB()->query(
+            "SELECT l.*, lw.posisi, lw.deskripsi, u.nama as company_name, cd.lokasi as company_location
+            FROM \"Lamaran\" l
+            JOIN \"Lowongan\" lw ON l.lowongan_id = lw.lowongan_id
+            JOIN \"User\" u ON lw.company_id = u.user_id
+            LEFT JOIN \"Company_Detail\" cd ON lw.company_id = cd.user_id
+            WHERE l.user_id = $1
+            ORDER BY l.created_at DESC",
+            [$user_id]
+        );
+        return Model::DB()->fetchAll();
+    }
+
     public function getUser() {
         Model::DB()->query("SELECT * FROM \"User\" WHERE user_id= $1", array($this->user_id));
         $res = Model::DB()->fetchRow();
