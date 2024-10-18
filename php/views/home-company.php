@@ -43,7 +43,25 @@
         </div>
     </section>
 
-    <div class = "job-list"></div>
+    <div class = "job-list">
+        <?php
+        if (isset($data['lowonganList']) && !empty($data['lowonganList'])) {
+            foreach ($data['lowonganList'] as $lowongan) {
+                echo "
+                    <div class='job-card'>
+                        <div class='job-card-details'>
+                            <h3>{$lowongan['posisi']}</h3>
+                            <p>{$lowongan['company_name']}</p>
+                            <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
+                        </div>
+                    </div>
+                ";
+            }
+        } else {
+            echo "<p><br>No jobs available at the moment.</p>";
+        }
+        ?>
+    </div>
 
     <script src="../public/js/home-company.js"></script>
 </body>

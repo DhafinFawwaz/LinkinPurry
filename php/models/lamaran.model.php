@@ -73,6 +73,25 @@ class Lamaran extends Model {
         return new User($res[0], $res[1], $res[2], $res[3], $res[4]);
     }
 
+    public static function jobseekerHasApplied($job_seeker_id, $lowongan_id) {
+        self::DB()->query(
+            "SELECT * FROM \"Lamaran\" 
+            WHERE user_id = $1 AND lowongan_id = $2",
+            [$job_seeker_id, $lowongan_id]
+        );
+        return self::DB()->fetchAll();
+    }
+
+    public static function getLamaranDetailbyJobseekerId($job_seeker_id, $lowongan_id) {
+        self::DB()->query(
+            "SELECT * FROM \"Lamaran\" 
+            WHERE user_id = $1 AND lowongan_id = $2",
+            [$job_seeker_id, $lowongan_id]
+        );
+        return self::DB()->fetchAll();
+    }
+
+
     public function jsonSerialize(): string {
         return json_encode($this);
     }

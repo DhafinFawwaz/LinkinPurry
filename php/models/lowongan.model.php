@@ -53,14 +53,21 @@ class Lowongan extends Model {
     }
 
     // untuk pagination
-    public static function countFilterLowongan($search, $jobType, $locationType){
+    public static function countFilterLowongan($search, $jobType, $locationType, $company){
         $query = "SELECT COUNT(*) AS total
         FROM \"Lowongan\" l
+        JOIN \"User\" u ON l.company_id = u.user_id
         WHERE l.is_open = true";
         
         $params = [];
         $index = 1; // buat placeholder parameter PostgreSQL ($1, $2, dll)
     
+        if (!empty($company)) {
+            $query .= " AND u.nama = $" . $index;
+            $params[] = $company;
+            $index++;
+        }
+
         if (!empty($search)) {
             $query .= " AND l.posisi ILIKE '%' || $" . $index . " || '%'";
             $params[] = $search;
@@ -83,7 +90,7 @@ class Lowongan extends Model {
         return self::DB()->fetchAll();
     }
 
-    public static function filterLowongan($search, $jobType, $locationType, $sortByDate, $page) {
+    public static function filterLowongan($search, $jobType, $locationType, $sortByDate, $page, $company) { // page untuk pagination, company untuk filter user company (kalau jobseeker dibiarin kosong '')
         $query = "SELECT l.*, u.nama as company_name, cd.lokasi as company_location 
         FROM \"Lowongan\" l 
         JOIN \"User\" u ON l.company_id = u.user_id
@@ -92,7 +99,13 @@ class Lowongan extends Model {
         
         $params = [];
         $index = 1; // buat placeholder parameter PostgreSQL ($1, $2, dll)
-    
+        
+        if (!empty($company)) {
+            $query .= " AND u.nama = $" . $index;
+            $params[] = $company;
+            $index++;
+        }
+
         if (!empty($search)) {
             $query .= " AND l.posisi ILIKE '%' || $" . $index . " || '%'";
             $params[] = $search;

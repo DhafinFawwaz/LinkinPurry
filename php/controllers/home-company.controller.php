@@ -4,11 +4,17 @@ require_once __DIR__ . "/../models/lowongan.model.php";
 
 class HomeCompanyController extends Controller {
     public function handle(){
+        $user = $_SESSION['user'];
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             return $this->filterLowongan();
         }
 
-        return $this->view("home-company.php");
+        $lowonganList = Lowongan::filterLowongan('', '', '', 'desc', 1, $user->username);
+        return $this->view("home-company.php", [
+            "user" => $user,
+            "lowonganList" => $lowonganList
+        ]);
     }
 
     public function filterLowongan(){
@@ -16,8 +22,9 @@ class HomeCompanyController extends Controller {
         $jobType = $_POST['jobType'] ?? '';
         $locationType = $_POST['locationType'] ?? '';
         $sortByDate = $_POST['sortByDate'] ?? 'desc';
-
-        $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate, 1);
+        $company = $_SESSION['user']->username;
+        
+        $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate, 1, $company);
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
                 echo "
