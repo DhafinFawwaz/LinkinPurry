@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../lib/route.php';
 require_once __DIR__ . '/../lib/view.php';
 require_once __DIR__ . '/../auth/authenticated.php';
+require_once __DIR__ . '/../auth/company-only.php';
 require_once __DIR__ . '/../auth/not-authenticated.php';
 require_once __DIR__ . '/../controllers/login.controller.php';
 require_once __DIR__ . '/../controllers/profile.controller.php';
@@ -41,7 +42,7 @@ Route::get("/register/company", [NotAuthenticated::class, function(){
 }]);
 Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
 
-Route::get("/home-company",  [Authenticated::class, HomeCompanyController::class]);
+Route::get("/home-company",  [CompanyOnly::class, HomeCompanyController::class]);
 Route::post("/home-company",  [Authenticated::class, HomeCompanyController::class]);
 
 Route::get("/tambah-lowongan-company",  [Authenticated::class, TambahLowonganCompanyController::class]);

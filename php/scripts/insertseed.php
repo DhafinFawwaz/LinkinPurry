@@ -26,7 +26,7 @@ function insert_seed_to_db(){
 
     $companies = $data['companies'];
     foreach($companies as $company){
-        $db->query("INSERT INTO \"User\" (user_id, email, password, role, nama) VALUES ($1, $2, $3, $4, $5)", [$company['company_id'], $company['email'], $company['password'], "jobseeker", $company['username']]);
+        $db->query("INSERT INTO \"User\" (user_id, email, password, role, nama) VALUES ($1, $2, $3, $4, $5)", [$company['company_id'], $company['email'], $company['password'], "company", $company['username']]);
         $db->query("INSERT INTO \"Company_Detail\" (user_id, lokasi, about) VALUES ($1, $2, $3)", [$company['company_id'], $company['location'], $company['about']]);
 
         $lowongans = $company['lowongan'];
@@ -42,5 +42,7 @@ function insert_seed_to_db(){
             }
         }
     }
-
 }
+
+// manual/test
+insert_seed_to_db();
