@@ -1,5 +1,5 @@
 // ngirim request AJAX ke /home-company
-function filterAndSortJobs() {
+function filterAndSortJobs(page = 1) {
     const searchQuery = document.getElementById('search-input').value;
     const jobType = document.getElementById('job-type-filter').value;
     const locationType = document.getElementById('location-type-filter').value;
@@ -12,11 +12,11 @@ function filterAndSortJobs() {
     xhr.onload = function () {
         if (xhr.status === 200) {
             const jobList = document.querySelector('.job-list');
-            jobList.innerHTML = xhr.responseText; 
+            jobList.innerHTML = xhr.responseText;
         }
     };
 
-    xhr.send(`search=${encodeURIComponent(searchQuery)}&jobType=${encodeURIComponent(jobType)}&locationType=${encodeURIComponent(locationType)}&sortByDate=${encodeURIComponent(sortByDate)}`);
+    xhr.send(`search=${encodeURIComponent(searchQuery)}&jobType=${encodeURIComponent(jobType)}&locationType=${encodeURIComponent(locationType)}&sortByDate=${encodeURIComponent(sortByDate)}&page=${encodeURIComponent(page)}`);
 }
 
 let debounceTimer;

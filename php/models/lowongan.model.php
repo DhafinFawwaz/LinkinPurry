@@ -87,7 +87,11 @@ class Lowongan extends Model {
         }
 
         self::DB()->query($query, $params);
-        return self::DB()->fetchAll();
+        $results = self::DB()->fetchAll();
+        foreach ($results as $c){
+            $count = $c['total']; // is there a better way to do this
+        }
+        return $count;
     }
 
     public static function filterLowongan($search, $jobType, $locationType, $sortByDate, $page, $company) { // page untuk pagination, company untuk filter user company (kalau jobseeker dibiarin kosong '')
