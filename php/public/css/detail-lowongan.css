@@ -5,23 +5,37 @@
     font-family: Arial, sans-serif;
 }
 
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 body {
     background-color: #f3f2ee;
-    /* display: grid; */
-    /* gap: 20px; */
-    max-width: 12000px;
-    margin: 40px auto;
-    padding: 10px;
+}
+
+#navbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    background-color: #ffffff;
+    width: 100%;
 }
 
 #job-details-wrapper {
+    width: 100%;
     border: 1px solid #ddd;
     padding: 24px;
     margin-bottom: 20px;
+    margin-top: 75px;
     border-radius: 10px;
     background-color: #f9f9f9;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 40rem;
+    /* margin: 0 auto; */
 }
 /* .company-profile h2, .job-details h2, .application-status h2 {
     margin-bottom: 10px;

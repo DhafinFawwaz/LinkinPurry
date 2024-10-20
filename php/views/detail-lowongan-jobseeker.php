@@ -26,7 +26,10 @@ if (isset($lowongan[0])) {
     <link rel="stylesheet" href="../public/css/detail-lowongan.css">
 </head>
 <body>
-
+    <section id="navbar">
+        <?php include 'component/navbar.php'; ?>
+    </section>
+    
     <section id="job-details-wrapper">
         <!-- company profile -->
         <div class="company-container">
@@ -71,8 +74,9 @@ if (isset($lowongan[0])) {
         <div id="applyModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeModal">&times;</span>
-                <h2>Apply to <?= $company_name ?></h2>
-                <form id="applicationForm" action="submit-application.php" method="post" enctype="multipart/form-data">
+                <h2>Apply to <?= htmlspecialchars($company_name) ?></h2>
+
+                <form id="applicationForm" action="/detail-lowongan-jobseeker?id=<?= $lowongan_id ?>" method="post" enctype="multipart/form-data">
                     <!-- resume  -->
                     <div class="form-group">
                         <label for="cv">Resume *
@@ -84,7 +88,6 @@ if (isset($lowongan[0])) {
                         </div>
                         <button type="button" class="replace-btn" onclick="document.getElementById('cv').click();">Upload resume</button>
                         <input type="file" id="cv" name="cv" accept=".pdf" onchange="updateFileName('cv', 'resumeFileName')">
-
                         <div id="error-message" class="error-message"></div>
                     </div>
 
@@ -101,7 +104,6 @@ if (isset($lowongan[0])) {
                         <input type="file" id="video" name="video" accept="video/mp4" onchange="updateFileName('video', 'videoFileName')">
                     </div>
 
-                    <!-- <input type="hidden" name="job_id" value="<?= $job['id'] ?>"> -->
                     <div class="submit-button">
                         <button type="submit" class="button">Submit Application</button>
                     </div>
@@ -136,6 +138,6 @@ if (isset($lowongan[0])) {
     </section>
     
 
-    <script src="/public/js/detail-lowongan-jobseeker.js"></script>
+    <script src="/public/js/detail-lowongan-jobseeker1.js"></script>
 </body>
 </html>
