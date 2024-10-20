@@ -1,5 +1,14 @@
 /* #region preflight */
 
+#navbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    background-color: #ffffff;
+    width: 100%;
+}
+
 html,
 body,
 div,
@@ -9,8 +18,7 @@ p,
 em,
 form,
 label,
-footer,
-header {
+footer {
     margin: 0;
     padding: 0;
     border: 0;
@@ -31,7 +39,6 @@ label {
 
 
 footer,
-header,
 main {
     display: block
 }

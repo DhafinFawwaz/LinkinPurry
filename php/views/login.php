@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="/public/css/auth.css">
 </head>
 <body>
+    <section id="navbar">
+        <?php require "component/navbar.php"; ?>
+    </section>
 
     <div class="app__container">
-        <header>
-            <a class="linkedin-logo" href="/" aria-label="LinkedIn">
-                <?php require_once 'views/component/linkedin-logo-medium.php'; ?>
-            </a>
-        </header>
 
         <main class="app__content">
     
