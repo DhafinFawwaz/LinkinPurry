@@ -13,15 +13,30 @@ body{
     justify-content: center;
 }
 
+#navbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    background-color: #ffffff;
+    width: 100%;
+}
 
 
-
-
+/* main {
+    width: 100%;
+    max-width: 75rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    padding-top: 75px;
+} */
 /* Profile Section */
 
 main {
     width: 100%;
     max-width: 60rem;
+    padding-top: 75px;
 }
 body {
     background-color: #f3f2ee;
@@ -30,7 +45,7 @@ body {
 #profile {
     background-color: #fff;
     gap: 20px;
-    margin: 2rem 2rem 2rem 2rem;
+    margin: 0 2rem 2rem 2rem;
     border-radius: 10px;
     padding: 0 0 1rem 0;
 

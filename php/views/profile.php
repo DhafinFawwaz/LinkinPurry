@@ -4,9 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="/public/css/profile.css">
+    <link rel="stylesheet" href="/public/css/profile1.css">
 </head>
 <body>
+    <section id="navbar">
+        <?php require "component/navbar.php"; ?>
+    </section>
+
     <section class="edit-popup hide">
         <div class="black-bg">a</div>
         <div class="popup-content">
