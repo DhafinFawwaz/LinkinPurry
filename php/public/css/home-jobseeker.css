@@ -5,17 +5,35 @@
     font-family: Arial, sans-serif;
 }
 
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 body {
     background-color: #f3f2ee;
 }
 
+#navbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    background-color: #ffffff;
+    width: 100%;
+}
+
 /* Layout grid utama */
-body {
+main {
+    width: 100%;
+    max-width: 75rem;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* 3 kolom: kiri, tengah, kanan */
+    grid-template-columns: 1fr 2fr 1fr;
     gap: 20px;
-    max-width: 1200px;
-    margin: 40px auto;
+    padding-top: 75px;
 }
 
 #main-content {
@@ -238,10 +256,10 @@ body {
 /* Styling untuk mobile devices dengan lebar maksimal 768px (misal untuk ukuran smartphone) */
 @media (max-width: 768px) {
     /* Mengubah grid layout menjadi stack layout (tumpukan vertikal) */
-    body {
+    main {
         grid-template-columns: 1fr;
         gap: 10px;
-        padding: 10px;
+        padding-inline: 10px;
     }
 
     #profile {
