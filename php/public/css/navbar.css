@@ -1,0 +1,102 @@
+header {
+    /* background: linear-gradient(rgba(8, 32, 69, 0.9),rgba(0, 0, 0, 0)); */
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    background-color: #ffffff;
+    /* color: #fff; */
+    /* padding: 10px 0; */
+    width: 100%;
+    padding: 8px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* text-align: center;
+    align-self: center; */
+    /* margin: 0 50px;
+    padding: 0 24px; */
+    width: 70vw;
+}
+
+nav ul {
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    display: flex;
+    flex-direction: column;
+    color: #00000099;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+}
+
+nav ul li a:hover {
+    color: #000000;
+}
+
+nav ul li a img {
+    border-radius: 25px;
+    height: 24px;
+}
+
+.logo img {
+    width: 41px;
+    height: 41px;
+}
+
+/* Tombol Join Now dan Sign In */
+nav ul li a.btn-join-now,
+nav ul li a.btn-sign-in {
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #00000099;
+}
+
+nav ul li a.btn-sign-in {
+    border: 1px solid #0073b1;
+    border-radius: 24px;
+    color: #0966c3;
+}
+
+nav ul li.active a {
+    color: #0073b1;
+}
+
+nav ul li.active a img {
+    filter: brightness(0) saturate(100%) invert(43%) sepia(93%) saturate(1910%) hue-rotate(165deg) brightness(93%) contrast(99%);
+}
+
+nav ul li.active a::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #0073b1;
+    margin-top: 5px;
+}
+
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    nav ul {
+        gap: 0;
+    }
+
+    nav ul li a span {
+        display: none;
+    }
+}
