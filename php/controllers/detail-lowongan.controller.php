@@ -31,6 +31,7 @@ class DetailLowonganController extends Controller {
         $data["user"] = (array)$user;
         $data["company"] = (array)$company;
         $data["lowongan"] = (array)$lowongan;
+        $data["lowongan"]["lowongan_id"] = $lowongan_id;
 
         // convert to string
         $data["lowongan"]["created_at"] = $data["lowongan"]["created_at"]->format('Y-m-d H:i:s');

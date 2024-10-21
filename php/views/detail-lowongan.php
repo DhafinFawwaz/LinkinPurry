@@ -45,7 +45,7 @@ extract($data);
         <!-- apply button -->
         <?php if($data["canEdit"]) { ?>
             <div class="apply-button-action">
-                <button id="applyBtn" class="button">Edit</button>
+                <a href="<?php echo $data["lowongan"]["lowongan_id"] ?>/edit" id="applyBtn" class="button">Edit</a>
             </div>
         <?php } ?>
         
@@ -128,6 +128,5 @@ extract($data);
     </section>
     
 
-    <script src="/public/js/detail-lowongan-jobseeker1.js"></script>
 </body>
 </html>
