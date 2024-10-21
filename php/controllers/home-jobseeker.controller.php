@@ -4,8 +4,10 @@ require_once __DIR__ . "/../models/lowongan.model.php";
 
 class HomeJobseekerController extends Controller {
     public function handle() {
+        session_start();
         /** @var User */
         $user = $_SESSION['user'];
+        if (!$user){}
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {

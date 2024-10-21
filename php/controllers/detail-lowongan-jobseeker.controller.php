@@ -34,9 +34,6 @@ class DetailLowonganJobseekerController extends Controller {
                     "jobseekerHasApplied" => $jobseekerHasApplied, "lamaranStatus" => $lamaranStatus]);
             }
         }
-
-        // Redirect kalau ID lowongan tidak valid
-        $this->redirect("/home-jobseeker");
     }
 
     public function handlePost() {

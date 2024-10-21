@@ -2,13 +2,11 @@
 function filterAndSortJobs(page = 1) {
     const searchQuery = document.getElementById('search-input').value;
     const jobType = document.getElementById('job-type-filter').value;
-    // console.log(jobType);
     const locationType = document.getElementById('location-type-filter').value;
     const sortByDate = document.getElementById('sort-by-date').value;
-    // console.log(sortByDate);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/home-jobseeker', true);
+    xhr.open('POST', '/', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
@@ -26,3 +24,5 @@ function debouncedSearch() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(filterAndSortJobs, 300);
 }
+
+filterAndSortJobs();

@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="../public/css/home-jobseeker.css">
 </head>
-<body onload="filterAndSortJobs()">
+<body>
     <section id="navbar">
         <?php include 'component/navbar.php'; ?>
     </section>
@@ -78,7 +78,7 @@
         </section>
     </main>
 
-    <script src="../public/js/home-jobseeker1.js"></script>
+    <script src="/public/js/home-jobseeker.js"></script>
 </body>
 </html>
 
