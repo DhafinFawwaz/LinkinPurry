@@ -17,6 +17,11 @@
             echo "<h2>" . htmlspecialchars($data["jobseeker"]["username"]) . "</h2>";
             echo "<h3>" . htmlspecialchars($data["jobseeker"]["role"]) . "</h3>";
             echo "<h4>" . htmlspecialchars($data["jobseeker"]["email"]) . "</h4>";
+            if($data["lamaran"]["status"] == 'waiting') {
+                echo "<p>Status: waiting for approval</p>";
+            } else {
+                echo "<p>Status: " . htmlspecialchars($data["lamaran"]["status"]) . "</p>";
+            }
 
             echo "<div class='file-container'>";
             echo "<h4>CV</h4>";
@@ -28,7 +33,6 @@
             echo "</video>";
             echo "</div>";
 
-            echo "<p>Status: " . htmlspecialchars($data["lamaran"]["status"]) . "</p>";
 
             if($data["lamaran"]["status"] != 'waiting') {
                 echo "<p>Status Reason: </p>";
@@ -56,19 +60,22 @@ EOD;
 
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <script>
-        const options = {
-            placeholder: 'Write a status reason here.',
-            theme: 'snow'
-        };
-
-        const quill = new Quill('#quillEditor', options);
-        
-        const textarea = document.querySelector('#hiddenArea');
-        const form = document.querySelector("form");
-        form.addEventListener("submit", (e) => {
-            // will still trigger basic form submission and textarea value in formdata will be updated, see network inspect after submit
-            textarea.value = quill.root.innerHTML;
-        })
+        try {
+            const options = {
+                placeholder: 'Write a status reason here.',
+                theme: 'snow'
+            };
+    
+            const quill = new Quill('#quillEditor', options);
+            
+            const textarea = document.querySelector('#hiddenArea');
+            const form = document.querySelector("form");
+            form.addEventListener("submit", (e) => {
+                // will still trigger basic form submission and textarea value in formdata will be updated, see network inspect after submit
+                textarea.value = quill.root.innerHTML;
+            })
+        } catch(e) {
+}
     </script>
 </body>
 </html>
