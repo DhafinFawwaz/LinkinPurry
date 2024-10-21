@@ -10,8 +10,6 @@ class RiwayatLamaranController extends Controller {
 
         $riwayatLamaran = Lamaran::getRiwayatLamaranByUserId($user_id);
 
-        // var_dump($riwayatLamaran);
-
         return $this->view("riwayat-lamaran.php", [
             "riwayatLamaran" => $riwayatLamaran
         ]);

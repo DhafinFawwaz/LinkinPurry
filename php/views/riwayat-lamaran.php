@@ -15,9 +15,9 @@
     <div class="container">
         <h2>Job Application History</h2>
         
-        <?php if (!empty($riwayatLamaran)) : ?>
-            <?php foreach ($riwayatLamaran as $application) : ?>
-                <div class="job-card" onclick="window.location.href='/detail-lowongan-jobseeker?id=<?= $application['lowongan_id'] ?>'">
+        <?php if (!empty($data["riwayatLamaran"])) : ?>
+            <?php foreach ($data["riwayatLamaran"] as $application) : ?>
+                <a class="job-card" href="/<?= $application['lowongan_id'] ?>/<?= $application['lamaran_id'] ?>">
                     <div class="job-profile">
                         <img src="../public/assets/company_profile.svg" alt="company-profile">
                         <div class="job-info">
@@ -30,7 +30,7 @@
                     <div class="status <?= htmlspecialchars($application['status']); ?>">
                         <?= ucfirst(htmlspecialchars($application['status'])); ?>
                     </div>
-                </div>
+                </a>
             <?php endforeach; ?>
         <?php else : ?>
             <p>No job applications found.</p>
