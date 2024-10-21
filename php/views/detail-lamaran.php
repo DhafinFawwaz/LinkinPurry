@@ -12,16 +12,30 @@
 
     <section>
         <div>
+            
         <?php 
             echo "<h1>" . htmlspecialchars($data["lowongan"]["position"]) . "</h1>";
+
+            echo <<<EOD
+            <div class="profile-container">
+                <div class="img-container">
+                    <img src="/public/assets/jobseeker_profile.svg" alt="profile-picture">
+                </div>
+                <div class="profile-details-container">
+EOD;
             echo "<h2>" . htmlspecialchars($data["jobseeker"]["username"]) . "</h2>";
             echo "<h3>" . htmlspecialchars($data["jobseeker"]["role"]) . "</h3>";
             echo "<h4>" . htmlspecialchars($data["jobseeker"]["email"]) . "</h4>";
+
+            echo "<div class='status-container'>";
+
             if($data["lamaran"]["status"] == 'waiting') {
                 echo "<p>Status: waiting for approval</p>";
             } else {
                 echo "<p>Status: " . htmlspecialchars($data["lamaran"]["status"]) . "</p>";
             }
+            echo "</div></div></div>";
+            
 
             echo "<div class='file-container'>";
             echo "<h4>CV</h4>";
