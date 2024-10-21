@@ -1,18 +1,16 @@
 <?php
-if (isset($lowongan[0])) {
-    $lowongan_id = $lowongan[0]['lowongan_id'];
-    $company_name = $lowongan[0]['company_name'];
-    $company_location = $lowongan[0]['company_location'] ?: 'Location not specified';
-    $posisi = $lowongan[0]['posisi'];
-    $deskripsi = $lowongan[0]['deskripsi'];
-    $jenis_pekerjaan = $lowongan[0]['jenis_pekerjaan'];
-    $jenis_lokasi = $lowongan[0]['jenis_lokasi'];
-    $is_open = $lowongan[0]['is_open'] === 't' ? 'Open' : 'Closed';
-    $created_at = date("F j, Y", strtotime($lowongan[0]['created_at']));
-    $updated_at = date("F j, Y", strtotime($lowongan[0]['updated_at']));
-} else {
-    header("Location: /home-jobseeker");
-    exit();
+if (isset($data['lowongan'])) {
+    $data_lowongan = $data['lowongan'][0];
+    $lowongan_id = $data_lowongan['lowongan_id'];
+    $company_name = $data_lowongan['company_name'];
+    $company_location = $data_lowongan['company_location'] ?: 'Location not specified';
+    $posisi = $data_lowongan['posisi'];
+    $deskripsi = $data_lowongan['deskripsi'];
+    $jenis_pekerjaan = $data_lowongan['jenis_pekerjaan'];
+    $jenis_lokasi = $data_lowongan['jenis_lokasi'];
+    $is_open = $data_lowongan['is_open'] === 't' ? 'Open' : 'Closed';
+    $created_at = date("F j, Y", strtotime($data_lowongan['created_at']));
+    $updated_at = date("F j, Y", strtotime($data_lowongan['updated_at']));
 }
 ?>
 
@@ -62,9 +60,9 @@ if (isset($lowongan[0])) {
                     <p>No longer accepting applications</p>
                 </div>
             <?php else: ?>
-                <?php if ($jobseekerHasApplied): ?>
+                <?php if ($data['jobseekerHasApplied']): ?>
                     <a href="#application-status" class="button">View Your Application</a>
-                <?php elseif (!$jobseekerHasApplied): ?>
+                <?php elseif (!$data['jobseekerHasApplied']): ?>
                     <button id="applyBtn" class="button">Apply</button>
                 <?php endif; ?>
             <?php endif; ?>
@@ -118,19 +116,19 @@ if (isset($lowongan[0])) {
         </div>
 
         <!-- application status -->
-        <?php if ($jobseekerHasApplied): ?>
+        <?php if ($data['jobseekerHasApplied']): ?>
             <section id="application-status">
                 <h2>Your Application</h2>
                 <ul>
-                    <li>Status: <?= $lamaranStatus[0]['status'] ?></li>
+                    <li>Status: <?= $data['lamaranStatus'][0]['status'] ?></li>
                     <li>Attachments:
-                        <a href="<?= $lamaranStatus[0]['cv_path'] ?>" target="_blank" class="button-attachment">CV</a>
-                        <?php if (!empty($lamaranStatus[0]['video_path'])): ?>
-                            <a href="<?= $lamaranStatus[0]['video_path'] ?>" target="_blank" class="button-attachment">Video</a>
+                        <a href="<?= $data['lamaranStatus'][0]['cv_path'] ?>" target="_blank" class="button-attachment">CV</a>
+                        <?php if (!empty($data['lamaranStatus'][0]['video_path'])): ?>
+                            <a href="<?= $data['lamaranStatus'][0]['video_path'] ?>" target="_blank" class="button-attachment">Video</a>
                         <?php endif; ?>
                     </li>
-                    <?php if (!empty($lamaranStatus[0]['status_reason'])): ?>
-                        <li>Next Step: <?= $lamaranStatus[0]['status_reason'] ?></li>
+                    <?php if (!empty($data['lamaranStatus'][0]['status_reason'])): ?>
+                        <li>Next Step: <?= $data['lamaranStatus'][0]['status_reason'] ?></li>
                     <?php endif; ?>
                 </ul>
             </section>
