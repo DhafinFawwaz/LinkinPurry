@@ -143,6 +143,12 @@ class Lowongan extends Model {
         return self::DB()->fetchAll();
     }
     
+    public static function getLowonganById(int $id) {
+        self::DB()->query("SELECT * FROM \"Lowongan\" WHERE lowongan_id = $1", [$id]);
+        $row = self::DB()->fetchRow();
+        if(!$row) return null;
+        return new Lowongan($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], new DateTime($row[7]), new DateTime($row[8]));
+    }
 
     public function jsonSerialize(): string {
         return json_encode($this);

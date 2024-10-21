@@ -61,6 +61,7 @@ class LamaranController extends Controller {
         }
             
         $jobseeker = User::getFromLamaranId($lamaran_id);
+        $lowongan = Lowongan::getLowonganById($lowongan_id);
 
         $data = array();
         $data["form"] = $_POST;
@@ -68,6 +69,7 @@ class LamaranController extends Controller {
         
         $data["jobseeker"]["username"] = $jobseeker->username;
         $data["jobseeker"]["email"] = $jobseeker->email;
+        $data["jobseeker"]["role"] = $jobseeker->role;
         
         $data["lamaran"]["cv_path"] = $lamaran->cv->path;
         $data["lamaran"]["video_path"] = $lamaran->video->path;
@@ -76,6 +78,8 @@ class LamaranController extends Controller {
         $data["lamaran"]["status_reason"] = $lamaran->status_reason;
 
         $data["user"]["role"] = $user->role;
+
+        $data["lowongan"]["position"] = $lowongan->posisi;
 
         return $this->view("detail-lamaran.php", $data);
     }

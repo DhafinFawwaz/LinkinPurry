@@ -4,53 +4,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- <link rel="stylesheet" href="/public/global.css"> -->
+    <link rel="stylesheet" href="/public/css/detail-lamaran.css">
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/reset.css">
 </head>
 <body>
-    
-    Detail Lamaran <br>
-    
-    <?php 
-        echo "<p>Jobseeker: " . $data["jobseeker"]["username"] . "</p>";
-        echo "<p>Email: " . $data["jobseeker"]["email"] . "</p>";
-        echo "<embed style='max-height: 20rem;' src='" . $data["lamaran"]["cv_path"] . "' width='800px' height='2100px' />";
-        echo "<video width='320' height='240' controls>";
-        echo "<source src='" . $data["lamaran"]["video_path"] . "' type='video/mp4'>";
-        echo "</video>";
+    <?php include 'component/navbar.php'; ?>
 
-        echo "<p>Status: " . $data["lamaran"]["status"] . "</p>";
+    <section>
+        <div>
+        <?php 
+            echo "<h1>" . htmlspecialchars($data["lowongan"]["position"]) . "</h1>";
+            echo "<h2>" . htmlspecialchars($data["jobseeker"]["username"]) . "</h2>";
+            echo "<h3>" . htmlspecialchars($data["jobseeker"]["role"]) . "</h3>";
+            echo "<h4>" . htmlspecialchars($data["jobseeker"]["email"]) . "</h4>";
 
-        if($data["lamaran"]["status"] != 'waiting') {
-            echo "<p>Status Reason: </p>";
-            echo $data["lamaran"]["status_reason"];
-        } else if($data["user"]["role"] == 'company'){ // if not waiting and company
-            $formAction = $data["form"]["action"];
-            echo <<<EOD
-<form action='$formAction' method='post'>
-    <div class="container">
-        <div id="quillEditor" style='max-height: 20rem'></div>
-    </div>
-    <textarea name="status_reason" style="display:none" id="hiddenArea"></textarea>
+            echo "<div class='file-container'>";
+            echo "<h4>CV</h4>";
+            echo "<embed src='" . htmlspecialchars($data["lamaran"]["cv_path"]) . "' />";
+            echo "<br>";
+            echo "<h4>Video</h4>";
+            echo "<video height='20rem' controls>";
+            echo "<source src='" . htmlspecialchars($data["lamaran"]["video_path"]) . "' type='video/mp4'>";
+            echo "</video>";
+            echo "</div>";
 
-    <button type="submit" name="status" value="accepted">Accept</button>
-    <button type="submit" name="status" value="rejected">Reject</button>
-</form>
+            echo "<p>Status: " . htmlspecialchars($data["lamaran"]["status"]) . "</p>";
+
+            if($data["lamaran"]["status"] != 'waiting') {
+                echo "<p>Status Reason: </p>";
+                echo $data["lamaran"]["status_reason"];
+            } else if($data["user"]["role"] == 'company'){ // if not waiting and company
+                $formAction = $data["form"]["action"];
+                echo <<<EOD
+    <form action='$formAction' method='post'>
+        <div class="quill-container">
+            <div id="quillEditor" style='max-height: 20rem'></div>
+        </div>
+        <textarea name="status_reason" style="display:none" id="hiddenArea"></textarea>
+        
+        <div class='submit-button-container'>
+            <button class="button1" type="submit" name="status" value="accepted">Accept</button>
+            <button class="button1" type="submit" name="status" value="rejected">Reject</button>
+        </div>
+    </form>
 EOD;
-        }
-    ?>
+            }
+        ?>
+        </div>
+    </section>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <script>
         const options = {
-            placeholder: 'Waiting for your precious content',
+            placeholder: 'Write a status reason here.',
             theme: 'snow'
         };
 
         const quill = new Quill('#quillEditor', options);
         
-
         const textarea = document.querySelector('#hiddenArea');
         const form = document.querySelector("form");
         form.addEventListener("submit", (e) => {

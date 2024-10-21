@@ -28,25 +28,25 @@
 
                 <?php 
                 if($data["form"]["role"] == "company") {
-                    $location = $data["form"]["location"] ?? "";
-                    $about = $data["form"]["about"] ?? ""; 
+                    $location = $data["form"]["location"] ?? ""; $location = htmlspecialchars($location);
+                    $about = $data["form"]["about"] ?? ""; $about = htmlspecialchars($about); 
                     $c = <<<"EOT"
                 <div class="form__input">
-                    <input id="location" name="location" required="" value="$location"/>
+                    <input id="location" name="location" required=""  value="$location"/>
                     <label for="location">Lokasi:</label>
                 </div>
                     
                 <div class="form__input">
-                    <input id="about" name="about" required="" value="$about"/>
+                    <input id="about" name="about" required=""  value="$about"/>
                     <label for="about">About:</label>
                 </div>
-    EOT;
+EOT;
                     echo $c;
                 }
                 ?>
                 
                 <div class="edit-container">
-                    <button class="outline-button" id="save-profile-button" type="submit">Save Changes</button>
+                    <button class="outline-button" id="save-profile-button" type="submit" formnovalidate>Save Changes</button>
                     <button class="outline-button" id="cancel-profile-button" type="button">Cancel</button>
                 </div>
             </form>
@@ -74,6 +74,7 @@
                 <div class="profile-info">
                     <?php 
                         echo "<h1>".htmlspecialchars($data["form"]["username"])."</h1>"; 
+                        echo "<h2 class='role-title'>".htmlspecialchars($data["form"]["role"])."</h1>"; 
                         if($data["form"]["role"] == "company") {
                             echo "<p>".htmlspecialchars($data["form"]["location"])."</p>";
                             echo "<p>".htmlspecialchars($data["form"]["about"])."</p>";
