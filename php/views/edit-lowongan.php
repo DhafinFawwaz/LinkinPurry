@@ -3,49 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Lowongan</title>
+    <title>Edit Lowongan - <?= htmlspecialchars($data["lowongan"]["posisi"]) ?></title>
 
-    <!-- css link or something idk -->
+    <link rel="stylesheet" href="/public/css/detail-lowongan.css">
+    <link rel="stylesheet" href="/public/css/edit-lowongan.css">
 </head>
 <body>
-    <!-- nav -->
-    <nav>
-        <ul>
-            <li><a href="/home-company">Home</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </ul>
-    </nav>
+    <?php include 'component/toaster.php'; ?>
 
-    <!-- isi lowongan -->
-    <form action="/add" method="POST">
-        <!-- title may or may not be used -->
-        <!-- value??? -->
-        <label for="title">Nama:</label>
-        <input type="text" id="title" name="title"><br><br>
 
-        <label for="desc">Deskripsi:</label><br>
-        <textarea id="desc" name="desc" rows="4" cols="50"></textarea><br><br>
+    <section id="navbar">
+        <?php include 'component/navbar.php'; ?>
+    </section>
+    
+    <section id="job-details-wrapper">
+        <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/edit">
+            <div class="company-container">
+                <div class="company-profile">
+                    <img src="../public/assets/company_profile.svg" alt="company-profile">
+                    <h2><?= htmlspecialchars($data["user"]["username"]) ?></h2>
+                </div>
+                
+                <div class="form__input">
+                    <input id="posisi" name="posisi" required="" autofocus=""  type="text" value="<?= !isset($data["lowongan"]["posisi"]) ? "" : htmlspecialchars($data["lowongan"]["posisi"]) ?>">
+                    <label for="posisi">Posisi:</label>
+                </div>
 
-        <label for="position">Posisi:</label>
-        <input type="text" id="position" name="position"><br><br>
+                <div class="filter-sort-container">
+                    <select name="jenis_pekerjaan" id="job-type-filter">
+                        <option <?php if($data["lowongan"]["jenis_pekerjaan"] == "Full Time") echo "selected" ?> value="Full Time">Full Time</option>
+                        <option <?php if($data["lowongan"]["jenis_pekerjaan"] == "Part Time") echo "selected" ?> value="Part Time">Part Time</option>
+                        <option <?php if($data["lowongan"]["jenis_pekerjaan"] == "Internship") echo "selected" ?> value="Internship">Internship</option>
+                    </select>
+                </div>
+                <div class="filter-sort-container">
+                    <select name="jenis_lokasi" id="location-type-filter">
+                        <option <?php if($data["lowongan"]["jenis_lokasi"] == "On-Site") echo "selected" ?> value="On-Site">On-Site</option>
+                        <option <?php if($data["lowongan"]["jenis_lokasi"] == "Hybrid") echo "selected" ?> value="Hybrid">Hybrid</option>
+                        <option <?php if($data["lowongan"]["jenis_lokasi"] == "Remote") echo "selected" ?> value="Remote">Remote</option>
+                    </select>
+                </div>
+            </div>
 
-        <label>Jenis:</label><br>
-        <input type="radio" id="fullTime" name="type" value="fullTime">
-        <label for="fullTime">Full Time</label><br>
-        <input type="radio" id="partTime" name="type" value="partTime">
-        <label for="partTime">Part Time</label><br>
-        <input type="radio" id="internship" name="type" value="internship">
-        <label for="internship">Internship</label><br><br>
+            <!-- job details -->
+            <div class="job-description-container">
+                <h2>About the job</h2>
+                
+                <div class="job-details">
+                    <textarea name="deskripsi" id="deskripsi"><?= !isset($data["lowongan"]["deskripsi"]) ? "" : htmlspecialchars($data["lowongan"]["deskripsi"]) ?></textarea>
+                </div>
+            </div>
+
+
+            
+            <div class="apply-button-action full-width-child-end">
+                <a href="/<?php echo $data["lowongan"]["lowongan_id"] ?>" class="outline-button">Cancel</a>
+                <button id="applyBtn" class="button" type="submit">Save Changes</button>
+            </div>
+
+        </form>
         
-        <label>Lokasi:</label><br>
-        <input type="radio" id="onSite" name="type" value="onSite">
-        <label for="onSite">On-Site</label><br>
-        <input type="radio" id="hybrid" name="type" value="hybrid">
-        <label for="hybrid">Hybrid</label><br>
-        <input type="radio" id="remote" name="type" value="remote">
-        <label for="remote">Remote</label><br><br>
+    </section>
+    
 
-        <button type="submit">Simpan</button>
-    </form>
 </body>
 </html>

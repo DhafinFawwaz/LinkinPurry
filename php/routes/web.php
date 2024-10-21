@@ -13,7 +13,7 @@ require_once __DIR__ . '/../controllers/detail-lamaran.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/home-company.controller.php';
 require_once __DIR__ . '/../controllers/tambah-lowongan-company.controller.php';
-require_once __DIR__ . '/../controllers/edit-lowongan-company.controller.php';
+require_once __DIR__ . '/../controllers/edit-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/home-jobseeker.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan-jobseeker.controller.php';
@@ -51,9 +51,6 @@ Route::post("/home-company",  [CompanyOnly::class, HomeCompanyController::class]
 Route::get("/tambah-lowongan-company",  [CompanyOnly::class, TambahLowonganCompanyController::class]);
 Route::post("/tambah-lowongan-company",  [CompanyOnly::class, TambahLowonganCompanyController::class]);
 
-Route::get("/edit-lowongan-company",  [CompanyOnly::class, EditLowonganCompanyController::class]);
-Route::post("/edit-lowongan-company",  [CompanyOnly::class, EditLowonganCompanyController::class]);
-
 Route::get("/detail-lowongan-company",  [CompanyOnly::class, DetailLowonganCompanyController::class]);
 Route::post("/detail-lowongan-company",  [CompanyOnly::class, DetailLowonganCompanyController::class]);
 
@@ -76,6 +73,8 @@ Route::post("/logout", [Authenticated::class, LogoutController::class]);
 
 // /lowongan_id
 Route::get("/{int}",  [Authenticated::class, DetailLowonganController::class]);
+Route::get("/{int}/edit",  [CompanyOnly::class, EditLowonganController::class]);
+Route::post("/{int}/edit",  [CompanyOnly::class, EditLowonganController::class]);
 
 // /lowongan_id/lamaran_id
 Route::get("/{int}/{int}",  [Authenticated::class, LamaranController::class]);
