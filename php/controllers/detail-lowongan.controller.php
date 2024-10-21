@@ -5,9 +5,7 @@ require_once __DIR__ . "/../models/company.model.php";
 
 class DetailLowonganController extends Controller {
     public function handle(){
-
-        $pathArr = $this->getUrlPath();
-        $lowongan_id = $pathArr[0];
+        $lowongan_id = (int)$_GET['id'] ?? null;
         $user = $this->getCurrentUser();
         $data = array();
 
@@ -27,7 +25,10 @@ class DetailLowonganController extends Controller {
             $data["lamaranList"] = $lamaranList;
         }
 
-        $company = Company::fromUser($user);
+        // companynya dari lowongan
+        $company_id = (int)Lowongan::getLowonganDetailsById($lowongan_id)[0]["company_id"];
+        $company = Company::fromUser(User::getUserById($company_id));
+    
         $data["user"] = (array)$user;
         $data["company"] = (array)$company;
         $data["lowongan"] = (array)$lowongan;

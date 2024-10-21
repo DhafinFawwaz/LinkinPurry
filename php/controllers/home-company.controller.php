@@ -45,7 +45,7 @@ class HomeCompanyController extends Controller {
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
                 echo "
-                    <div class='job-card'>
+                    <a class='job-card' href='/detail-lowongan?id={$lowongan['lowongan_id']}'>
                         <div class='job-picture'>
                             <img src='../public/assets/company_profile.svg' alt='job-picture'>
                         </div>
@@ -54,7 +54,7 @@ class HomeCompanyController extends Controller {
                             <p>{$lowongan['company_name']}</p>
                             <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
                         </div>
-                    </div>
+                    </a>
                 ";
             }
 

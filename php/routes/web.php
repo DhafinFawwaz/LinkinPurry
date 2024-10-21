@@ -63,6 +63,9 @@ Route::post("/", [HomeJobseekerController::class]);
 Route::get("/detail-lowongan-jobseeker", [JobseekerOnly::class, DetailLowonganJobseekerController::class]);
 Route::post("/detail-lowongan-jobseeker", [JobseekerOnly::class, DetailLowonganJobseekerController::class]);
 
+Route::get("/detail-lowongan", [Authenticated::class, DetailLowonganController::class]);
+Route::post("/detail-lowongan", [Authenticated::class, DetailLowonganController::class]);
+
 Route::get("/riwayat-lamaran", [JobseekerOnly::class, RiwayatLamaranController::class]);
 Route::post("/riwayat-lamaran", [JobseekerOnly::class, RiwayatLamaranController::class]);
 
