@@ -9,12 +9,12 @@ class Lamaran extends Model {
     public int $user_id;
     public int $lowongan_id;
     public CV $cv;
-    public Video $video;
-    public string $status = 'waiting'; // 'accepted', 'rejected', 'waiting'
+    public ?Video $video;
+    public string $status = 'waiting'; 
     public string $status_reason;
     public DateTime $created_at;
 
-    public function __construct(int $lamaran_id, int $user_id, int $lowongan_id, CV $cv, Video $video, string $status, string $status_reason, DateTime $created_at) {
+    public function __construct(int $lamaran_id, int $user_id, int $lowongan_id, CV $cv, ?Video $video, string $status, string $status_reason, DateTime $created_at) {
         $this->lamaran_id = $lamaran_id;
         $this->user_id = $user_id;
         $this->lowongan_id = $lowongan_id;
@@ -25,8 +25,20 @@ class Lamaran extends Model {
         $this->created_at = $created_at;
     }
 
-    public static function insertLamaran(int $user_id, int $lowongan_id, CV $cv, Video $video) {
-        Model::DB()->query("INSERT INTO \"Lamaran\" (user_id, lowongan_id, cv_path, video_path) VALUES ($1, $2, $3, $4)", array($user_id, $lowongan_id, $cv->path, $video->path));
+
+    public static function insertLamaran(int $user_id, int $lowongan_id, CV $cv, ?Video $video = null) {
+        $videoPath = $video ? "/uploads/videos/" . $video->path : null;
+    
+        Model::DB()->query(
+            "INSERT INTO \"Lamaran\" (user_id, lowongan_id, cv_path, video_path) 
+            VALUES ($1, $2, $3, $4)", 
+            array(
+                $user_id, 
+                $lowongan_id, 
+                "/uploads/cv/" . $cv->path, 
+                $videoPath
+            )
+        );
     }
 
     public function save() {
@@ -49,8 +61,13 @@ class Lamaran extends Model {
         Model::DB()->query("SELECT * FROM \"User\" JOIN \"Lamaran\" USING(user_id) JOIN \"Lowongan\" USING(lowongan_id) WHERE user_id = $1 AND lamaran_id=$2 AND lowongan_id = $3", array($userId, $lamaranId, $lowonganId));
         $row = Model::DB()->fetchRow();
         if(!$row) return null;
-        if(!$row[10]) $row[10] = "";
-        return new Lamaran($row[6], $row[1], $row[0], new CV( $row[7], null), new Video($row[8], null), $row[9], $row[10], new DateTime($row[11]));
+    
+        $video = null;
+        if ($row[8]) {
+            $video = new Video($row[8], null);
+        }
+    
+        return new Lamaran($row[6], $row[1], $row[0], new CV($row[7], null), $video, $row[9], $row[10] ?? '', new DateTime($row[11]));
     }
 
     public static function getLamaranDetailsFromCompany(int $companyId, int $lamaranId, int $lowonganId) {
