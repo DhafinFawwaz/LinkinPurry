@@ -27,7 +27,7 @@
                             <label class="role__switch" for="jobseeker__switch">Jobseeker</label>
                         </div>
                         <div>
-                            <input hidden type="radio" id="company__switch" name="role" value="company" <?php if(isset($data["form"]["roles"]) && $data["form"]["roles"] == 'jobseeker') echo 'checked' ?>>
+                            <input hidden type="radio" id="company__switch" name="role" value="company" <?php if(isset($data["form"]["roles"]) && $data["form"]["roles"] == 'company') echo 'checked' ?>>
                             <label class="role__switch" for="company__switch">Company</label>
                         </div>
                     </div>

@@ -20,34 +20,38 @@
                     <?php require "component/close-icon.php"; ?>
                 </button>
             </div>
-            <form action="/profile" method="post">
-                <label for="username">Nama:</label>
-                <input disabled id="username" name="username" value="<?php if(isset($data["form"]["username"])) echo $data["form"]["username"] ?>"/>
+            <form class="profile-form" action="/profile" method="post">
+                <div class="form__input">
+                    <input id="username" name="username" required="" autofocus="" type="text" value="<?php if(isset($data["form"]["username"])) echo $data["form"]["username"] ?>"/>
+                    <label for="username">Nama:</label>
+                </div>
 
                 <?php 
                 if($data["form"]["role"] == "company") {
                     $location = $data["form"]["location"] ?? "";
                     $about = $data["form"]["about"] ?? ""; 
                     $c = <<<"EOT"
+                <div class="form__input">
+                    <input id="location" name="location" required="" value="$location"/>
                     <label for="location">Lokasi:</label>
-                    <input disabled id="location" name="location" value="$location"/>
+                </div>
                     
+                <div class="form__input">
+                    <input id="about" name="about" required="" value="$about"/>
                     <label for="about">About:</label>
-                    <input disabled id="about" name="about" value="$about"/>
-        EOT;
+                </div>
+    EOT;
                     echo $c;
                 }
                 ?>
                 
-
-                <button id="edit-profile-button" type="button">Edit</button>
-                <button id="save-profile-button" hidden type="submit">Save Changes</button>
-                <button id="cancel-profile-button" hidden type="button">Cancel</button>
+                <div class="edit-container">
+                    <button class="outline-button" id="save-profile-button" type="submit">Save Changes</button>
+                    <button class="outline-button" id="cancel-profile-button" type="button">Cancel</button>
+                </div>
             </form>
 
-            <form action="logout" method="post">
-                <button type="submit">Logout</button>
-            </form>
+            
         </div>
     </section>
     
@@ -77,6 +81,10 @@
                     ?>
                 </div>
             </div>
+
+            <form class="logout-button-container" action="logout" method="post">
+                <button class="outline-button" type="submit">Logout</button>
+            </form>
         </section>
 
     </main>

@@ -142,11 +142,14 @@ body {
 }
 .popup-content {
     background-color: white;
-    max-width: 60rem;
     padding: 2rem;
     color: black;
     opacity: 100%;
     z-index: 50;
+    
+    width: 100%;
+    max-width: 24rem;
+    margin: 1rem;
 }
 .popup-content>div {
     display: flex;
@@ -188,6 +191,92 @@ body {
     transition-duration: inherit;
     transition-timing-function: inherit;
     scale: 0.5;
+}
+
+
+.logout-button-container {
+    padding: 0rem 1rem;
+    display: flex;
+    justify-content: end;
+}
+.logout-button-container>.outline-button {
+    width: 7rem;
+}
+.edit-container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+}
+.outline-button {
+    width: 100%;
+    color: #0a66c2;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 167ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    vertical-align: middle;
+    z-index: 0;
+    background: none;
+
+    border-radius: 10rem;
+    border: 2px solid #0a66c2;
+}
+.outline-button:hover {
+    background: #0a66c2;
+    color: white;
+}
+
+
+.profile-form {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__input {
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+}
+.form__input>label {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    margin: 0;
+    transition: .2s all;
+    z-index: 50;
+    pointer-events: none;
+    padding: 0.6rem 0 0.8rem 0.7rem;
+}
+
+.form__input>input {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.2rem;
+    height: 100%;
+    padding: 0.6rem 0 0 0.6rem;
+    translate: 0 -3px;
+}
+.form__input label.required:after {
+    content: '*';
+    color: #0073b1;
+    margin-left: 2px
+}
+.form__input>input:focus+label, .form__input>input:valid+label, .form__input>input:active+label  {
+    translate: 0 -13px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9)
 }
 
 /* Styling untuk mobile devices dengan lebar maksimal 768px (misal untuk ukuran smartphone) */
