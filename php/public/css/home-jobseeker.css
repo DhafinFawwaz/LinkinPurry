@@ -139,6 +139,7 @@ main {
 }
 
 .job-card {
+    text-decoration: none;
     display: flex;
     align-items: center;
     /* background-color: #f9f9f9; */
