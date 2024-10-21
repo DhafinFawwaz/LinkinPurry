@@ -10,7 +10,7 @@ require_once __DIR__ . '/../controllers/profile.controller.php';
 require_once __DIR__ . '/../controllers/register.controller.php';
 require_once __DIR__ . '/../controllers/logout.controller.php';
 require_once __DIR__ . '/../controllers/detail-lamaran.controller.php';
-require_once __DIR__ . '/../controllers/lowongan.controller.php';
+require_once __DIR__ . '/../controllers/detail-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/home-company.controller.php';
 require_once __DIR__ . '/../controllers/tambah-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/edit-lowongan-company.controller.php';
@@ -75,7 +75,7 @@ Route::post("/logout", [Authenticated::class, LogoutController::class]);
 // currently only support {int} and {string}
 
 // /lowongan_id
-Route::get("/{int}",  [Authenticated::class, LowonganController::class]);
+Route::get("/{int}",  [Authenticated::class, DetailLowonganController::class]);
 
 // /lowongan_id/lamaran_id
 Route::get("/{int}/{int}",  [Authenticated::class, LamaranController::class]);

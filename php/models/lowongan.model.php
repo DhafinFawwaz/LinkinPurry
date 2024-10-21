@@ -150,6 +150,12 @@ class Lowongan extends Model {
         return new Lowongan($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], new DateTime($row[7]), new DateTime($row[8]));
     }
 
+    public static function isLowonganIdOwnedByCompany(int $company_id, int $lowongan_id) {
+        self::DB()->query("SELECT * FROM \"Lowongan\" WHERE company_id = $1 AND lowongan_id = $2", [$company_id, $lowongan_id]);
+        $res = self::DB()->fetchRow();
+        return !!$res;
+    }
+
     public function jsonSerialize(): string {
         return json_encode($this);
     }

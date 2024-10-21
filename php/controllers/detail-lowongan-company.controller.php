@@ -5,5 +5,3 @@ class DetailLowonganCompanyController extends Controller {
         return $this->view("detail-lowongan-company.php");
     }
 }
-
-?>
