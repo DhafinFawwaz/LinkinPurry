@@ -57,7 +57,7 @@ Route::post("/edit-lowongan-company",  [CompanyOnly::class, EditLowonganCompanyC
 Route::get("/detail-lowongan-company",  [CompanyOnly::class, DetailLowonganCompanyController::class]);
 Route::post("/detail-lowongan-company",  [CompanyOnly::class, DetailLowonganCompanyController::class]);
 
-Route::get("/home-jobseeker", [JobseekerOnly::class, HomeJobseekerController::class]);
+Route::get("/", [HomeJobseekerController::class]);
 Route::post("/home-jobseeker", [JobseekerOnly::class, HomeJobseekerController::class]);
 
 Route::get("/detail-lowongan-jobseeker", [JobseekerOnly::class, DetailLowonganJobseekerController::class]);

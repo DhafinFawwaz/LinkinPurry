@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/handler.php";
 class Route {
+    private static $baseUnsedUrl = "url-base-route";
     private static $route404 = array();
     private static $routes = array(
         "GET" => array(),
@@ -33,7 +34,8 @@ class Route {
     }
 
     private static function registerRoute(string $route, string $httpMethod, $handler) {
-
+        if($route == "/") $route = self::$baseUnsedUrl;
+        else if($route == self::$baseUnsedUrl) $route = "not-found";
 
         if(is_callable($handler)) {
             Route::$routes[$httpMethod][$route] = $handler;
@@ -85,6 +87,9 @@ class Route {
 
     public static function handle() {
         $route = Route::clean($_SERVER['REQUEST_URI']);
+        if($route == "") $route = self::$baseUnsedUrl;
+        else if($route == self::$baseUnsedUrl) $route = "not-found";
+
         $parts = parse_url($route);
         $route = $parts["path"];
 
