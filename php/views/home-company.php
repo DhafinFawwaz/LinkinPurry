@@ -7,7 +7,7 @@
 
     <!-- css link or something idk -->
 </head>
-<body onload="filterAndSortJobs()">
+<body>
     <!-- nav -->
     <nav>
         <ul>

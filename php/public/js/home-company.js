@@ -24,3 +24,5 @@ function debouncedSearch() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(filterAndSortJobs, 300);
 }
+
+filterAndSortJobs();
