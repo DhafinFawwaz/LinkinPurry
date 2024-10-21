@@ -1,0 +1,87 @@
+
+.form__input {
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+}
+.form__input>label {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    margin: 0;
+    transition: .2s all;
+    z-index: 50;
+    pointer-events: none;
+    padding: 0.6rem 0 0.8rem 0.7rem;
+}
+
+.form__input>input {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    border-radius: 0.6rem;
+    width: 100%;
+    font-size: 1rem;
+    height: 100%;
+    padding: 0.6rem 0 0 0.6rem;
+}
+.form__input>textarea{
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    border-radius: 0.6rem;
+    width: 100%;
+    font-size: 1rem;
+    height: 100%;
+    padding: 0.6rem 0 0 0.6rem;
+    resize: vertical;
+}
+.form__input label.required:after {
+    content: '*';
+    color: #0073b1;
+    margin-left: 2px
+}
+.form__input>input:focus+label, .form__input>input:valid+label, .form__input>input:active+label  {
+    translate: 0 -13px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9)
+}
+
+
+
+.filter-sort-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.filter-sort-container input,
+.filter-sort-container select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.job-details>textarea {
+    width: 100%;
+    resize: vertical;
+    text-align: justify;
+    min-height: 8rem;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 0.8rem;
+}
+
+.job-description-container {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+.job-description-container h2 {
+    margin-bottom: 0.1rem;
+}

@@ -158,6 +158,10 @@ class Lowongan extends Model {
         return !!$res;
     }
 
+    public function save() {
+        self::DB()->query("UPDATE \"Lowongan\" SET posisi = $1, deskripsi = $2, jenis_pekerjaan = $3, jenis_lokasi = $4 WHERE lowongan_id = $5", [$this->posisi, $this->deskripsi, $this->jenis_pekerjaan, $this->jenis_lokasi, $this->lamaran_id]);
+    }
+
     public function jsonSerialize(): string {
         return json_encode($this);
     }

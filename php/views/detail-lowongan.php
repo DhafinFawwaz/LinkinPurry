@@ -1,7 +1,3 @@
-<?php
-extract($data);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,11 +28,11 @@ extract($data);
             </div>
             <div class="job-type">
                 <p>
-                    <img src="../public/assets/bag_icon.svg" class="icon" alt="location-icon">
-                    <?= htmlspecialchars($data["company"]["location"]) ?>
+                    <img src="/public/assets/bag_icon.svg" class="icon" alt="location-icon">
+                    <?= htmlspecialchars($data["company"]["location"]) ?> | <?= htmlspecialchars($data["lowongan"]["jenis_lokasi"]) ?>
                 </p>
                 <p>
-                    <img src="../public/assets/bag_icon.svg" class="icon" alt="job-icon">
+                    <img src="/public/assets/bag_icon.svg" class="icon" alt="job-icon">
                     <?= htmlspecialchars($data["lowongan"]["jenis_pekerjaan"]) ?>
                 </p>
             </div>
@@ -45,7 +41,7 @@ extract($data);
         <!-- apply button -->
         <?php if($data["canEdit"]) { ?>
             <div class="apply-button-action">
-                <a href="<?php echo $data["lowongan"]["lowongan_id"] ?>/edit" id="applyBtn" class="button">Edit</a>
+                <a href="/<?php echo $data["lowongan"]["lowongan_id"] ?>/edit" id="applyBtn" class="button">Edit</a>
             </div>
         <?php } ?>
         
