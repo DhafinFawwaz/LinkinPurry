@@ -11,13 +11,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <nav>
         <?php if ($isAuthenticated): ?>
             <div class="logo">
-                <a href="/home-jobseeker">
+                <a href="/">
                     <img src="../../public/assets/in_icon.svg" alt="LinkedIn Logo">
                 </a>
             </div>
         <?php else: ?>
             <div class="logo">
-                <a href="">
+                <a href="/login">
                     <?php require 'linkedin-logo-medium.php'; ?>
                 </a>
             </div>
@@ -30,14 +30,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <ul>
             <?php if ($isAuthenticated): ?>
                 <!-- Jika sudah login -->
-                <!-- <li class="nav-item <?= $currentPage == 'home-jobseeker.php' ? 'active' : '' ?>">
-                    <a href="/home-jobseeker">
+                <!-- <li class="nav-item <?= $currentPage == '.php' ? 'active' : '' ?>">
+                    <a href="/">
                         <img src="../public/assets/home_icon.svg" alt="Home">
                         <span>Home</span>
                     </a>
                 </li> -->
                 <li class="nav-item <?= $currentPage == 'jobs.php' ? 'active' : '' ?>">
-                    <a href="/home-jobseeker">
+                    <a href="/">
                         <img src="../public/assets/jobs_icon.svg" alt="Jobs">
                         <span>Jobs</span>
                     </a>
@@ -57,7 +57,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <?php else: ?>
                 <!-- Jika belum login -->
                 <li class="nav-item">
-                    <a href="/jobs">
+                    <a href="/">
                         <img src="../public/assets/jobs_icon.svg" alt="Jobs">
                         <span>Jobs</span>
                     </a>
