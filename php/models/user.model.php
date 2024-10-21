@@ -50,6 +50,13 @@ class User extends Model {
         self::DB()->query("CALL create_user_company($1, $2, $3, $4, $5);", [$email, $password, $username, $location, $about]);
     }
 
+    public static function getFromLamaranId(int $lamaranId) {
+        self::DB()->query("SELECT * FROM \"User\" JOIN \"Lamaran\" USING(user_id) WHERE lamaran_id = $1", array($lamaranId));
+        $res = self::DB()->fetchRow();
+        if(!$res) return null;
+        return self::fromSqlRow($res);
+    }
+
     public function save() {
         self::DB()->query("UPDATE \"User\" SET nama=$1 WHERE user_id=$2", array($this->username, $this->id));
     }

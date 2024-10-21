@@ -45,12 +45,23 @@ class Lamaran extends Model {
         return self::fromSqlRow(...$row);
     }
 
-    public static function getLamaranDetails(int $companyId, int $lowonganId, int $lamaranId) {
-        Model::DB()->query("SELECT * FROM \"Lowongan\" JOIN \"Lamaran\" USING(lowongan_id) WHERE company_id = $1 AND lowongan_id = $2 AND lamaran_id=$3", array($companyId, $lowonganId, $lamaranId));
+    public static function getLamaranDetailsFromJobseeker(int $userId, int $lamaranId, int $lowonganId) {
+        Model::DB()->query("SELECT * FROM \"User\" JOIN \"Lamaran\" USING(user_id) JOIN \"Lowongan\" USING(lowongan_id) WHERE user_id = $1 AND lamaran_id=$2 AND lowongan_id = $3", array($userId, $lamaranId, $lowonganId));
         $row = Model::DB()->fetchRow();
         if(!$row) return null;
-        return new Lamaran($row[9], $row[10], $row[0], new CV( $row[11], null), new Video($row[12], null), $row[13], $row[14], new DateTime($row[15]));
+        if(!$row[10]) $row[10] = "";
+        return new Lamaran($row[6], $row[1], $row[0], new CV( $row[7], null), new Video($row[8], null), $row[9], $row[10], new DateTime($row[11]));
     }
+
+    public static function getLamaranDetailsFromCompany(int $companyId, int $lamaranId, int $lowonganId) {
+        Model::DB()->query("SELECT * FROM \"Company_Detail\" JOIN \"Lowongan\" ON \"Company_Detail\".user_id=\"Lowongan\".company_id JOIN \"Lamaran\" USING(lowongan_id)", array());
+        $row = Model::DB()->fetchRow();
+        if(!$row) return null;
+        if(!$row[17]) $row[17] = "";
+        return new Lamaran($row[12], -1, $row[0], new CV( $row[14], null), new Video($row[15], null), $row[16], $row[17], new DateTime($row[18]));
+    }
+
+    
 
     public static function getRiwayatLamaranByUserId(int $user_id) {
         Model::DB()->query(
@@ -64,13 +75,6 @@ class Lamaran extends Model {
             [$user_id]
         );
         return Model::DB()->fetchAll();
-    }
-
-    public function getUser() {
-        Model::DB()->query("SELECT * FROM \"User\" WHERE user_id= $1", array($this->user_id));
-        $res = Model::DB()->fetchRow();
-        if(!$res) return null;
-        return new User($res[0], $res[1], $res[2], $res[3], $res[4]);
     }
 
     public static function jobseekerHasApplied($job_seeker_id, $lowongan_id) {

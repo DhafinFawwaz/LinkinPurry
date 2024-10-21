@@ -21,12 +21,17 @@ class LamaranController extends Controller {
             $this->redirect("/not-found");
             return;
         }
+        $user = $this->getCurrentUser();
+        if($user->role == 'jobseeker') {
+            $this->redirect("/not-found");
+            return;
+        }
         
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[0];
         $lamaran_id = $pathArr[1];
         $company = $this->getCurrentUser();
-        $lamaran = Lamaran::getLamaranDetails($company->id, $lowongan_id, $lamaran_id);
+        $lamaran = Lamaran::getLamaranDetailsFromCompany((int)$company->id, (int)$lamaran_id, (int)$lowongan_id);
         if(!$lamaran) {
             $this->redirect("/not-found"); // either not found or not owned by this company
             return;
@@ -44,14 +49,18 @@ class LamaranController extends Controller {
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[0];
         $lamaran_id = $pathArr[1];
-        $company = $this->getCurrentUser();
-        $lamaran = Lamaran::getLamaranDetails($company->id, $lowongan_id, $lamaran_id);
+        $user = $this->getCurrentUser();
+        if($user->role == 'jobseeker') {
+            $lamaran = Lamaran::getLamaranDetailsFromJobseeker((int)$user->id, (int)$lamaran_id, (int)$lowongan_id);
+        } else {
+            $lamaran = Lamaran::getLamaranDetailsFromCompany((int)$user->id, (int)$lamaran_id, (int)$lowongan_id);
+        }
         if(!$lamaran) {
             $this->redirect("/not-found"); // either not found or not owned by this company
             return;
         }
             
-        $jobseeker = $lamaran->getUser();
+        $jobseeker = User::getFromLamaranId($lamaran_id);
 
         $data = array();
         $data["form"] = $_POST;
@@ -65,6 +74,8 @@ class LamaranController extends Controller {
 
         $data["lamaran"]["status"] = $lamaran->status;
         $data["lamaran"]["status_reason"] = $lamaran->status_reason;
+
+        $data["user"]["role"] = $user->role;
 
         return $this->view("detail-lamaran.php", $data);
     }
