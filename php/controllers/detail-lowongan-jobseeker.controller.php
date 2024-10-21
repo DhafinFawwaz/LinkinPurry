@@ -24,6 +24,8 @@ class DetailLowonganJobseekerController extends Controller {
 
                 $jobseekerHasApplied = Lamaran::jobseekerHasApplied($_SESSION['user']->id, $lowonganId);
 
+                $riwayatLamaran = Lamaran::getRiwayatLamaranByUserId($_SESSION['user']->id);
+
                 $lamaranStatus = null;
                 if($jobseekerHasApplied) {
                     $lamaranStatus = Lamaran::getLamaranDetailbyJobseekerId($_SESSION['user']->id, $lowonganId);
@@ -31,7 +33,9 @@ class DetailLowonganJobseekerController extends Controller {
 
                 return $this->view("detail-lowongan-jobseeker.php", [
                     "lowongan" => $lowonganDetail, 
-                    "jobseekerHasApplied" => $jobseekerHasApplied, "lamaranStatus" => $lamaranStatus]);
+                    "jobseekerHasApplied" => $jobseekerHasApplied, "lamaranStatus" => $lamaranStatus,
+                    "riwayatLamaran" => $riwayatLamaran
+                ]);
             }
         }
     }

@@ -61,7 +61,7 @@ if (isset($data['lowongan'])) {
                 </div>
             <?php else: ?>
                 <?php if ($data['jobseekerHasApplied']): ?>
-                    <a href="#application-status" class="button">View Your Application</a>
+                    <a href="/<?= $lowongan_id ?>/<?= $data['riwayatLamaran'][0]['lamaran_id'] ?>" class="button">View Your Application</a>
                 <?php elseif (!$data['jobseekerHasApplied']): ?>
                     <button id="applyBtn" class="button">Apply</button>
                 <?php endif; ?>
@@ -84,6 +84,9 @@ if (isset($data['lowongan'])) {
                             <div class="file-type">PDF</div>
                             <span id="resumeFileName">No file chosen</span>
                         </div>
+                        <!-- <div id="error-message" class="error-message">
+                            <?php if (isset($data['error'])) echo $data['error'] ?>
+                        </div> -->
                         <button type="button" class="replace-btn" onclick="document.getElementById('cv').click();">Upload resume</button>
                         <input type="file" id="cv" name="cv" accept=".pdf" onchange="updateFileName('cv', 'resumeFileName')">
                         <div id="error-message" class="error-message"></div>
