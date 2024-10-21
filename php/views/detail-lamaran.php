@@ -6,8 +6,10 @@
 
     <!-- <link rel="stylesheet" href="/public/global.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/reset.css">
 </head>
 <body>
+    
     Detail Lamaran <br>
     
     <?php 
@@ -18,13 +20,13 @@
         echo "<source src='" . $data["lamaran"]["video_path"] . "' type='video/mp4'>";
         echo "</video>";
 
+        echo "<p>Status: " . $data["lamaran"]["status"] . "</p>";
+
         if($data["lamaran"]["status"] != 'waiting') {
-            echo "<p>Status: " . $data["lamaran"]["status"] . "</p>";
             echo "<p>Status Reason: </p>";
             echo $data["lamaran"]["status_reason"];
-        } else {
+        } else if($data["user"]["role"] == 'company'){ // if not waiting and company
             $formAction = $data["form"]["action"];
-            echo "<p>Status: " . $data["lamaran"]["status"] . "</p>";
             echo <<<EOD
 <form action='$formAction' method='post'>
     <div class="container">

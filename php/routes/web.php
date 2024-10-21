@@ -30,9 +30,7 @@ Route::get("/login", [NotAuthenticated::class, function(){
 }]);
 Route::post("/login", [NotAuthenticated::class, LoginController::class]);
 
-Route::get("/register", [NotAuthenticated::class, function(){
-    return view("register.php");
-}]);
+Route::get("/register", [NotAuthenticated::class, Register::class]);
 Route::post("/register", [NotAuthenticated::class, Register::class]);
 
 

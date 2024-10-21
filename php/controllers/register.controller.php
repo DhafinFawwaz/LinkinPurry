@@ -11,6 +11,14 @@ class Register extends Controller {
 
     public function handle(){
         $data["form"] = $_POST;
+
+        if($_SERVER["REQUEST_METHOD"] == "GET") {
+            if(!isset($data["form"]["roles"])) $data["form"]["roles"] = 'jobseeker';
+            $this->view("register.php", $data);
+            return;
+        }
+        
+        
         $username = $_POST['username'];
         if(!$username) { $data["error"]["username"] = 'Please enter a username.'; }
 
