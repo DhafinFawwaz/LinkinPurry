@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/public/css/profile1.css">
 </head>
 <body>
+    <?php require "component/toaster.php"; ?>
+
     <section id="navbar">
         <?php require "component/navbar.php"; ?>
     </section>
