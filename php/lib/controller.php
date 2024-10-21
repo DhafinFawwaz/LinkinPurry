@@ -2,7 +2,10 @@
 require_once __DIR__ . '/../lib/view.php';
 
 abstract class Controller implements IHandler{
-    protected function view(string $path, $data = null){ view($path, $data); }
+    protected function view(string $path, $data = null){ 
+        view($path, $data); 
+        $_SESSION["message"] = null;
+    }
     function redirect($url, $statusCode = 303)
     {
         header('Location: ' . $url, replace: true);

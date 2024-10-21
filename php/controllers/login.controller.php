@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../models/user.model.php";
+require_once __DIR__ . "/../models/message.model.php";
 require_once __DIR__ . "/../lib/controller.php";
 class LoginController extends Controller {
     public function handle(){
@@ -21,6 +22,7 @@ class LoginController extends Controller {
         if(!$userToCheck) { $data["error"]["email"] = 'Email does not exists.'; }
 
         if(isset($data["error"])) {
+            Message::Error("Login Failed", "Please enter the correct data.");
             $this->view("login.php", $data);
             return;
         }
@@ -37,9 +39,11 @@ class LoginController extends Controller {
             } else {
                 $_SESSION['user'] = $userToCheck;
             }
+            Message::Success("Login Success", "You have successfully logged in.");
             $this->redirect('/');
         }
 
+        Message::Error("Login Failed", "Please enter the correct data.");
 
         $this->view("login.php", $data);
     }
