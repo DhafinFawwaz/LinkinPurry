@@ -11,7 +11,7 @@ class HomeCompanyController extends Controller {
         }
 
         return $this->view("home-company.php", [
-            "user" => $user,
+            "user" => $user
         ]);
     }
 
