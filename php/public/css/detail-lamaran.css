@@ -517,4 +517,32 @@ section>div {
     object-fit: cover;
 }
 
+.waiting {
+    padding: 0.3rem 1.2rem;
+    background-color: #ffcc00;
+    color: white;
+    border-radius: 5rem;
+    font-weight: 700;
+    text-align: center;
+    width: min-content;
+}
+.accepted {
+    padding: 0.5rem;
+    background-color: #0eff0e;
+    color: white;
+    border-radius: 5rem;
+    font-weight: 700;
+    text-align: center;
+    width: min-content;
+}
+.rejected {
+    padding: 0.5rem;
+    background-color: #ff1717;
+    color: white;
+    border-radius: 5rem;
+    font-weight: 700;
+    text-align: center;
+    width: min-content;
+}
+
 /* #endregion global css */

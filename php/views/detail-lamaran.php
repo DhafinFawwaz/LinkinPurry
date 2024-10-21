@@ -30,9 +30,11 @@ EOD;
             echo "<div class='status-container'>";
 
             if($data["lamaran"]["status"] == 'waiting') {
-                echo "<p>Status: waiting for approval</p>";
-            } else {
-                echo "<p>Status: " . htmlspecialchars($data["lamaran"]["status"]) . "</p>";
+                echo "<div class='waiting'>Waiting</div>";
+            } else if($data["lamaran"]["status"] == 'accepted') {
+                echo "<div class='accepted'>Accepted</div>";
+            } else if($data["lamaran"]["status"] == 'rejected') {
+                echo "<div class='rejected'>Rejected</div>";
             }
             echo "</div></div></div>";
             
