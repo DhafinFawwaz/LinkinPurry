@@ -46,6 +46,9 @@ class HomeCompanyController extends Controller {
             foreach ($lowonganList as $lowongan) {
                 echo "
                     <div class='job-card'>
+                        <div class='job-picture'>
+                            <img src='../public/assets/company_profile.svg' alt='job-picture'>
+                        </div>
                         <div class='job-card-details'>
                             <h3>{$lowongan['posisi']}</h3>
                             <p>{$lowongan['company_name']}</p>

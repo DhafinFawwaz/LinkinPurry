@@ -54,7 +54,7 @@ class Lamaran extends Model {
     }
 
     public static function getLamaranDetailsFromCompany(int $companyId, int $lamaranId, int $lowonganId) {
-        Model::DB()->query("SELECT * FROM \"Company_Detail\" JOIN \"Lowongan\" ON \"Company_Detail\".user_id=\"Lowongan\".company_id JOIN \"Lamaran\" USING(lowongan_id)", array());
+        Model::DB()->query("SELECT * FROM \"Company_Detail\" JOIN \"Lowongan\" ON \"Company_Detail\".user_id=\"Lowongan\".company_id JOIN \"Lamaran\" USING(lowongan_id) WHERE company_id=$1 AND lamaran_id=$2 AND lowongan_id=$3", array($companyId, $lamaranId, $lowonganId));
         $row = Model::DB()->fetchRow();
         if(!$row) return null;
         if(!$row[17]) $row[17] = "";
@@ -76,6 +76,7 @@ class Lamaran extends Model {
         );
         return Model::DB()->fetchAll();
     }
+    
 
     public static function jobseekerHasApplied($job_seeker_id, $lowongan_id) {
         self::DB()->query(
@@ -91,6 +92,26 @@ class Lamaran extends Model {
             "SELECT * FROM \"Lamaran\" 
             WHERE user_id = $1 AND lowongan_id = $2",
             [$job_seeker_id, $lowongan_id]
+        );
+        return self::DB()->fetchAll();
+    }
+
+    public static function getAllLamaranByLowonganId($lowongan_id) {
+        self::DB()->query(
+            "SELECT * FROM \"Lamaran\" 
+            WHERE lowongan_id = $1",
+            [$lowongan_id]
+        );
+        return self::DB()->fetchAll();
+    }
+
+    public static function getAllLamaranAndUserByLowonganId($lowongan_id) {
+        self::DB()->query(
+            "SELECT *
+            FROM \"Lamaran\" l
+            JOIN \"User\" u ON l.user_id = u.user_id
+            WHERE lowongan_id = $1",
+            [$lowongan_id]
         );
         return self::DB()->fetchAll();
     }

@@ -6,6 +6,7 @@
     <title>Tambah Lowongan</title>
 
     <!-- css link or something idk -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 </head>
 <body>
     <!-- nav -->
@@ -18,15 +19,12 @@
 
     <!-- isi lowongan -->
     <form action="/add" method="POST">
-        <!-- title may or may not be used -->
-        <label for="title">Nama:</label>
-        <input type="text" id="title" name="title"><br><br>
-
-        <label for="desc">Deskripsi:</label><br>
-        <textarea id="desc" name="desc" rows="4" cols="50"></textarea><br><br>
 
         <label for="position">Posisi:</label>
         <input type="text" id="position" name="position"><br><br>
+
+        <label for="desc">Deskripsi:</label><br>
+        <div id="desc" name="desc"></div><br><br>
 
         <label>Jenis:</label><br>
         <input type="radio" id="fullTime" name="type" value="fullTime">
@@ -46,5 +44,11 @@
 
         <button type="submit">Tambah</button>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script>
+    const quill = new Quill('#desc', {
+        theme: 'snow'
+    });
+    </script>
 </body>
 </html>

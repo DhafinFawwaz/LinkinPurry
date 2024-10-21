@@ -18,6 +18,11 @@ class AttachmentLowongan extends Model {
     public static function insertAttachmentLowongan(int $lowongan_id, Attachment $attachment) {
         self::DB()->query("INSERT INTO \"Attachment_Lowongan\" (lowongan_id, file_path) VALUES ($1, $2)", [$lowongan_id, $attachment->path]);
     }
+
+    public static function getAllAttachmentLowonganByLowonganId(int $lowongan_id) {
+        self::DB()->query("SELECT * FROM \"Attachment_Lowongan\" WHERE lowongan_id = $1", [$lowongan_id]);
+        return self::DB()->fetchAll();
+    }
     
     public function jsonSerialize(): string {
         return json_encode($this);

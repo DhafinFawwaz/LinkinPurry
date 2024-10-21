@@ -56,16 +56,17 @@ class Lowongan extends Model {
     public static function countFilterLowongan($search, $jobType, $locationType, $company){
         $query = "SELECT COUNT(*) AS total
         FROM \"Lowongan\" l
-        JOIN \"User\" u ON l.company_id = u.user_id
-        WHERE l.is_open = true";
+        JOIN \"User\" u ON l.company_id = u.user_id";
         
         $params = [];
         $index = 1; // buat placeholder parameter PostgreSQL ($1, $2, dll)
     
         if (!empty($company)) {
-            $query .= " AND u.nama = $" . $index;
+            $query .= " WHERE u.nama = $" . $index;
             $params[] = $company;
             $index++;
+        } else {
+            $query .= " WHERE l.is_open = true";
         }
 
         if (!empty($search)) {
@@ -98,16 +99,17 @@ class Lowongan extends Model {
         $query = "SELECT l.*, u.nama as company_name, cd.lokasi as company_location 
         FROM \"Lowongan\" l 
         JOIN \"User\" u ON l.company_id = u.user_id
-        LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id
-        WHERE l.is_open = true";
+        LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id";
         
         $params = [];
         $index = 1; // buat placeholder parameter PostgreSQL ($1, $2, dll)
         
         if (!empty($company)) {
-            $query .= " AND u.nama = $" . $index;
+            $query .= " WHERE u.nama = $" . $index;
             $params[] = $company;
             $index++;
+        } else {
+            $query .= " WHERE l.is_open = true";
         }
 
         if (!empty($search)) {
@@ -148,6 +150,12 @@ class Lowongan extends Model {
         $row = self::DB()->fetchRow();
         if(!$row) return null;
         return new Lowongan($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], new DateTime($row[7]), new DateTime($row[8]));
+    }
+
+    public static function isLowonganIdOwnedByCompany(int $company_id, int $lowongan_id) {
+        self::DB()->query("SELECT * FROM \"Lowongan\" WHERE company_id = $1 AND lowongan_id = $2", [$company_id, $lowongan_id]);
+        $res = self::DB()->fetchRow();
+        return !!$res;
     }
 
     public function jsonSerialize(): string {
