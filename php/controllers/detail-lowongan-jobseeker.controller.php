@@ -37,37 +37,39 @@ class DetailLowonganJobseekerController extends Controller {
     }
 
     public function handlePost() {
-        if (!isset($_FILES['cv']) || !isset($_FILES['video'])) {
+        if (!isset($_FILES['cv']) || $_FILES['cv']['error'] === UPLOAD_ERR_NO_FILE) {
             // debug
-            $this->redirect("/detail-lowongan-jobseeker?id=" . $_GET['id'] . "&error=missing_files");
+            $this->redirect("/detail-lowongan-jobseeker?id=" . $_GET['id'] . "&error=missing_cv");
             return;
         }
-    
-        // Nama file dibuat unik
-        $cvFilename = uniqid() . "_" . basename($_FILES['cv']['name']);
-        $videoFilename = uniqid() . "_" . basename($_FILES['video']['name']);
-
-        // Path file CV dan Video
-        $cvPath = "/uploads/cv/" . $cvFilename;
-        $videoPath = "/uploads/videos/" . $videoFilename;
         
-        $cv = new CV($cvPath, $_FILES['cv']['tmp_name']);
-        $video = new Video($videoPath, $_FILES['video']['tmp_name']);
+        // nama unik
+        $cvFilename = uniqid() . "_" . basename($_FILES['cv']['name']);
+        $cv = new CV($cvFilename, $_FILES['cv']['tmp_name']);
+        
+        $video = null;
+        if (isset($_FILES['video']) && $_FILES['video']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $videoFilename = uniqid() . "_" . basename($_FILES['video']['name']);
+            $video = new Video($videoFilename, $_FILES['video']['tmp_name']);
+        }
     
         try {
             $cv->save();
-            $video->save();
+            if ($video) {
+                $video->save();
+            }
         } catch (Exception $e) {
+            // debug
             $this->redirect("/detail-lowongan-jobseeker?id=" . $_GET['id'] . "&error=upload_failed");
             return;
         }
-    
+        
         $userId = $_SESSION['user']->id;
         $lowonganId = $_GET['id'];
-    
+        
         Lamaran::insertLamaran($userId, $lowonganId, $cv, $video);
-    
+        
         // debug
         $this->redirect("/detail-lowongan-jobseeker?id=" . $lowonganId . "&success=application_submitted");
-    }    
+    }
 }

@@ -5,23 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Lowongan</title>
 
-    <!-- css link or something idk -->
+    <!-- css link styling or something idk -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- nav -->
-    <nav>
-        <ul>
-            <li><a href="/home-company">Home</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </ul>
-    </nav>
+    <!-- nav link or something idk-->
 
     <!-- isi lowongan -->
-    <form action="/add" method="POST">
+    <form method="POST">
 
         <label for="position">Posisi:</label>
-        <input type="text" id="position" name="position"><br><br>
+        <input type="text" id="position" name="position" required><br><br>
 
         <label for="desc">Deskripsi:</label><br>
         <div id="desc" name="desc"></div><br><br>

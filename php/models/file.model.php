@@ -19,7 +19,11 @@ class File implements JsonSerializable {
      * @return void
      */
     public function save(){
-        move_uploaded_file($this->bin, $this->getUploadDir() . $this->path);
+        $uploadDir = $this->getUploadDir();
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true); 
+        }
+        move_uploaded_file($this->bin, $uploadDir . $this->path);
     }
 
     /**

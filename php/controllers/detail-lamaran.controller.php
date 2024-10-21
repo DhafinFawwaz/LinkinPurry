@@ -72,7 +72,12 @@ class LamaranController extends Controller {
         $data["jobseeker"]["role"] = $jobseeker->role;
         
         $data["lamaran"]["cv_path"] = $lamaran->cv->path;
-        $data["lamaran"]["video_path"] = $lamaran->video->path;
+
+        if (!is_null($lamaran->video)) {
+            $data["lamaran"]["video_path"] = $lamaran->video->path;
+        } else {
+            $data["lamaran"]["video_path"] = null;
+        }
 
         $data["lamaran"]["status"] = $lamaran->status;
         $data["lamaran"]["status_reason"] = $lamaran->status_reason;

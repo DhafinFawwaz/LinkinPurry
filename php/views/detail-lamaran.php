@@ -43,10 +43,12 @@ EOD;
             echo "<h4>CV</h4>";
             echo "<embed src='" . htmlspecialchars($data["lamaran"]["cv_path"]) . "' />";
             echo "<br>";
-            echo "<h4>Video</h4>";
-            echo "<video height='20rem' controls>";
-            echo "<source src='" . htmlspecialchars($data["lamaran"]["video_path"]) . "' type='video/mp4'>";
-            echo "</video>";
+            if (!empty($data["lamaran"]["video_path"])) {
+                echo "<h4>Video</h4>";
+                echo "<video height='20rem' controls>";
+                echo "<source src='" . htmlspecialchars($data["lamaran"]["video_path"]) . "' type='video/mp4'>";
+                echo "</video>";
+            }
             echo "</div>";
 
 

@@ -9,6 +9,9 @@
 </head>
 <body>
     <!-- nav -->
+    <section id="navbar">
+        <?php include 'component/navbar.php'; ?>
+    </section>
 
     <main>
         <!-- profile -->
