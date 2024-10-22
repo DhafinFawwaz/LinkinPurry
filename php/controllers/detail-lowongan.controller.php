@@ -54,10 +54,10 @@ class DetailLowonganController extends Controller {
 
         // convert to string
         $data["lowongan"]["created_at"] = $data["lowongan"]["created_at"]->format('Y-m-d H:i:s');
+        $data["lowongan"]["updated_at"] = $data["lowongan"]["updated_at"]->format('Y-m-d H:i:s');
         
         $attachmentLowongan = AttachmentLowongan::getAllAttachmentLowonganByLowonganId($lowongan_id);
         $data["attachmentLowongan"] = (array)$attachmentLowongan;
-
 
         return $this->view("detail-lowongan.php", $data);
     }

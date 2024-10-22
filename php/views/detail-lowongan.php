@@ -21,20 +21,23 @@
         <div class="company-container">
             <div class="company-profile">
                 <img src="/public/assets/company_profile.svg" alt="company-profile">
-                <h2><?= htmlspecialchars($data["user"]["username"]) ?></h2>
+                <h2><?= htmlspecialchars($data["company"]["username"]) ?></h2>
             </div>
             <div class="job-details">
                 <div class="job-title-status">
                     <h2><?= htmlspecialchars($data["lowongan"]["posisi"]) ?></h2>
                     <?= $data["lowongan"]["is_open"] ? "<div class='open-label'>Open</div>" : "<div class='closed-label'>Closed</div>" ?>
                 </div>
-                <p><?= htmlspecialchars($data["lowongan"]["posisi"]) ?> | <?= htmlspecialchars($data["lowongan"]["created_at"]) ?></p>
-                <!-- <p><?= htmlspecialchars($data["company"]["about"]) ?></p> -->
+                <p><?= htmlspecialchars($data["company"]["location"]) ?></p>
+                <p>
+                    <?= htmlspecialchars($data["lowongan"]["created_at"]) ?>
+                    <?php if($data["lowongan"]["created_at"] != $data["lowongan"]["updated_at"]) echo "(Last Edited {$data['lowongan']['updated_at']})"?>
+                </p>
             </div>
             <div class="job-type">
                 <p>
                     <img src="/public/assets/bag_icon.svg" class="icon" alt="location-icon">
-                    <?= htmlspecialchars($data["company"]["location"]) ?> | <?= htmlspecialchars($data["lowongan"]["jenis_lokasi"]) ?>
+                    <?= htmlspecialchars($data["lowongan"]["jenis_lokasi"]) ?>
                 </p>
                 <p>
                     <img src="/public/assets/bag_icon.svg" class="icon" alt="job-icon">
@@ -116,7 +119,7 @@
             <?php
                 if (!empty($data["attachmentLowongan"])) {
                     foreach ($data["attachmentLowongan"] as $attachment) {
-                        $src = "/uploads/attachments/".$attachment["file_path"];
+                        $src = $attachment["file_path"];
                         echo "<div><img src='$src' /></div>";
                     }
                 }
