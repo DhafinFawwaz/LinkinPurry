@@ -110,6 +110,19 @@
             </div>
         </div>
 
+        <br>
+
+        <div class="attachment-container">
+            <?php
+                if (!empty($data["attachmentLowongan"])) {
+                    foreach ($data["attachmentLowongan"] as $attachment) {
+                        $src = "/uploads/attachments/".$attachment["file_path"];
+                        echo "<div><img src='$src' /></div>";
+                    }
+                }
+            ?>
+        </div>
+
         <!-- job details -->
         <div class="job-description">
             <h2>About the job</h2>
@@ -147,6 +160,5 @@
         
     </section>
     
-    <script src="/public/js/detail-lowongan-jobseeker.js"></script>
 </body>
 </html>

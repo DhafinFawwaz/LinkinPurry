@@ -124,6 +124,7 @@ main {
     border-radius: 5px;
     font-size: 14px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .button {

@@ -13,10 +13,12 @@ class EditLowonganController extends Controller {
         }
 
         $lowongan = Lowongan::getLowonganById($lowongan_id);
+        $attachment = AttachmentLowongan::getAllAttachmentLowonganByLowonganId($lowongan_id);
         $data["user"] = (array)$user;
         $data["lowongan"] = (array)$lowongan;
         $data["lowongan"]["lowongan_id"] = $lowongan_id;
         $data["lowongan"]["created_at"] = $data["lowongan"]["created_at"]->format('Y-m-d H:i:s');
+        $data["attachmentLowongan"] = (array)$attachment;
         $company = Company::fromUser($user);
         $data["company"] = (array)$company;
 
@@ -41,6 +43,24 @@ class EditLowonganController extends Controller {
                 $data["lowongan"]["deskripsi"] = $deskripsi;
                 $data["lowongan"]["jenis_pekerjaan"] = $jenis_pekerjaan;
                 $data["lowongan"]["jenis_lokasi"] = $lokasi;
+
+                // attachment
+                if(isset($_FILES["attachments"]) && !!$_FILES["attachments"]["name"][0]) {
+
+                    $attachments = [];
+                    $names = $_FILES["attachments"]["name"];
+                    $tmp_names = $_FILES["attachments"]["tmp_name"];
+
+                    $i = 0;
+                    for($i = 0; $i < count($names); $i++) {
+                        $name = uniqid() . "_" . basename($names[$i]);
+                        $attachments[] = new Attachment($name, $tmp_names[$i]);
+                    }
+                    Lowongan::deleteAttachmentLowonganByLowonganId($lowongan_id);
+                    Lowongan::insertAllAttachmentLowongan($lowongan_id, $attachments);
+                }
+
+
                 Message::Success("Updated Vacancy", "Your vacancy has been updated");
                 return $this->redirect("/".$lowongan_id);
             } else if($crud_type == "delete") {

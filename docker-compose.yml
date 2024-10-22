@@ -12,7 +12,7 @@ services:
       db:
         condition: service_healthy
     env_file: .env
-    command: sh -c "php scripts/migrate.php & apache2-foreground"
+    command: sh -c "chown -R www-data:www-data /var/www/html/uploads & chmod -R 755 /var/www/html/uploads & php scripts/migrate.php & apache2-foreground"
 
 
   db:

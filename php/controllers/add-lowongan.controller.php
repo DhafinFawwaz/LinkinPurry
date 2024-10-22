@@ -9,7 +9,19 @@ class AddLowonganController extends Controller {
         $data["company"] = (array)$company;
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            Lowongan::insertLowongan($company->id, $_POST["posisi"], $_POST["deskripsi"], $_POST["jenis_pekerjaan"], $_POST["jenis_lokasi"]);
+            $attachments = [];
+            
+            if(isset($_FILES["attachments"])) {
+                $names = $_FILES["attachments"]["name"];
+                $tmp_names = $_FILES["attachments"]["tmp_name"];
+
+                $i = 0;
+                for($i = 0; $i < count($names); $i++) {
+                    $name = uniqid() . "_" . basename($names[$i]);
+                    $attachments[] = new Attachment($name, $tmp_names[$i]);
+                }
+            }
+            Lowongan::insertLowongan($company->id, $_POST["posisi"], $_POST["deskripsi"], $_POST["jenis_pekerjaan"], $_POST["jenis_lokasi"], $attachments);
             $this->redirect("/");
         }
 

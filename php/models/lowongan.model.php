@@ -26,8 +26,61 @@ class Lowongan extends Model {
         $this->updated_at = $updated_at;
     }
 
-    public static function insertLowongan(int $company_id, string $posisi, string $deskripsi, string $jenis_pekerjaan, string $jenis_lokasi) {
-        self::DB()->query("INSERT INTO \"Lowongan\" (company_id, posisi, deskripsi, jenis_pekerjaan, jenis_lokasi) VALUES ($1, $2, $3, $4, $5)", [$company_id, $posisi, $deskripsi, $jenis_pekerjaan, $jenis_lokasi]);
+    public static function insertLowongan(int $company_id, string $posisi, string $deskripsi, string $jenis_pekerjaan, string $jenis_lokasi, array $attachments) {
+        self::DB()->query("INSERT INTO \"Lowongan\" (company_id, posisi, deskripsi, jenis_pekerjaan, jenis_lokasi) VALUES ($1, $2, $3, $4, $5) RETURNING lowongan_id", [$company_id, $posisi, $deskripsi, $jenis_pekerjaan, $jenis_lokasi]);
+
+        if(count($attachments) === 0) {
+            return;
+        }
+
+
+        $row = self::DB()->fetchRow();
+        $lowongan_id = $row[0];
+        $values = "";
+        $params = [];
+        $i = 1;
+        foreach ($attachments as $attachment) {
+            $attachment->save();
+            $values .= "($$i," . "$" . ($i + 1) . "),";
+            $params[] = $lowongan_id;
+            $params[] = $attachment->path;
+            $i += 2;
+        }
+        
+        $values = rtrim($values, ", ");
+        
+        self::DB()->query("INSERT INTO \"Attachment_Lowongan\" (lowongan_id, file_path) VALUES $values", $params);
+    }
+
+    public static function deleteAttachmentLowonganByLowonganId(int $lowongan_id) {
+        try {
+            self::DB()->query("SELECT * FROM \"Attachment_Lowongan\" WHERE lowongan_id = $1", [$lowongan_id]);
+            $attachments = self::DB()->fetchAll();
+            foreach ($attachments as $attachment) {
+                $file_path = "/uploads/attachments" . $attachment['file_path'];
+                if (file_exists($file_path)) {
+                    unlink($file_path);
+                }
+            }
+            self::DB()->query("DELETE FROM \"Attachment_Lowongan\" WHERE lowongan_id = $1", [$lowongan_id]);
+        } catch (Exception $e) {}
+    }
+
+    public static function insertAllAttachmentLowongan(int $lowongan_id, array $attachments) {
+        $values = "";
+        $params = [];
+        $i = 1;
+        foreach ($attachments as $attachment) {
+            $attachment->save();
+            $values .= "($$i," . "$" . ($i + 1) . "),";
+            $params[] = $lowongan_id;
+            $params[] = $attachment->path;
+            $i += 2;
+        }
+        
+        $values = rtrim($values, ", ");
+        
+        self::DB()->query("INSERT INTO \"Attachment_Lowongan\" (lowongan_id, file_path) VALUES $values", $params);
     }
 
     public static function getAllLowongan() {

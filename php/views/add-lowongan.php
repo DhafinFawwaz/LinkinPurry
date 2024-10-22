@@ -17,7 +17,7 @@
     </section>
     
     <section id="job-details-wrapper">
-        <form method="post" action="/add">
+        <form method="post" action="/add" enctype="multipart/form-data">
             <div class="company-container">
                 <div class="company-profile">
                     <img src="../public/assets/company_profile.svg" alt="company-profile">
@@ -54,8 +54,16 @@
                 </div>
             </div>
 
-
+            <br>
             
+            <input id="attachment-input" hidden type="file" id="attachment" name="attachments[]" accept="image/png, image/jpeg, image/jpg" multiple>
+            <label for="attachment-input" class="upload-box">
+                <div class="file-type">PNG/JPG</div>    
+                <div id="attachment-container" class="attachment-container">Please select images(png/jpeg/jpg)</div>
+            </label>
+            <label for="attachment-input" class="replace-btn">Upload Attachments</label>
+
+
             <div class="apply-button-action full-width-child-end">
                 <a href="/" class="outline-button">Cancel</a>
                 <button id="applyBtn" class="button" type="submit">Add Vacancy</button>
@@ -64,6 +72,8 @@
         </form>
         
     </section>
+
+    <script src="/public/js/attachment.js"></script>
     
 
 </body>
