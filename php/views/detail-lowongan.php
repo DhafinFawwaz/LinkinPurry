@@ -44,8 +44,8 @@
         </div>
 
         <!-- apply button -->
-        <?php if($data["canEdit"]) { ?>
-            <div class="apply-button-action">
+        <div class="apply-button-action">
+            <?php if($data["canEdit"]) : ?>
                 <a href="/<?php echo $data["lowongan"]["lowongan_id"] ?>/edit" class="button edit-button">Edit</a>
                 <?php if($data["lowongan"]["is_open"]) { ?>
                     <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/close">
@@ -60,9 +60,14 @@
                 <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/delete">
                     <button class="button delete-button">Hapus</button>
                 </form>
-
-            </div>
-        <?php } ?>
+            <?php else : ?>
+                <?php if ($data['jobseekerHasApplied']): ?>
+                    <a href="/<?= $data["lowongan"]["lowongan_id"] ?>/<?= $data['lamaran_id'] ?>" class="button">View Your Application</a>
+                <?php elseif (!$data['jobseekerHasApplied']): ?>
+                    <button id="applyBtn" class="button">Apply</button>
+                <?php endif; ?>
+            <?php endif ?>
+        </div>
         
         <!-- modal structure -->
         <div id="applyModal" class="modal">
@@ -70,7 +75,7 @@
                 <span class="close" id="closeModal">&times;</span>
                 <h2>Apply to <?= htmlspecialchars($data["user"]["username"]) ?></h2>
 
-                <form id="applicationForm" action="/detail-lowongan-jobseeker?id=<?= $lowongan_id ?>" method="post" enctype="multipart/form-data">
+                <form id="applicationForm" action="/<?= $data["lowongan"]["lowongan_id"] ?>" method="post" enctype="multipart/form-data">
                     <!-- resume  -->
                     <div class="form-group">
                         <label for="cv">Resume *
@@ -142,6 +147,6 @@
         
     </section>
     
-
+    <script src="/public/js/detail-lowongan-jobseeker.js"></script>
 </body>
 </html>

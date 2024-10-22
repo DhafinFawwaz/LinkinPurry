@@ -139,6 +139,6 @@ if (isset($data['lowongan'])) {
     </section>
     
 
-    <script src="/public/js/detail-lowongan-jobseeker1.js"></script>
+    <script src="/public/js/detail-lowongan-jobseeker.js"></script>
 </body>
 </html>
