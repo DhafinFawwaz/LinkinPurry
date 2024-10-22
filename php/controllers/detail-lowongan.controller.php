@@ -72,7 +72,7 @@ class DetailLowonganController extends Controller {
         
         $video = null;
         if (isset($_FILES['video']) && $_FILES['video']['error'] !== UPLOAD_ERR_NO_FILE) {
-            $videoFilename = uniqid() . "_" . basename($_FILES['video']['name']);
+            $videoFilename = "/uploads/videos" . uniqid() . "_" . basename($_FILES['video']['name']);
             $video = new Video($videoFilename, $_FILES['video']['tmp_name']);
         }
     
