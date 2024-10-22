@@ -25,8 +25,10 @@
                     <div class="profile-info">
                         <!-- Tampilkan informasi user jobseeker -->
                         <h1><?= isset($data['user']->username) ? $data['user']->username : 'Your Name Here' ?></h1>
-                        <p>I'm not just an ordinary jobseeker</p>
-                        <p><?= isset($data['user']->email) ? $data['user']->email : 'Job Title' ?></p>
+                        <?php if ($data['user']->role === 'company') : ?>
+                            <p><?= isset($data['user']->about) ? $data['user']->about : 'About' ?></p>
+                        <?php endif; ?>
+                        <p><?= isset($data['user']->email) ? $data['user']->email : 'Your Email Here' ?></p>
                     </div>
                 </div>
             </section>
@@ -62,8 +64,12 @@
             <section id="job-picks">
                 <div class="job-picks">
                     <?php if(isset($data['user'])) : ?>
-                        <h2>Top job picks for you</h2>
-                        <p>Based on your profile and preferences</p>
+                        <?php if ($data['user']->role === 'jobseeker') : ?>
+                            <h2>Top job picks for you</h2>
+                            <p>Based on your profile and preferences</p>
+                        <?php else : ?>
+                            <h2>Open job vacancies</h2>
+                        <?php endif; ?>
                     <?php else : ?>
                         <h2>Discover Exciting Career Opportunities</h2>
                         <p>Sign in or create an account to take the next step in your career journey.</p>
@@ -76,19 +82,21 @@
     
         
         <!-- notes -->
-        <section id="notes">
-            <div class="notes">
-                <?php if(isset($data['user'])) : ?>
-                    <h2>Job seeker guidance</h2>
-                    <p>Recomended based on your activity</p>
-                    <p>Explore our curated guide of expert-led courses, such as how to improve your resume and grow your network, to help you land your next opportunity.</p>
-                <?php else : ?>
-                    <h2>Unlock Your Full Potential</h2>
-                    <p>Discover More Opportunities by Joining Us</p>
-                    <p>Create an account or log in to explore expert-led courses, improve your resume, grow your network, and apply for exciting job opportunities tailored just for you.</p>
-                <?php endif; ?>
-            </div>
-        </section>
+        <?php if (!isset($data['user']) || $data['user']->role === 'jobseeker') : ?>
+            <section id="notes">
+                <div class="notes">
+                    <?php if(isset($data['user'])) : ?>
+                        <h2>Job seeker guidance</h2>
+                        <p>Recomended based on your activity</p>
+                        <p>Explore our curated guide of expert-led courses, such as how to improve your resume and grow your network, to help you land your next opportunity.</p>
+                    <?php else : ?>
+                        <h2>Unlock Your Full Potential</h2>
+                        <p>Discover More Opportunities by Joining Us</p>
+                        <p>Create an account or log in to explore expert-led courses, improve your resume, grow your network, and apply for exciting job opportunities tailored just for you.</p>
+                    <?php endif; ?>
+                </div>
+            </section>
+        <?php endif; ?>
     </main>
 
     <script src="/public/js/home-jobseeker.js"></script>

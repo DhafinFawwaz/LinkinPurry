@@ -7,7 +7,6 @@ class HomeJobseekerController extends Controller {
         session_start();
         /** @var User */
         $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-        // if (!$user){}
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             return $this->filterLowongan();
@@ -24,8 +23,13 @@ class HomeJobseekerController extends Controller {
         $locationType = $_POST['locationType'] ?? '';
         $sortByDate = $_POST['sortByDate'] ?? 'desc';
         $currentPage = (int)$_POST['page'] ?? 1;
-    
-        $resultsRows = Lowongan::countFilterLowongan($search, $jobType, $locationType, '');
+
+        $companyFilter = $_SESSION['user']->username ?? '';
+        if (isset($_SESSION['user']) && ($_SESSION['user']->role === 'jobseeker')){
+            $companyFilter = '';
+        }
+
+        $resultsRows = Lowongan::countFilterLowongan($search, $jobType, $locationType, $companyFilter);
         $numberOfPages = (int) ceil($resultsRows / 10);
 
         // list untuk pagination
@@ -43,7 +47,7 @@ class HomeJobseekerController extends Controller {
         if (!in_array($numberOfPages - 1, $pagesList) && ($numberOfPages >= 2)){$pagesList[] = $numberOfPages - 1;}
         if (!in_array($numberOfPages, $pagesList)){$pagesList[] = $numberOfPages;}
 
-        $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate, $currentPage, '');
+        $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate, $currentPage, $companyFilter);
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
                 // kondisi login dan guest
