@@ -5,7 +5,9 @@ require_once __DIR__ . "/../models/company.model.php";
 
 class DetailLowonganController extends Controller {
     public function handle(){
-        $lowongan_id = (int)$_GET['id'] ?? null;
+
+        $pathArr = $this->getUrlPath();
+        $lowongan_id = $pathArr[0];
         $user = $this->getCurrentUser();
         $data = array();
 
