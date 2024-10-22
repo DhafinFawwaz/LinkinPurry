@@ -41,12 +41,6 @@ class DetailLowonganJobseekerController extends Controller {
     }
 
     public function handlePost() {
-        if (!isset($_FILES['cv']) || $_FILES['cv']['error'] === UPLOAD_ERR_NO_FILE) {
-            // debug
-            $this->redirect("/detail-lowongan-jobseeker?id=" . $_GET['id'] . "&error=missing_cv");
-            return;
-        }
-        
         // nama unik
         $cvFilename = uniqid() . "_" . basename($_FILES['cv']['name']);
         $cv = new CV($cvFilename, $_FILES['cv']['tmp_name']);
@@ -73,7 +67,6 @@ class DetailLowonganJobseekerController extends Controller {
         
         Lamaran::insertLamaran($userId, $lowonganId, $cv, $video);
         
-        // debug
-        $this->redirect("/detail-lowongan-jobseeker?id=" . $lowonganId . "&success=application_submitted");
+        $this->redirect("/detail-lowongan-jobseeker?id=" . $lowonganId ."");
     }
 }

@@ -46,28 +46,17 @@ function updateFileName(inputId, labelId) {
 }
 
 // error message
+applicationForm.addEventListener("submit", function(event) {
+    var resumeInput = document.getElementById("cv");
+    var resumeErrorMessage = document.getElementById("error-message");
 
+    resumeErrorMessage.textContent = "";
 
-// handle submit
-// applicationForm.addEventListener("submit", function(event) {
-//     event.preventDefault(); // Mencegah submit form secara default
+    if (resumeInput.files.length === 0) {
+        // tahan submission
+        event.preventDefault();
 
-//     // Simulasi pengiriman data
-//     const formData = new FormData(applicationForm);
-//     const cvUpload = document.getElementById('cv');
-//     const errorMessages = document.getElementById("error-message");
-//     // const cv = formData.get('cv');  
-//     // const video = formData.get('video');
-
-//     // clear error message
-//     errorMessages.style.display = "none";
-
-//     // cek uploaded file
-//     if (!cvUpload.files.length) {
-//         errorMessages.style.display = "block";
-//         errorMessages.textContent = "A resume is required";
-//         return;
-//     }
-
-//     console.log("Form submitted");  
-// });
+        errorMessages.style.display = "block";
+        resumeErrorMessage.textContent = "A resume is required";
+    }
+});
