@@ -4,7 +4,7 @@ require_once __DIR__ . "/video.model.php";
 require_once __DIR__ . "/cv.model.php";
 
 class Lowongan extends Model {
-    public int $lamaran_id;
+    public int $lowongan_id;
     public int $company_id;
     public string $posisi;
     public string $deskripsi;
@@ -15,7 +15,7 @@ class Lowongan extends Model {
     public DateTime $updated_at;
 
     public function __construct(int $lamaran_id, int $company_id, string $posisi, string $deskripsi, string $jenis_pekerjaan, string $jenis_lokasi, bool $is_open, DateTime $created_at, DateTime $updated_at) {
-        $this->lamaran_id = $lamaran_id;
+        $this->lowongan_id = $lamaran_id;
         $this->company_id = $company_id;
         $this->posisi = $posisi;
         $this->deskripsi = $deskripsi;
@@ -149,6 +149,7 @@ class Lowongan extends Model {
         self::DB()->query("SELECT * FROM \"Lowongan\" WHERE lowongan_id = $1", [$id]);
         $row = self::DB()->fetchRow();
         if(!$row) return null;
+        $row[6] = Model::pgBoolToPhpBool($row[6]);
         return new Lowongan($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], new DateTime($row[7]), new DateTime($row[8]));
     }
 
@@ -159,7 +160,20 @@ class Lowongan extends Model {
     }
 
     public function save() {
-        self::DB()->query("UPDATE \"Lowongan\" SET posisi = $1, deskripsi = $2, jenis_pekerjaan = $3, jenis_lokasi = $4 WHERE lowongan_id = $5", [$this->posisi, $this->deskripsi, $this->jenis_pekerjaan, $this->jenis_lokasi, $this->lamaran_id]);
+        self::DB()->query("UPDATE \"Lowongan\" SET posisi = $1, deskripsi = $2, jenis_pekerjaan = $3, jenis_lokasi = $4, is_open = $5 WHERE lowongan_id = $6", [$this->posisi, $this->deskripsi, $this->jenis_pekerjaan, $this->jenis_lokasi, Model::phpBoolToPgBool($this->is_open), $this->lowongan_id]);
+    }
+
+    public function isLowonganExist() {
+        self::DB()->query("SELECT * FROM \"Lowongan\" WHERE lowongan_id = $1", [$this->lowongan_id]);
+        return !!self::DB()->fetchRow();
+    }
+    public function isLowonganHasLamaran() {
+        self::DB()->query("SELECT * FROM \"Lamaran\" WHERE lowongan_id = $1", [$this->lowongan_id]);
+        return !!self::DB()->fetchRow();
+    }
+
+    public function delete() {
+        self::DB()->query("DELETE FROM \"Lowongan\" WHERE lowongan_id = $1", [$this->lowongan_id]);
     }
 
     public function jsonSerialize(): string {

@@ -10,6 +10,8 @@
 
 </head>
 <body>
+    <?php include 'component/toaster.php'; ?>
+
     <section id="navbar">
         <?php include 'component/navbar.php'; ?>
     </section>
@@ -41,7 +43,21 @@
         <!-- apply button -->
         <?php if($data["canEdit"]) { ?>
             <div class="apply-button-action">
-                <a href="/<?php echo $data["lowongan"]["lowongan_id"] ?>/edit" id="applyBtn" class="button">Edit</a>
+                <a href="/<?php echo $data["lowongan"]["lowongan_id"] ?>/edit" class="button edit-button">Edit</a>
+                <?php if($data["lowongan"]["is_open"]) { ?>
+                    <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/close">
+                        <button class="button close-button">Close</button>
+                    </form>
+                <?php } else { ?>
+                    <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/open">
+                        <button class="button open-button">Open</button>
+                    </form>
+                <?php } ?>
+
+                <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/delete">
+                    <button class="button delete-button">Hapus</button>
+                </form>
+
             </div>
         <?php } ?>
         

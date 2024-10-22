@@ -48,7 +48,7 @@ class HomeJobseekerController extends Controller {
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
                 echo "
-                    <a class='job-card' href='/detail-lowongan-jobseeker?id={$lowongan['lowongan_id']}'\">
+                    <a class='job-card' href='/{$lowongan['lowongan_id']}'\">
                         <div class='job-picture'>
                             <img src='../public/assets/company_profile.svg' alt='job-picture'>
                         </div>

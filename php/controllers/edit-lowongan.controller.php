@@ -21,21 +21,57 @@ class EditLowonganController extends Controller {
         $data["company"] = (array)$company;
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $posisi = $_POST["posisi"];
-            $deskripsi = $_POST["deskripsi"];
-            $jenis_pekerjaan = $_POST["jenis_pekerjaan"];
-            $lokasi = $_POST["jenis_lokasi"];
-            $lowongan->posisi = $posisi;
-            $lowongan->deskripsi = $deskripsi;
-            $lowongan->jenis_pekerjaan = $jenis_pekerjaan;
-            $lowongan->jenis_lokasi = $lokasi;
-            $lowongan->save();
-            $data["lowongan"]["posisi"] = $posisi;
-            $data["lowongan"]["deskripsi"] = $deskripsi;
-            $data["lowongan"]["jenis_pekerjaan"] = $jenis_pekerjaan;
-            $data["lowongan"]["jenis_lokasi"] = $lokasi;
-            Message::Success("Updated Vacancy", "Your vacancy has been updated");
-            return $this->redirect("/".$lowongan_id);
+            $crud_type = $pathArr[1];
+            if($crud_type == "edit") {
+                $posisi = $_POST["posisi"];
+                $deskripsi = $_POST["deskripsi"];
+                $jenis_pekerjaan = $_POST["jenis_pekerjaan"];
+                $lokasi = $_POST["jenis_lokasi"];
+                $lowongan->posisi = $posisi;
+                $lowongan->deskripsi = $deskripsi;
+                $lowongan->jenis_pekerjaan = $jenis_pekerjaan;
+                $lowongan->jenis_lokasi = $lokasi;
+                $lowongan->save();
+                $data["lowongan"]["posisi"] = $posisi;
+                $data["lowongan"]["deskripsi"] = $deskripsi;
+                $data["lowongan"]["jenis_pekerjaan"] = $jenis_pekerjaan;
+                $data["lowongan"]["jenis_lokasi"] = $lokasi;
+                Message::Success("Updated Vacancy", "Your vacancy has been updated");
+                return $this->redirect("/".$lowongan_id);
+            } else if($crud_type == "delete") {
+                if(!$lowongan->isLowonganExist()) {
+                    Message::Error("Error", "Vacancy does not exist");
+                    return $this->redirect("/".$lowongan_id);
+                }
+                if($lowongan->isLowonganHasLamaran()) {
+                    Message::Error("Error", "Vacancy have applicants");
+                    return $this->redirect("/".$lowongan_id);
+                }
+                $lowongan->delete();
+                Message::Success("Deleted Vacancy", "Your vacancy has been deleted");
+                return $this->redirect("/home-company");
+            } else if($crud_type == "close") {
+                if(!$lowongan->is_open) {
+                    Message::Error("Error", "Vacancy already closed");
+                    return $this->redirect("/".$lowongan_id);
+                }
+                $lowongan->is_open = false;
+                $lowongan->save();
+                Message::Success("Closed Vacancy", "Your vacancy has been closed");
+                return $this->redirect("/".$lowongan_id);
+            } else if($crud_type == "open") {
+                if($lowongan->is_open) {
+                    Message::Error("Error", "Vacancy already opened");
+                    return $this->redirect("/".$lowongan_id);
+                }
+                $lowongan->is_open = true;
+                $lowongan->save();
+                Message::Success("Opened Vacancy", "Your vacancy has been opened");
+                return $this->redirect("/".$lowongan_id);
+            } else {
+                Message::Error("Error", "Invalid action");
+                return $this->redirect("/".$lowongan_id);
+            }
         }
 
         return $this->view("edit-lowongan.php", $data);

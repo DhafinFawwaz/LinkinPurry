@@ -100,7 +100,10 @@ body {
 
 .apply-button-action {
     margin-top: 20px;
+    gap: 0.5rem;
+    display: flex;
 }
+
 /* 
 .apply-button {
     width: 20%;
@@ -148,6 +151,48 @@ body {
 .button:active {
     background-color: #053164;
     cursor: pointer;
+}
+
+
+.add-button {
+    background-color: #2cca0c;
+}
+.add-button:hover {
+    background-color: #1a8a06;
+}
+.add-button:active {
+    background-color: #0f5e03;
+}
+.close-button {
+    background-color: transparent;
+    color: #ca0f0c;
+    border: 1px solid #ca0f0c;
+}
+.close-button:hover {
+    background-color: #a20c0a;
+    color: white;
+}
+.close-button:active {
+    background-color: #6e0a08;
+    color: white;
+}
+.open-button {
+    background-color: #36c30b;
+}
+.open-button:hover {
+    background-color: #1f8a06;
+}
+.open-button:active {
+    background-color: #0f5e03;
+}
+.delete-button {
+    background-color: #ca0f0c;
+}
+.delete-button:hover {
+    background-color: #a20c0a;
+}
+.delete-button:active {
+    background-color: #6e0a08;
 }
 
 #application-status {
