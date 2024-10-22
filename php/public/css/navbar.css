@@ -92,6 +92,10 @@ nav ul li.active a::after {
 
 /* Responsive Navbar */
 @media (max-width: 768px) {
+    nav {
+        width: 100vw;
+    }
+
     nav ul {
         gap: 0;
     }
