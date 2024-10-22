@@ -69,6 +69,7 @@
                             <p>Based on your profile and preferences</p>
                         <?php else : ?>
                             <h2>Open job vacancies</h2>
+                            <a class="button" href="/add">Tambah Lowongan</a>
                         <?php endif; ?>
                     <?php else : ?>
                         <h2>Discover Exciting Career Opportunities</h2>
