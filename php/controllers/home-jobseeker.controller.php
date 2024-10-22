@@ -6,9 +6,8 @@ class HomeJobseekerController extends Controller {
     public function handle() {
         session_start();
         /** @var User */
-        $user = $_SESSION['user'];
-        if (!$user){}
-
+        $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+        // if (!$user){}
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             return $this->filterLowongan();
@@ -47,18 +46,32 @@ class HomeJobseekerController extends Controller {
         $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate, $currentPage, '');
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
+                // kondisi login dan guest
+                if (isset($_SESSION['user'])) {
+                    echo "
+                        <a class='job-card' href='/{$lowongan['lowongan_id']}'>
+                    ";
+                } else {
+                    echo "
+                        <div class='job-card'>
+                    ";
+                }
                 echo "
-                    <a class='job-card' href='/{$lowongan['lowongan_id']}'\">
-                        <div class='job-picture'>
-                            <img src='../public/assets/company_profile.svg' alt='job-picture'>
-                        </div>
-                        <div class='job-card-details'>
-                            <h3>{$lowongan['posisi']}</h3>
-                            <p>{$lowongan['company_name']}</p>
-                            <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
-                        </div>
-                    </a>
+                    <div class='job-picture'>
+                        <img src='../public/assets/company_profile.svg' alt='job-picture'>
+                    </div>
+                    <div class='job-card-details'>
+                        <h3>{$lowongan['posisi']}</h3>
+                        <p>{$lowongan['company_name']}</p>
+                        <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
+                    </div>
                 ";
+                
+                if (isset($_SESSION['user'])) {
+                    echo "</a>";
+                } else {
+                    echo "</div>";
+                }
             }
             
             // tombol pagination
