@@ -77,6 +77,7 @@ Route::post("/logout", [Authenticated::class, LogoutController::class]);
 
 // /lowongan_id
 Route::get("/{int}",  [Authenticated::class, DetailLowonganController::class]);
+Route::post("/{int}",  [Authenticated::class, DetailLowonganController::class]);
 Route::get("/{int}/edit",  [CompanyOnly::class, EditLowonganController::class]);
 Route::get("/add",  [CompanyOnly::class, AddLowonganController::class]);
 Route::post("/add",  [CompanyOnly::class, AddLowonganController::class]);
