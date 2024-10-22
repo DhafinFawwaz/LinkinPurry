@@ -64,10 +64,6 @@ class EditLowonganController extends Controller {
                 Message::Success("Updated Vacancy", "Your vacancy has been updated");
                 return $this->redirect("/".$lowongan_id);
             } else if($crud_type == "delete") {
-                if($lowongan->isLowonganHasLamaran()) {
-                    Message::Error("Error", "Cannot delete vacancy with applicants");
-                    return $this->redirect("/".$lowongan_id);
-                }
                 $lowongan->delete();
                 Message::Success("Deleted Vacancy", "Your vacancy has been deleted");
                 return $this->redirect("/");
