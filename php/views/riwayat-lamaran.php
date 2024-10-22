@@ -17,7 +17,7 @@
         
         <?php if (!empty($data["riwayatLamaran"])) : ?>
             <?php foreach ($data["riwayatLamaran"] as $application) : ?>
-                <a class="job-card" href="/detail-lowongan-jobseeker?id=<?= $application['lowongan_id'] ?>">
+                <a class="job-card" href="/<?= $application['lowongan_id'] ?>">
                     <div class="job-profile">
                         <img src="../public/assets/company_profile.svg" alt="company-profile">
                         <div class="job-info">
