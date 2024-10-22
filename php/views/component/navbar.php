@@ -32,11 +32,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <!-- Jika sudah login -->
                 <?php $isJobseeker = ($_SESSION['user']->role == 'jobseeker'); ?>
                 <li class="nav-item <?= $currentPage == 'jobs.php' ? 'active' : '' ?>">
-                    <?php if ($isJobseeker): ?>
-                        <a href="/">
-                    <?php else: ?>
-                        <a href="/home-company">
-                    <?php endif; ?>
+                    <a href="/">
                         <img src="../public/assets/jobs_icon.svg" alt="Jobs">
                         <span>Jobs</span>
                     </a>

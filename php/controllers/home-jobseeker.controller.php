@@ -7,7 +7,6 @@ class HomeJobseekerController extends Controller {
         session_start();
         /** @var User */
         $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-        // if (!$user){}
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
             return $this->filterLowongan();
@@ -20,12 +19,17 @@ class HomeJobseekerController extends Controller {
     
     public function filterLowongan() {
         $search = $_POST['search'] ?? '';
-        $jobType = $_POST['jobType'] ?? '';
-        $locationType = $_POST['locationType'] ?? '';
+        $jobTypes = explode(',', $_POST['jobTypes'] ?? '');
+        $locationTypes = explode(',', $_POST['locationTypes'] ?? '');
         $sortByDate = $_POST['sortByDate'] ?? 'desc';
         $currentPage = (int)$_POST['page'] ?? 1;
     
-        $resultsRows = Lowongan::countFilterLowongan($search, $jobType, $locationType, '');
+        $companyFilter = $_SESSION['user']->username ?? '';
+        if (isset($_SESSION['user']) && ($_SESSION['user']->role === 'jobseeker')) {
+            $companyFilter = '';
+        }
+        
+        $resultsRows = Lowongan::countFilterLowonganMultiple($search, $jobTypes, $locationTypes, $companyFilter);
         $numberOfPages = (int) ceil($resultsRows / 10);
 
         // list untuk pagination
@@ -43,10 +47,11 @@ class HomeJobseekerController extends Controller {
         if (!in_array($numberOfPages - 1, $pagesList) && ($numberOfPages >= 2)){$pagesList[] = $numberOfPages - 1;}
         if (!in_array($numberOfPages, $pagesList)){$pagesList[] = $numberOfPages;}
 
-        $lowonganList = Lowongan::filterLowongan($search, $jobType, $locationType, $sortByDate, $currentPage, '');
+        $lowonganList = Lowongan::filterLowonganMultiple($search, $jobTypes, $locationTypes, $sortByDate, $currentPage, $companyFilter);
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
                 // kondisi login dan guest
+                echo "<div class='job-edit-wrapper'>";
                 if (isset($_SESSION['user'])) {
                     echo "
                         <a class='job-card' href='/{$lowongan['lowongan_id']}'>
@@ -57,13 +62,15 @@ class HomeJobseekerController extends Controller {
                     ";
                 }
                 echo "
-                    <div class='job-picture'>
-                        <img src='../public/assets/company_profile.svg' alt='job-picture'>
-                    </div>
-                    <div class='job-card-details'>
-                        <h3>{$lowongan['posisi']}</h3>
-                        <p>{$lowongan['company_name']}</p>
-                        <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
+                    <div class='job-picture-parent'>
+                        <div class='job-picture'>
+                            <img src='../public/assets/company_profile.svg' alt='job-picture'>
+                        </div>
+                        <div class='job-card-details'>
+                            <h3>{$lowongan['posisi']}</h3>
+                            <p>{$lowongan['company_name']}</p>
+                            <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
+                        </div>
                     </div>
                 ";
                 
@@ -72,6 +79,17 @@ class HomeJobseekerController extends Controller {
                 } else {
                     echo "</div>";
                 }
+                if (isset($_SESSION['user']) && ($_SESSION['user']->role === 'company')){
+                    echo "
+                        <div class='edit-card'>
+                            <a class='button' href='/{$lowongan['lowongan_id']}/edit'>Edit</a>
+                            <form method='post' action='/{$lowongan['lowongan_id']}/delete'>
+                                <button class='button delete-button'>Delete</button>
+                            </form>
+                        </div>
+                    ";
+                }
+                echo "</div>";
             }
             
             // tombol pagination

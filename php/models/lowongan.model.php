@@ -148,6 +148,49 @@ class Lowongan extends Model {
         return $count;
     }
 
+    public static function countFilterLowonganMultiple($search, $jobTypes, $locationTypes, $company) {
+        $query = "SELECT COUNT(*) AS total
+        FROM \"Lowongan\" l
+        JOIN \"User\" u ON l.company_id = u.user_id";
+        
+        $params = [];
+        $index = 1; 
+    
+        if (!empty($company)) {
+            $query .= " WHERE u.nama = $" . $index;
+            $params[] = $company;
+            $index++;
+        } else {
+            $query .= " WHERE l.is_open = true";
+        }
+    
+        if (!empty($search)) {
+            $query .= " AND l.posisi ILIKE '%' || $" . $index . " || '%'";
+            $params[] = $search;
+            $index++;
+        }
+    
+        if (!empty($jobTypes[0])) {
+            // var_dump($jobTypes);
+            $placeholders = array_map(function($i) { return "$".$i; }, range($index, $index + count($jobTypes) - 1));
+            // var_dump($placeholders);
+            $query .= " AND l.jenis_pekerjaan IN (" . implode(',', $placeholders) . ")";
+            $params = array_merge($params, $jobTypes);
+            $index += count($jobTypes);
+        }
+    
+        if (!empty($locationTypes[0])) {
+            $placeholders = array_map(function($i) { return "$".$i; }, range($index, $index + count($locationTypes) - 1));
+            $query .= " AND l.jenis_lokasi IN (" . implode(',', $placeholders) . ")";
+            $params = array_merge($params, $locationTypes);
+            $index += count($locationTypes);
+        }
+    
+        self::DB()->query($query, $params);
+        return self::DB()->fetchAll()[0]['total'];
+
+    }
+
     public static function filterLowongan($search, $jobType, $locationType, $sortByDate, $page, $company) { // page untuk pagination, company untuk filter user company (kalau jobseeker dibiarin kosong '')
         $query = "SELECT l.*, u.nama as company_name, cd.lokasi as company_location 
         FROM \"Lowongan\" l 
@@ -198,6 +241,58 @@ class Lowongan extends Model {
         return self::DB()->fetchAll();
     }
     
+    public static function filterLowonganMultiple($search, $jobTypes, $locationTypes, $sortByDate, $currentPage, $company) {
+        $query = "SELECT l.*, u.nama as company_name, cd.lokasi as company_location
+                  FROM \"Lowongan\" l
+                  JOIN \"User\" u ON l.company_id = u.user_id
+                  LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id
+                  WHERE l.is_open = true";
+        
+        $params = [];
+        $index = 1; 
+    
+        if (!empty($company)) {
+            $query .= " AND u.nama = $" . $index;
+            $params[] = $company;
+            $index++;
+        }
+    
+        if (!empty($search)) {
+            $query .= " AND l.posisi ILIKE '%' || $" . $index . " || '%'";
+            $params[] = $search;
+            $index++;
+        }
+    
+        if (!empty($jobTypes[0])) {
+            // var_dump($jobTypes);
+            $placeholders = array_map(function($i) { return "$".$i; }, range($index, $index + count($jobTypes) - 1));
+            // var_dump($placeholders);
+            $query .= " AND l.jenis_pekerjaan IN (" . implode(',', $placeholders) . ")";
+            $params = array_merge($params, $jobTypes);
+            $index += count($jobTypes);
+        }
+    
+        if (!empty($locationTypes[0])) {
+            $placeholders = array_map(function($i) { return "$".$i; }, range($index, $index + count($locationTypes) - 1));
+            $query .= " AND l.jenis_lokasi IN (" . implode(',', $placeholders) . ")";
+            $params = array_merge($params, $locationTypes);
+            $index += count($locationTypes);
+        }
+    
+        $query .= " ORDER BY l.created_at " . ($sortByDate === 'asc' ? 'ASC' : 'DESC');
+        
+        // untuk pagination
+        // var_dump($currentPage); 
+        $limit = 10;
+        $offset = ($currentPage - 1) * $limit;
+        // var_dump($limit);
+        // var_dump($offset);
+        $query .= " LIMIT $limit OFFSET $offset";
+    
+        self::DB()->query($query, $params);
+        return self::DB()->fetchAll();
+    }    
+
     public static function getLowonganById(int $id) {
         self::DB()->query("SELECT * FROM \"Lowongan\" WHERE lowongan_id = $1", [$id]);
         $row = self::DB()->fetchRow();

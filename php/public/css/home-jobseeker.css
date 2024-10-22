@@ -127,6 +127,37 @@ main {
     cursor: pointer;
 }
 
+.button {
+    background-color: #0b66c3;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    font-weight: 700;
+}
+
+.button:hover {
+    background-color: #084b99;
+    cursor: pointer;
+}
+.button:active {
+    background-color: #053164;
+    cursor: pointer;
+}
+.delete-button {
+    background-color: #dc3545;
+}
+.delete-button:hover {
+    background-color: #a20c0a;
+}
+.delete-button:active {
+    background-color: #6e0a08;
+}
+
 /* Job Picks Section */
 #job-picks h2 {
     font-size: 20px;
@@ -141,7 +172,7 @@ main {
 
 .job-card {
     text-decoration: none;
-    display: flex;
+    /*display: flex;*/
     align-items: center;
     /* background-color: #f9f9f9; */
     /* padding: 15px; */
@@ -153,6 +184,10 @@ main {
 
 .job-card:hover {
     transform: scale(1.02);
+}
+
+.job-picture-parent {
+    display: flex;
 }
 
 .job-picture img {
@@ -181,6 +216,11 @@ main {
 .job-card p {
     font-size: 14px;
     color: #666;
+}
+
+.job-edit-wrapper {
+    display: flex;
+    justify-content: space-between;
 }
 
 

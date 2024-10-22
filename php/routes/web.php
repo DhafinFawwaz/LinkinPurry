@@ -43,9 +43,6 @@ Route::post("/register", [NotAuthenticated::class, Register::class]);
 // }]);
 // Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
 
-Route::get("/home-company",  [CompanyOnly::class, HomeCompanyController::class]);
-Route::post("/home-company",  [CompanyOnly::class, HomeCompanyController::class]);
-
 Route::get("/", [HomeJobseekerController::class]);
 Route::post("/", [HomeJobseekerController::class]);
 
