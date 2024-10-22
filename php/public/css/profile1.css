@@ -263,18 +263,28 @@ body {
     transition: .2s all;
     z-index: 50;
     pointer-events: none;
-    padding: 0.6rem 0 0.8rem 0.7rem;
+    padding: 0.6rem 0 0.6rem 0.7rem;
 }
 
 .form__input>input {
     font-weight: 400;
     color: rgba(0, 0, 0, 0.9);
     z-index: 1;
-    border-radius: 0.6rem;
+    border-radius: 0.4rem;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     height: 100%;
     padding: 0.6rem 0 0 0.6rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;
+}
+.form__input>input:hover {
+    background-color: rgba(29, 104, 255, 0.05);
+}
+.form__input>input:focus{
+    background-color: rgba(23, 131, 255, 0.05);
+    border: 1px solid #0a66c2;
+    box-shadow: inset 0 0 0 1px #0a66c2;
 }
 .form__input>textarea{
     font-weight: 400;
@@ -293,7 +303,7 @@ body {
     margin-left: 2px
 }
 .form__input>input:focus+label, .form__input>input:valid+label, .form__input>input:active+label  {
-    translate: 0 -13px;
+    translate: 0 -11px;
     font-size: 0.7rem;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.9)

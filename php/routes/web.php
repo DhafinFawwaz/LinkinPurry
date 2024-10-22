@@ -12,12 +12,9 @@ require_once __DIR__ . '/../controllers/logout.controller.php';
 require_once __DIR__ . '/../controllers/detail-lamaran.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/home-company.controller.php';
-require_once __DIR__ . '/../controllers/tambah-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/edit-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/add-lowongan.controller.php';
-require_once __DIR__ . '/../controllers/detail-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/home-jobseeker.controller.php';
-require_once __DIR__ . '/../controllers/detail-lowongan-jobseeker.controller.php';
 require_once __DIR__ . '/../controllers/riwayat-lamaran.controller.php';
 
 
@@ -49,20 +46,8 @@ Route::post("/register", [NotAuthenticated::class, Register::class]);
 Route::get("/home-company",  [CompanyOnly::class, HomeCompanyController::class]);
 Route::post("/home-company",  [CompanyOnly::class, HomeCompanyController::class]);
 
-Route::get("/tambah-lowongan-company",  [CompanyOnly::class, TambahLowonganCompanyController::class]);
-Route::post("/tambah-lowongan-company",  [CompanyOnly::class, TambahLowonganCompanyController::class]);
-
-Route::get("/detail-lowongan-company",  [CompanyOnly::class, DetailLowonganCompanyController::class]);
-Route::post("/detail-lowongan-company",  [CompanyOnly::class, DetailLowonganCompanyController::class]);
-
 Route::get("/", [HomeJobseekerController::class]);
 Route::post("/", [HomeJobseekerController::class]);
-
-Route::get("/detail-lowongan-jobseeker", [JobseekerOnly::class, DetailLowonganJobseekerController::class]);
-Route::post("/detail-lowongan-jobseeker", [JobseekerOnly::class, DetailLowonganJobseekerController::class]);
-
-Route::get("/detail-lowongan", [Authenticated::class, DetailLowonganController::class]);
-Route::post("/detail-lowongan", [Authenticated::class, DetailLowonganController::class]);
 
 Route::get("/riwayat-lamaran", [JobseekerOnly::class, RiwayatLamaranController::class]);
 Route::post("/riwayat-lamaran", [JobseekerOnly::class, RiwayatLamaranController::class]);
