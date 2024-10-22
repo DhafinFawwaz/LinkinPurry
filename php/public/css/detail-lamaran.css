@@ -527,8 +527,8 @@ section>div {
     width: min-content;
 }
 .accepted {
-    padding: 0.5rem;
-    background-color: #0eff0e;
+    padding: 0.3rem 1rem;
+    background-color: #28a745;
     color: white;
     border-radius: 5rem;
     font-weight: 700;
@@ -536,7 +536,7 @@ section>div {
     width: min-content;
 }
 .rejected {
-    padding: 0.5rem;
+    padding: 0.3rem 1rem;
     background-color: #ff1717;
     color: white;
     border-radius: 5rem;

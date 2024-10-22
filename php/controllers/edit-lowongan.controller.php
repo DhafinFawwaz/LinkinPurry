@@ -22,6 +22,11 @@ class EditLowonganController extends Controller {
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             $crud_type = $pathArr[1];
+            
+            if(!$lowongan->isLowonganExist()) {
+                Message::Error("Error", "Vacancy does not exist");
+                return $this->redirect("/".$lowongan_id);
+            }
             if($crud_type == "edit") {
                 $posisi = $_POST["posisi"];
                 $deskripsi = $_POST["deskripsi"];
@@ -39,17 +44,13 @@ class EditLowonganController extends Controller {
                 Message::Success("Updated Vacancy", "Your vacancy has been updated");
                 return $this->redirect("/".$lowongan_id);
             } else if($crud_type == "delete") {
-                if(!$lowongan->isLowonganExist()) {
-                    Message::Error("Error", "Vacancy does not exist");
-                    return $this->redirect("/".$lowongan_id);
-                }
                 if($lowongan->isLowonganHasLamaran()) {
-                    Message::Error("Error", "Vacancy have applicants");
+                    Message::Error("Error", "Cannot delete vacancy with applicants");
                     return $this->redirect("/".$lowongan_id);
                 }
                 $lowongan->delete();
                 Message::Success("Deleted Vacancy", "Your vacancy has been deleted");
-                return $this->redirect("/home-company");
+                return $this->redirect("/");
             } else if($crud_type == "close") {
                 if(!$lowongan->is_open) {
                     Message::Error("Error", "Vacancy already closed");

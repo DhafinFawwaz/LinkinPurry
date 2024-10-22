@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
+require_once __DIR__ . "/../lib/sanitizer.php";
 require_once __DIR__ . "/../models/lamaran.model.php";
 require_once __DIR__ . "/../models/user.model.php";
 class LamaranController extends Controller {
@@ -80,7 +81,7 @@ class LamaranController extends Controller {
         }
 
         $data["lamaran"]["status"] = $lamaran->status;
-        $data["lamaran"]["status_reason"] = $lamaran->status_reason;
+        $data["lamaran"]["status_reason"] = Sanitizer::sanitize($lamaran->status_reason);
 
         $data["user"]["role"] = $user->role;
 

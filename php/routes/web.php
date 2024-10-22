@@ -14,6 +14,7 @@ require_once __DIR__ . '/../controllers/detail-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/home-company.controller.php';
 require_once __DIR__ . '/../controllers/tambah-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/edit-lowongan.controller.php';
+require_once __DIR__ . '/../controllers/add-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan-company.controller.php';
 require_once __DIR__ . '/../controllers/home-jobseeker.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan-jobseeker.controller.php';
@@ -77,6 +78,8 @@ Route::post("/logout", [Authenticated::class, LogoutController::class]);
 // /lowongan_id
 Route::get("/{int}",  [Authenticated::class, DetailLowonganController::class]);
 Route::get("/{int}/edit",  [CompanyOnly::class, EditLowonganController::class]);
+Route::get("/add",  [CompanyOnly::class, AddLowonganController::class]);
+Route::post("/add",  [CompanyOnly::class, AddLowonganController::class]);
 Route::post("/{int}/{string}",  [CompanyOnly::class, EditLowonganController::class]);
 
 // /lowongan_id/lamaran_id

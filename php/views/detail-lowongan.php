@@ -20,11 +20,14 @@
         <!-- company profile -->
         <div class="company-container">
             <div class="company-profile">
-                <img src="../public/assets/company_profile.svg" alt="company-profile">
+                <img src="/public/assets/company_profile.svg" alt="company-profile">
                 <h2><?= htmlspecialchars($data["user"]["username"]) ?></h2>
             </div>
             <div class="job-details">
-                <h2><?= htmlspecialchars($data["lowongan"]["posisi"]) ?></h2>
+                <div class="job-title-status">
+                    <h2><?= htmlspecialchars($data["lowongan"]["posisi"]) ?></h2>
+                    <?= $data["lowongan"]["is_open"] ? "<div class='open-label'>Open</div>" : "<div class='closed-label'>Closed</div>" ?>
+                </div>
                 <p><?= htmlspecialchars($data["lowongan"]["posisi"]) ?> | <?= htmlspecialchars($data["lowongan"]["created_at"]) ?></p>
                 <!-- <p><?= htmlspecialchars($data["company"]["about"]) ?></p> -->
             </div>
