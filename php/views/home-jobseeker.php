@@ -39,27 +39,27 @@
             <!-- search, filter, dan sort -->
             <div id="job-filter" class="filter-sort-container">
                 <input type="text" id="search-input" placeholder="Search job title..." oninput="debouncedSearch()">
-    
-                <select id="job-type-filter" onchange="filterAndSortJobs()">
-                    <option value="">All Job Types</option>
-                    <option value="Full Time">Full Time</option>
-                    <option value="Part Time">Part Time</option>
-                    <option value="Internship">Internship</option>
-                </select>
-    
-                <select id="location-type-filter" onchange="filterAndSortJobs()">
-                    <option value="">All Locations</option>
-                    <option value="On-Site">On-Site</option>
-                    <option value="Hybrid">Hybrid</option>
-                    <option value="Remote">Remote</option>
-                </select>
-    
+                
+                <div class="filter-group">
+                    <p>Job Type</p>
+                    <label><input type="checkbox" class="job-type-checkbox" value="Full Time" onchange="filterAndSortJobs()"> Full Time</label>
+                    <label><input type="checkbox" class="job-type-checkbox" value="Part Time" onchange="filterAndSortJobs()"> Part Time</label>
+                    <label><input type="checkbox" class="job-type-checkbox" value="Internship" onchange="filterAndSortJobs()"> Internship</label>
+                </div>
+                
+                <div class="filter-group">
+                    <p>Location</p>
+                    <label><input type="checkbox" class="location-type-checkbox" value="On-Site" onchange="filterAndSortJobs()"> On-Site</label>
+                    <label><input type="checkbox" class="location-type-checkbox" value="Hybrid" onchange="filterAndSortJobs()"> Hybrid</label>
+                    <label><input type="checkbox" class="location-type-checkbox" value="Remote" onchange="filterAndSortJobs()"> Remote</label>
+                </div>
+                
                 <select id="sort-by-date" onchange="filterAndSortJobs()">
                     <option value="desc">Newest First</option>
                     <option value="asc">Oldest First</option>
                 </select>
             </div>
-    
+
             <!-- job picks -->
             <section id="job-picks">
                 <div class="job-picks">
