@@ -76,6 +76,7 @@
     border-radius: 5px;
     font-size: 14px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .job-details>textarea {

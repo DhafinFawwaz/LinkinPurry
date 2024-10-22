@@ -17,7 +17,7 @@
     </section>
     
     <section id="job-details-wrapper">
-        <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/edit">
+        <form method="post" action="/<?php echo $data["lowongan"]["lowongan_id"] ?>/edit" enctype="multipart/form-data">
             <div class="company-container">
                 <div class="company-profile">
                     <img src="../public/assets/company_profile.svg" alt="company-profile">
@@ -55,6 +55,24 @@
             </div>
 
 
+            <br>
+            
+            <input id="attachment-input" hidden type="file" id="attachment" name="attachments[]" accept="image/png, image/jpeg, image/jpg" multiple>
+            <label for="attachment-input" class="upload-box">
+                <div class="file-type">PNG/JPG</div>    
+                <div id="attachment-container" class="attachment-container">
+                    <?php
+                        foreach($data["attachmentLowongan"] as $attachment) {
+                            echo "<div>";
+                            echo "<img src='/uploads/attachments/" . $attachment["file_path"] . "'>";
+                            echo "</div>";
+                        }
+                    ?>
+                </div>
+            </label>
+            <label for="attachment-input" class="replace-btn">Upload Attachments</label>
+
+
             
             <div class="apply-button-action full-width-child-end">
                 <a href="/<?php echo $data["lowongan"]["lowongan_id"] ?>" class="outline-button">Cancel</a>
@@ -65,6 +83,7 @@
         
     </section>
     
+    <script src="/public/js/attachment.js"></script>
 
 </body>
 </html>

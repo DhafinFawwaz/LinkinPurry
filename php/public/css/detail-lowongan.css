@@ -327,15 +327,21 @@ body {
     background-color: #f1f1f1;
     margin-bottom: 15px;
     border: 1px solid #ccc;
+    overflow: hidden;
 }
+.upload-box:hover {
+    cursor: pointer;
+    background-color: #dddddd;
+}
+
 .upload-box .file-type {
     display: flex;
     align-items: center;
-    background-color: #cc112e;
+    background-color: #0b66c3;
     color: white;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
     padding: 20px 8px;
+    height: 100%;
+    font-weight: 600;
 }
 .upload-box .file-type.mp4 {
     background-color: #0073b1;
@@ -345,6 +351,19 @@ body {
     margin-left: 20px;
     font-size: 14px;
 }
+
+
+label {
+    display: block;
+    cursor: pointer;
+}
+
+#resumeFileName {
+    font-size: 14px;
+    color: #666;
+}
+
+
 .replace-btn {
     border:  2px solid #0A66C2;
     background-color: #ffffff;
@@ -406,6 +425,27 @@ body {
     border: 2px solid #054a8f;
     background: #054a8f;
     color: white;
+}
+
+
+.attachment-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-left: 0.8rem;
+    font-size: small;
+    font-weight: 600;
+    color: #666;
+    padding: 0.5rem;
+}
+.attachment-container div {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.attachment-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 /* mobile devices */
