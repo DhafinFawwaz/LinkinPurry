@@ -93,8 +93,20 @@ class Lamaran extends Model {
         );
         return Model::DB()->fetchAll();
     }
-    
 
+    public static function getLamaranIdByUserLowongan(int $user_id, int $lowongan_id) {
+        Model::DB()->query(
+            "SELECT lamaran_id 
+             FROM \"Lamaran\" 
+             WHERE user_id = $1 AND lowongan_id = $2", 
+             array($user_id, $lowongan_id)
+        );
+        $row = Model::DB()->fetchRow();
+        if (!$row) return null;
+        
+        return $row[0];
+    }
+    
     public static function jobseekerHasApplied($job_seeker_id, $lowongan_id) {
         self::DB()->query(
             "SELECT * FROM \"Lamaran\" 
