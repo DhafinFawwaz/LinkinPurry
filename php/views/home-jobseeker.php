@@ -37,27 +37,8 @@
         <!-- job column (job-filter dan job-picks) -->
         <section id="main-content">
             <!-- search, filter, dan sort -->
-            <div id="job-filter" class="filter-sort-container">
+            <div id="job-filter" class="search-container">
                 <input type="text" id="search-input" placeholder="Search job title..." oninput="debouncedSearch()">
-                
-                <div class="filter-group">
-                    <p>Job Type</p>
-                    <label><input type="checkbox" class="job-type-checkbox" value="Full Time" onchange="filterAndSortJobs()"> Full Time</label>
-                    <label><input type="checkbox" class="job-type-checkbox" value="Part Time" onchange="filterAndSortJobs()"> Part Time</label>
-                    <label><input type="checkbox" class="job-type-checkbox" value="Internship" onchange="filterAndSortJobs()"> Internship</label>
-                </div>
-                
-                <div class="filter-group">
-                    <p>Location</p>
-                    <label><input type="checkbox" class="location-type-checkbox" value="On-Site" onchange="filterAndSortJobs()"> On-Site</label>
-                    <label><input type="checkbox" class="location-type-checkbox" value="Hybrid" onchange="filterAndSortJobs()"> Hybrid</label>
-                    <label><input type="checkbox" class="location-type-checkbox" value="Remote" onchange="filterAndSortJobs()"> Remote</label>
-                </div>
-                
-                <select id="sort-by-date" onchange="filterAndSortJobs()">
-                    <option value="desc">Newest First</option>
-                    <option value="asc">Oldest First</option>
-                </select>
             </div>
 
             <!-- job picks -->
@@ -82,21 +63,50 @@
         </section>
     
         
-        <!-- notes -->
+        <!-- filter -->
         <?php if (!isset($data['user']) || $data['user']->role === 'jobseeker') : ?>
-            <section id="notes">
-                <div class="notes">
-                    <?php if(isset($data['user'])) : ?>
-                        <h2>Job seeker guidance</h2>
-                        <p>Recomended based on your activity</p>
-                        <p>Explore our curated guide of expert-led courses, such as how to improve your resume and grow your network, to help you land your next opportunity.</p>
-                    <?php else : ?>
-                        <h2>Unlock Your Full Potential</h2>
-                        <p>Discover More Opportunities by Joining Us</p>
-                        <p>Create an account or log in to explore expert-led courses, improve your resume, grow your network, and apply for exciting job opportunities tailored just for you.</p>
-                    <?php endif; ?>
+            <section id="filter">
+                <div class="filter-container">
+                    <p>Filter</p>
+                    <!-- buatkan garis hitam horizontal -->
+                    <hr>
+                    <div class="filter-group">
+                        <button class="collapsible-title" data-filter="job-type-dropdown">
+                            <span class="title-text">Job Type</span>
+                            <span class="title-icon">></span>
+                        </button>
+                        <div id="job-type-dropdown" class="dropdown-content">
+                            <label><input type="checkbox" class="job-type-checkbox" value="Full Time" onchange="filterAndSortJobs()"> Full Time</label>
+                            <label><input type="checkbox" class="job-type-checkbox" value="Part Time" onchange="filterAndSortJobs()"> Part Time</label>
+                            <label><input type="checkbox" class="job-type-checkbox" value="Internship" onchange="filterAndSortJobs()"> Internship</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <button class="collapsible-title" data-filter="location-dropdown">
+                            <span class="title-text">Location</span>
+                            <span class="title-icon">></span>
+                        </button>
+                        <div id="location-dropdown" class="dropdown-content">
+                            <label><input type="checkbox" class="location-type-checkbox" value="On-Site" onchange="filterAndSortJobs()"> On-Site</label>
+                            <label><input type="checkbox" class="location-type-checkbox" value="Hybrid" onchange="filterAndSortJobs()"> Hybrid</label>
+                            <label><input type="checkbox" class="location-type-checkbox" value="Remote" onchange="filterAndSortJobs()"> Remote</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <button class="collapsible-title" data-filter="sort-by-date">
+                            <span class="title-text">Sort by Date</span>
+                            <span class="title-icon">></span>
+                        </button>
+                        <div id="sort-by-date" class="dropdown-content">
+                            <label><input type="radio" name="sort-by-date" value="desc" onchange="filterAndSortJobs()"> Newest First</label>
+                            <label><input type="radio" name="sort-by-date" value="asc" onchange="filterAndSortJobs()"> Oldest First</label>
+                        </div>
+                    </div>
                 </div>
             </section>
+
         <?php endif; ?>
     </main>
 
