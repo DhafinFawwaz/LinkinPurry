@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 </head>
 <body>
+    <?php include 'component/toaster.php'; ?>
     <?php include 'component/navbar.php'; ?>
 
     <section>

@@ -5,7 +5,8 @@
     <title>Document</title>
 </head>
 <body>
-    <?php require "component/toaster.php"; ?>
+    <?php include 'component/toaster.php'; ?>
+    <?php include 'component/navbar.php'; ?>
     404 Not Found
     
 </body>

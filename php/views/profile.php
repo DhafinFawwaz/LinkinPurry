@@ -7,11 +7,8 @@
     <link rel="stylesheet" href="/public/css/profile.css">
 </head>
 <body>
-    <?php require "component/toaster.php"; ?>
-
-    <section id="navbar">
-        <?php require "component/navbar.php"; ?>
-    </section>
+    <?php include 'component/toaster.php'; ?>
+    <?php include 'component/navbar.php'; ?>
 
     <section class="edit-popup hide">
         <div class="black-bg">a</div>

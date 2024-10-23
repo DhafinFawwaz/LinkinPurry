@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="../public/css/home-jobseeker.css">
 </head>
 <body>
-    <section id="navbar">
-        <?php include 'component/navbar.php'; ?>
-    </section>
+    <?php include 'component/toaster.php'; ?>
+    <?php include 'component/navbar.php'; ?>
 
     <main>
         <!-- profile -->
