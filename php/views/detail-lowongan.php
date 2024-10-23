@@ -115,7 +115,7 @@
 
         <br>
 
-        <div class="attachment-container">
+        <div class="attachment-container no-padding-margin">
             <?php
                 if (!empty($data["attachmentLowongan"])) {
                     foreach ($data["attachmentLowongan"] as $attachment) {
@@ -163,5 +163,6 @@
         
     </section>
     
+    <script src="/public/js/detail-lowongan-jobseeker.js"></script>
 </body>
 </html>

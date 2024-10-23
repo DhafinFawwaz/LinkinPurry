@@ -48,7 +48,7 @@ EOT;
                 ?>
                 
                 <div class="edit-container">
-                    <button class="outline-button" id="save-profile-button" type="submit" formnovalidate>Save Changes</button>
+                    <button class="button1" id="save-profile-button" type="submit" formnovalidate>Save Changes</button>
                     <button class="outline-button" id="cancel-profile-button" type="button">Cancel</button>
                 </div>
             </form>

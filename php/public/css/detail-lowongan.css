@@ -428,14 +428,18 @@ label {
 }
 
 
+
+
+
 .attachment-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.5rem;
-    margin-left: 0.8rem;
     font-size: small;
     font-weight: 600;
     color: #666;
+
+    margin-left: 0.8rem;
     padding: 0.5rem;
 }
 .attachment-container div {
@@ -446,6 +450,12 @@ label {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+.no-padding-margin {
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: 0;
 }
 
 /* mobile devices */

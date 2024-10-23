@@ -43,7 +43,7 @@ class Lowongan extends Model {
             $attachment->save();
             $values .= "($$i," . "$" . ($i + 1) . "),";
             $params[] = $lowongan_id;
-            $params[] = $attachment->path;
+            $params[] = $attachment->getFullPath();
             $i += 2;
         }
         
@@ -74,7 +74,7 @@ class Lowongan extends Model {
             $attachment->save();
             $values .= "($$i," . "$" . ($i + 1) . "),";
             $params[] = $lowongan_id;
-            $params[] = $attachment->path;
+            $params[] = $attachment->getFullPath();
             $i += 2;
         }
         

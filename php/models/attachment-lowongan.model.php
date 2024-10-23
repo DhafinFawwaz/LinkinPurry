@@ -16,7 +16,7 @@ class AttachmentLowongan extends Model {
     }
 
     public static function insertAttachmentLowongan(int $lowongan_id, Attachment $attachment) {
-        self::DB()->query("INSERT INTO \"Attachment_Lowongan\" (lowongan_id, file_path) VALUES ($1, $2)", [$lowongan_id, $attachment->path]);
+        self::DB()->query("INSERT INTO \"Attachment_Lowongan\" (lowongan_id, file_path) VALUES ($1, $2)", [$lowongan_id, $attachment->fileName]);
     }
 
     public static function getAllAttachmentLowonganByLowonganId(int $lowongan_id) {

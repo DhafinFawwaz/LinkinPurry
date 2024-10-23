@@ -27,7 +27,7 @@ class Lamaran extends Model {
 
 
     public static function insertLamaran(int $user_id, int $lowongan_id, CV $cv, ?Video $video = null) {
-        $videoPath = $video ? "/uploads/videos/" . $video->path : null;
+        $videoPath = $video ? $video->getFullPath() : null;
     
         Model::DB()->query(
             "INSERT INTO \"Lamaran\" (user_id, lowongan_id, cv_path, video_path) 
@@ -35,7 +35,7 @@ class Lamaran extends Model {
             array(
                 $user_id, 
                 $lowongan_id, 
-                "/uploads/cv/" . $cv->path, 
+                $cv->getFullPath(), 
                 $videoPath
             )
         );

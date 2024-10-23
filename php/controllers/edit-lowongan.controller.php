@@ -53,7 +53,7 @@ class EditLowonganController extends Controller {
 
                     $i = 0;
                     for($i = 0; $i < count(value: $names); $i++) {
-                        $name = "/uploads/attachments" . uniqid() . "_" . basename($names[$i]);
+                        $name = uniqid() . "_" . basename($names[$i]);
                         $attachments[] = new Attachment($name, $tmp_names[$i]);
                     }
                     Lowongan::deleteAttachmentLowonganByLowonganId($lowongan_id);
