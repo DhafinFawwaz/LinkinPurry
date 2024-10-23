@@ -79,7 +79,7 @@
                     <!-- resume  -->
                     <div class="form-group">
                         <label for="cv">Resume *
-                            <span><br>PDF (2 MB)</span>
+                            <span><br>PDF</span>
                         </label>
                         <div class="upload-box">
                             <div class="file-type">PDF</div>
@@ -93,7 +93,7 @@
                     <!-- video -->
                     <div class="form-group">
                         <label for="video">Video (Optional)
-                            <span><br>MP4 (30 MB)</span>
+                            <span><br>MP4</span>
                         </label>
                         <div class="upload-box">
                             <div class="file-type mp4">MP4</div>
