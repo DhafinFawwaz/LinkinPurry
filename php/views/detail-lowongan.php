@@ -69,11 +69,11 @@
             <?php endif ?>
         </div>
         
-        <!-- modal structure -->
+        <!-- modal structure (popup) -->
         <div id="applyModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeModal">&times;</span>
-                <h2>Apply to <?= htmlspecialchars($data["user"]["username"]) ?></h2>
+                <h2>Apply to <?= htmlspecialchars($data["company"]["username"]) ?></h2>
 
                 <form id="applicationForm" action="/<?= $data["lowongan"]["lowongan_id"] ?>" method="post" enctype="multipart/form-data">
                     <!-- resume  -->
@@ -85,7 +85,7 @@
                             <div class="file-type">PDF</div>
                             <span id="resumeFileName">No file chosen</span>
                         </div>
-                        <button type="button" class="replace-btn" onclick="document.getElementById('cv').click();">Upload resume</button>
+                        <button type="button" class="replace-btn" id="uploadResumeBtn">Upload resume</button>
                         <input type="file" id="cv" name="cv" accept=".pdf" onchange="updateFileName('cv', 'resumeFileName')">
                         <div id="error-message" class="error-message"></div>
                     </div>
@@ -99,7 +99,7 @@
                             <div class="file-type mp4">MP4</div>
                             <span id="videoFileName">No file chosen</span>
                         </div>
-                        <button type="button" class="replace-btn" onclick="document.getElementById('video').click();">Upload video</button>
+                        <button type="button" class="replace-btn" id="uploadVideoBtn">Upload video</button>
                         <input type="file" id="video" name="video" accept="video/mp4" onchange="updateFileName('video', 'videoFileName')">
                     </div>
 

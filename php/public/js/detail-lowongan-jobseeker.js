@@ -8,6 +8,20 @@ const videoFileName = document.getElementById("videoFileName");
 const closeModal = document.getElementById("closeModal");
 const errorMessages = document.getElementById("error-message");
 
+const uploadResumeBtn = document.getElementById('uploadResumeBtn');
+const resumeInput = document.getElementById('cv');
+const uploadVideoBtn = document.getElementById('uploadVideoBtn');
+const videoInput = document.getElementById('video');
+
+uploadResumeBtn.addEventListener('click', function() {
+    resumeInput.click();
+});
+
+uploadVideoBtn.addEventListener('click', function() {
+    videoInput.click();
+});
+
+
 // reset saat close
 function resetForm() {
     applicationForm.reset();
