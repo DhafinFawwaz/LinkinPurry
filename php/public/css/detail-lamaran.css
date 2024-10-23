@@ -432,6 +432,7 @@ section>div {
     background-color: white;
     padding: 1rem;
     height: unset;
+    border: 1px solid #ddd;
 }
 
 .file-container {

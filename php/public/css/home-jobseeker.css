@@ -37,6 +37,10 @@ main {
     padding-inline: 20px;
 }
 
+#profile, #main-content, #filter {
+    border: 1px solid #ddd;
+}
+
 #main-content {
     display: flex;
     flex-direction: column;

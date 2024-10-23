@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($data["form"]["username"])) echo $data["form"]["username"] ?> - Linkedin</title>
 
-    <link rel="stylesheet" href="/public/css/profile1.css">
+    <link rel="stylesheet" href="/public/css/profile.css">
 </head>
 <body>
     <?php require "component/toaster.php"; ?>

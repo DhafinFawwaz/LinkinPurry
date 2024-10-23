@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application History</title>
 
-    <link rel="stylesheet" href="../public/css/riwayat-lamaran1.css">
+    <link rel="stylesheet" href="../public/css/riwayat-lamaran.css">
 </head>
 <body>
     <section id="navbar">
