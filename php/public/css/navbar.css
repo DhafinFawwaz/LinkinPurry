@@ -112,6 +112,13 @@ nav ul li.active a::after {
     max-height: 1.65rem;
 }
 
+.filter-group label {
+    cursor: pointer;
+}
+.filter-group input[type="radio"], .filter-group input[type="checkbox"] {
+    transform: translateY(1px);
+}
+
 
 /* Responsive Navbar */
 @media (max-width: 768px) {
