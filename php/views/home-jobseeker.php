@@ -64,50 +64,48 @@
     
         
         <!-- filter -->
-        <?php if (!isset($data['user']) || $data['user']->role === 'jobseeker') : ?>
-            <section id="filter">
-                <div class="filter-container">
-                    <p>Filter</p>
-                    <!-- buatkan garis hitam horizontal -->
-                    <hr>
-                    <div class="filter-group">
-                        <button class="collapsible-title" data-filter="job-type-dropdown">
-                            <span class="title-text">Job Type</span>
-                            <span class="title-icon">></span>
-                        </button>
-                        <div id="job-type-dropdown" class="dropdown-content">
-                            <label><input type="checkbox" class="job-type-checkbox" value="Full Time" onchange="filterAndSortJobs()"> Full Time</label>
-                            <label><input type="checkbox" class="job-type-checkbox" value="Part Time" onchange="filterAndSortJobs()"> Part Time</label>
-                            <label><input type="checkbox" class="job-type-checkbox" value="Internship" onchange="filterAndSortJobs()"> Internship</label>
-                        </div>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <button class="collapsible-title" data-filter="location-dropdown">
-                            <span class="title-text">Location</span>
-                            <span class="title-icon">></span>
-                        </button>
-                        <div id="location-dropdown" class="dropdown-content">
-                            <label><input type="checkbox" class="location-type-checkbox" value="On-Site" onchange="filterAndSortJobs()"> On-Site</label>
-                            <label><input type="checkbox" class="location-type-checkbox" value="Hybrid" onchange="filterAndSortJobs()"> Hybrid</label>
-                            <label><input type="checkbox" class="location-type-checkbox" value="Remote" onchange="filterAndSortJobs()"> Remote</label>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <button class="collapsible-title" data-filter="sort-by-date">
-                            <span class="title-text">Sort by Date</span>
-                            <span class="title-icon">></span>
-                        </button>
-                        <div id="sort-by-date" class="dropdown-content">
-                            <label><input type="radio" name="sort-by-date" value="desc" onchange="filterAndSortJobs()"> Newest First</label>
-                            <label><input type="radio" name="sort-by-date" value="asc" onchange="filterAndSortJobs()"> Oldest First</label>
-                        </div>
+        <section id="filter">
+            <div class="filter-container">
+                <p>Filter</p>
+                <!-- buatkan garis hitam horizontal -->
+                <hr>
+                <div class="filter-group">
+                    <button class="collapsible-title" data-filter="job-type-dropdown">
+                        <span class="title-text">Job Type</span>
+                        <span class="title-icon">></span>
+                    </button>
+                    <div id="job-type-dropdown" class="dropdown-content">
+                        <label><input type="checkbox" class="job-type-checkbox" value="Full Time" onchange="filterAndSortJobs()"> Full Time</label>
+                        <label><input type="checkbox" class="job-type-checkbox" value="Part Time" onchange="filterAndSortJobs()"> Part Time</label>
+                        <label><input type="checkbox" class="job-type-checkbox" value="Internship" onchange="filterAndSortJobs()"> Internship</label>
                     </div>
                 </div>
-            </section>
+                
+                <div class="filter-group">
+                    <button class="collapsible-title" data-filter="location-dropdown">
+                        <span class="title-text">Location</span>
+                        <span class="title-icon">></span>
+                    </button>
+                    <div id="location-dropdown" class="dropdown-content">
+                        <label><input type="checkbox" class="location-type-checkbox" value="On-Site" onchange="filterAndSortJobs()"> On-Site</label>
+                        <label><input type="checkbox" class="location-type-checkbox" value="Hybrid" onchange="filterAndSortJobs()"> Hybrid</label>
+                        <label><input type="checkbox" class="location-type-checkbox" value="Remote" onchange="filterAndSortJobs()"> Remote</label>
+                    </div>
+                </div>
 
-        <?php endif; ?>
+                <div class="filter-group">
+                    <button class="collapsible-title" data-filter="sort-by-date">
+                        <span class="title-text">Sort by Date</span>
+                        <span class="title-icon">></span>
+                    </button>
+                    <div id="sort-by-date" class="dropdown-content">
+                        <label><input type="radio" name="sort-by-date" value="desc" onchange="filterAndSortJobs()"> Newest First</label>
+                        <label><input type="radio" name="sort-by-date" value="asc" onchange="filterAndSortJobs()"> Oldest First</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <script src="/public/js/home-jobseeker.js"></script>

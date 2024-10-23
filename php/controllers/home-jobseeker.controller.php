@@ -90,6 +90,7 @@ class HomeJobseekerController extends Controller {
                     ";
                 }
                 echo "</div>";
+                echo "<hr>";
             }
             
             // tombol pagination

@@ -47,7 +47,7 @@ main {
     max-height: min-content;
 }
 
-#job-picks, #notes {
+#job-picks {
     display: flex;
     flex-direction: column;
     padding: 12px;
@@ -172,13 +172,8 @@ main {
 
 .job-card {
     text-decoration: none;
-    /*display: flex;*/
     align-items: center;
-    /* background-color: #f9f9f9; */
-    /* padding: 15px; */
-    /* border-radius: 8px; */
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
+    width: 100%;
     transition: transform 0.2s;
 }
 
@@ -188,6 +183,7 @@ main {
 
 .job-picture-parent {
     display: flex;
+    align-items: center;
 }
 
 .job-picture img {
@@ -221,6 +217,12 @@ main {
 .job-edit-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+hr {
+    margin: 5px 0;
+    border: 1px solid #ddd;
 }
 
 
@@ -358,20 +360,21 @@ main {
     /* Mengubah grid layout menjadi stack layout (tumpukan vertikal) */
     main {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 0;
         padding-inline: 10px;
     }
 
     #profile {
         grid-column: 1;
         order: 1;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     #filter {
         grid-column: 1;
         order: 2;
         padding: 5px;
+        margin-bottom: 10px;
     }
 
     .filter-container {
