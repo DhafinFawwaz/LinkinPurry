@@ -245,16 +245,17 @@ class Lowongan extends Model {
         $query = "SELECT l.*, u.nama as company_name, cd.lokasi as company_location
                   FROM \"Lowongan\" l
                   JOIN \"User\" u ON l.company_id = u.user_id
-                  LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id
-                  WHERE l.is_open = true";
+                  LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id";
         
         $params = [];
         $index = 1; 
     
         if (!empty($company)) {
-            $query .= " AND u.nama = $" . $index;
+            $query .= " WHERE u.nama = $" . $index;
             $params[] = $company;
             $index++;
+        } else {
+            $query .= " WHERE l.is_open = true";
         }
     
         if (!empty($search)) {
