@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="../public/css/riwayat-lamaran.css">
 </head>
 <body>
-    <section id="navbar">
-        <?php include 'component/navbar.php'; ?>
-    </section>
+    <?php include 'component/toaster.php'; ?>
+    <?php include 'component/navbar.php'; ?>
 
     <div class="container">
         <h2>Job Application History</h2>
@@ -24,7 +23,7 @@
                             <div class="job-title"><?= htmlspecialchars($application["posisi"]); ?></div>
                             <div class="company-info"><?= htmlspecialchars($application['company_name']); ?></div> 
                             <div class="company-info"><?= htmlspecialchars($application['company_location']); ?></div>
-                            <div class="company-info"><br>Applied on <?= date("F j, Y", strtotime($application['created_at'])); ?></div>
+                            <div class="company-sub-info">Applied on <?= date("F j, Y", strtotime($application['created_at'])); ?></div>
                         </div>
                     </div>
                     <div class="status <?= htmlspecialchars($application['status']); ?>">

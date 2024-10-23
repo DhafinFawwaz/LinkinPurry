@@ -1,18 +1,17 @@
-<link rel="stylesheet" href="../../public/css/navbar.css">
 
 <?php
 $isAuthenticated = isset($_SESSION['user']);
-$currentPage = basename($_SERVER['PHP_SELF']);
-// var_dump($currentPage);
+$currentPage = $_SERVER['REQUEST_URI'];
 ?>
 
 
 <header>
+    <link rel="stylesheet" href="/public/css/navbar.css">
     <nav>
         <?php if ($isAuthenticated): ?>
             <div class="logo">
                 <a href="/">
-                    <img src="../../public/assets/in_icon.svg" alt="LinkedIn Logo">
+                    <img src="/public/assets/in_icon.svg" alt="LinkedIn Logo">
                 </a>
             </div>
         <?php else: ?>
@@ -22,32 +21,27 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </a>
             </div>
         <?php endif; ?>
-        <!-- <div class="logo">
-            <a href="">
-            <img src="../public/assets/in_icon.svg" alt="LinkedIn Logo">
-            </a>
-        </div> -->
         <ul>
             <?php if ($isAuthenticated): ?>
                 <!-- Jika sudah login -->
                 <?php $isJobseeker = ($_SESSION['user']->role == 'jobseeker'); ?>
-                <li class="nav-item <?= $currentPage == 'jobs.php' ? 'active' : '' ?>">
+                <li class="nav-item <?= $currentPage == '/' ? 'active' : '' ?>">
                     <a href="/">
-                        <img src="../public/assets/jobs_icon.svg" alt="Jobs">
+                        <?php require 'job-icon.php'; ?>
                         <span>Jobs</span>
                     </a>
                 </li>
 
                 <?php if ($isJobseeker): ?>
-                    <li class="nav-item <?= $currentPage == 'applications.php' ? 'active' : '' ?>">
+                    <li class="nav-item <?= $currentPage == '/riwayat-lamaran' ? 'active' : '' ?>">
                         <a href="/riwayat-lamaran">
-                            <img src="../public/assets/application.svg" alt="Applications">
+                            <?php require 'application-icon.php'; ?>
                             <span>Applications</span>
                         </a>
                     </li>
                 <?php endif; ?>
 
-                <li class="nav-item <?= $currentPage == 'profile.php' ? 'active' : '' ?>">
+                <li class="nav-item <?= $currentPage == '/profile' ? 'active' : '' ?>">
                     <a href="/profile">
                         <img src="../public/assets/jobseeker_profile.svg" alt="Me">
                         <span>Me</span>
@@ -57,7 +51,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <!-- Jika belum login -->
                 <li class="nav-item">
                     <a href="/">
-                        <img src="../public/assets/jobs_icon.svg" alt="Jobs">
+                        <img src="/public/assets/jobs_icon.svg" alt="Jobs">
                         <span>Jobs</span>
                     </a>
                 </li>

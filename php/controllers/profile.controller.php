@@ -15,6 +15,7 @@ class ProfileController extends Controller {
     private function handleJobseeker(User $user) {
         $data["form"]["username"] = $user->username;
         $data["form"]["role"] = $user->role;
+        $data["form"]["email"] = $user->email;
         
         if($_SERVER["REQUEST_METHOD"] === "POST"){
             $user->username = $_POST["username"];
@@ -34,6 +35,7 @@ class ProfileController extends Controller {
         $data["form"]["location"] = $company->location;
         $data["form"]["about"] = $company->about;
         $data["form"]["role"] = $user->role;
+        $data["form"]["email"] = $user->email;
         
         if($_SERVER["REQUEST_METHOD"] === "POST"){
             $company->username = $_POST["username"];

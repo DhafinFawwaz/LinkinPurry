@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="../public/css/home-jobseeker.css">
 </head>
 <body>
-    <section id="navbar">
-        <?php include 'component/navbar.php'; ?>
-    </section>
+    <?php include 'component/toaster.php'; ?>
+    <?php include 'component/navbar.php'; ?>
 
     <main>
         <!-- profile -->
@@ -25,10 +24,10 @@
                     <div class="profile-info">
                         <!-- Tampilkan informasi user jobseeker -->
                         <h1><?= isset($data['user']->username) ? $data['user']->username : 'Your Name Here' ?></h1>
+                        <p><?= isset($data['user']->email) ? $data['user']->email : 'Your Email Here' ?></p>
                         <?php if ($data['user']->role === 'company') : ?>
                             <p><?= isset($data['user']->about) ? $data['user']->about : 'About' ?></p>
                         <?php endif; ?>
-                        <p><?= isset($data['user']->email) ? $data['user']->email : 'Your Email Here' ?></p>
                     </div>
                 </div>
             </section>

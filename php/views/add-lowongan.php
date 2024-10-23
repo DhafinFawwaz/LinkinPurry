@@ -10,6 +10,7 @@
 </head>
 <body>
     <?php include 'component/toaster.php'; ?>
+    <?php include 'component/navbar.php'; ?>
 
 
     <section id="navbar">

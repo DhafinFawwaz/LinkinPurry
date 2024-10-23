@@ -11,10 +11,7 @@
 </head>
 <body>
     <?php include 'component/toaster.php'; ?>
-
-    <section id="navbar">
-        <?php include 'component/navbar.php'; ?>
-    </section>
+    <?php include 'component/navbar.php'; ?>
     
     <section id="job-details-wrapper">
         <!-- company profile -->
