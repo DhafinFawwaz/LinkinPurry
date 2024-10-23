@@ -129,7 +129,7 @@ main {
 .button {
     background-color: #0b66c3;
     color: white;
-    padding: 10px 20px;
+    padding: 7px 15px;
     text-decoration: none;
     border: none;
     border-radius: 30px;
@@ -137,6 +137,7 @@ main {
     display: inline-block;
     transition: background-color 0.3s ease;
     font-weight: 700;
+    margin: 3px;
 }
 
 .button:hover {
