@@ -57,7 +57,7 @@ class Lowongan extends Model {
             self::DB()->query("SELECT * FROM \"Attachment_Lowongan\" WHERE lowongan_id = $1", [$lowongan_id]);
             $attachments = self::DB()->fetchAll();
             foreach ($attachments as $attachment) {
-                $file_path = "/uploads/attachments" . $attachment['file_path'];
+                $file_path = "." . $attachment['file_path'];
                 if (file_exists($file_path)) {
                     unlink($file_path);
                 }

@@ -11,7 +11,7 @@ class AddLowonganController extends Controller {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             $attachments = [];
             
-            if(isset($_FILES["attachments"])) {
+            if(isset($_FILES["attachments"]) && !!$_FILES["attachments"]["name"][0]) {
                 $names = $_FILES["attachments"]["name"];
                 $tmp_names = $_FILES["attachments"]["tmp_name"];
 
