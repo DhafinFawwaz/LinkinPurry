@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
+require_once __DIR__ . "/../lib/sanitizer.php";
+
 class EditLowonganController extends Controller {
     public function handle(){
         $pathArr = $this->getUrlPath();
@@ -40,7 +42,7 @@ class EditLowonganController extends Controller {
                 $lowongan->jenis_lokasi = $lokasi;
                 $lowongan->save();
                 $data["lowongan"]["posisi"] = $posisi;
-                $data["lowongan"]["deskripsi"] = $deskripsi;
+                $data["lowongan"]["deskripsi"] = Sanitizer::sanitize($deskripsi);
                 $data["lowongan"]["jenis_pekerjaan"] = $jenis_pekerjaan;
                 $data["lowongan"]["jenis_lokasi"] = $lokasi;
 

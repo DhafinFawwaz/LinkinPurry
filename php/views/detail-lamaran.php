@@ -61,7 +61,7 @@ EOD;
                 echo <<<EOD
     <form action='$formAction' method='post'>
         <div class="quill-container">
-            <div id="quillEditor" style='max-height: 20rem'></div>
+            <div id="quillEditor"></div>
         </div>
         <textarea name="status_reason" style="display:none" id="hiddenArea"></textarea>
         
@@ -78,7 +78,7 @@ EOD;
     
 
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-    <script src="/public/js/detail-lamaran.js"></script>
+    <script src="/public/js/quill-input.js"></script>
 </body>
 </html>
 

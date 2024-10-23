@@ -7,15 +7,12 @@
 
     <link rel="stylesheet" href="/public/css/detail-lowongan.css">
     <link rel="stylesheet" href="/public/css/edit-lowongan.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 </head>
 <body>
     <?php include 'component/toaster.php'; ?>
     <?php include 'component/navbar.php'; ?>
 
-
-    <section id="navbar">
-        <?php include 'component/navbar.php'; ?>
-    </section>
     
     <section id="job-details-wrapper">
         <form method="post" action="/add" enctype="multipart/form-data">
@@ -51,7 +48,10 @@
                 <h2>About the job</h2>
                 
                 <div class="job-details">
-                    <textarea name="deskripsi" id="deskripsi"></textarea>
+                    <div class="quill-container">
+                        <div id="quillEditor"></div>
+                    </div>
+                    <textarea name="deskripsi" style="display:none" id="hiddenArea"></textarea>
                 </div>
             </div>
 
@@ -59,7 +59,9 @@
             
             <input id="attachment-input" hidden type="file" id="attachment" name="attachments[]" accept="image/png, image/jpeg, image/jpg" multiple>
             <label for="attachment-input" class="upload-box">
-                <div class="file-type">PNG/JPG</div>    
+                <div class="file-type">
+                    <div>PNG/JPG</div>    
+                </div>
                 <div id="attachment-container" class="attachment-container">Please select images(png/jpeg/jpg)</div>
             </label>
             <label for="attachment-input" class="replace-btn">Upload Attachments</label>
@@ -75,7 +77,8 @@
     </section>
 
     <script src="/public/js/attachment.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script src="/public/js/quill-input.js"></script>
 
 </body>
 </html>

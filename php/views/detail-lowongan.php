@@ -6,7 +6,7 @@
     <title>Job Details - <?= htmlspecialchars($data["lowongan"]["posisi"]) ?></title>
 
     <link rel="stylesheet" href="/public/css/detail-lowongan.css">
-    <link rel="stylesheet" href="../public/css/riwayat-lamaran1.css">
+    <link rel="stylesheet" href="../public/css/riwayat-lamaran.css">
 
 </head>
 <body>
@@ -160,6 +160,5 @@
         
     </section>
     
-    <script src="/public/js/detail-lowongan-jobseeker.js"></script>
 </body>
 </html>
