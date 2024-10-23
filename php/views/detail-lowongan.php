@@ -6,7 +6,7 @@
     <title>Job Details - <?= htmlspecialchars($data["lowongan"]["posisi"]) ?></title>
 
     <link rel="stylesheet" href="/public/css/detail-lowongan.css">
-    <link rel="stylesheet" href="../public/css/riwayat-lamaran.css">
+    <link rel="stylesheet" href="/public/css/riwayat-lamaran.css">
 
 </head>
 <body>
@@ -126,7 +126,7 @@
         <!-- job details -->
         <div class="job-description">
             <h2>About the job</h2>
-            <p><?= nl2br(htmlspecialchars($data["lowongan"]["deskripsi"])) ?></p>
+            <p><?= $data["lowongan"]["deskripsi"] ?></p>
         </div>
 
         <!-- applications -->
