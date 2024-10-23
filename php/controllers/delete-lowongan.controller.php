@@ -15,6 +15,7 @@ class DeleteLowonganController extends Controller {
         }
 
         $lowongan = Lowongan::getLowonganById($lowongan_id);
+        Lamaran::deleteAllLamaranCvAndVideosByLowonganId($lowongan_id);
         Lowongan::deleteAttachmentLowonganByLowonganId($lowongan_id);
         $lowongan->delete();
         
