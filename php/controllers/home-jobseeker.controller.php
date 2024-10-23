@@ -48,35 +48,55 @@ class HomeJobseekerController extends Controller {
         if (!in_array($numberOfPages, $pagesList)){$pagesList[] = $numberOfPages;}
 
         $lowonganList = Lowongan::filterLowonganMultiple($search, $jobTypes, $locationTypes, $sortByDate, $currentPage, $companyFilter);
+
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
+                $lowongan_id = $lowongan['lowongan_id'];
                 // kondisi login dan guest
-                echo "<a href='/{$lowongan['lowongan_id']}' class='job-edit-wrapper'>";
-                echo "<div class='job-card'>
-                        <div class='job-picture-parent'>
-                            <div class='job-picture'>
-                                <img src='../public/assets/company_profile.svg' alt='job-picture'>
+                echo "<div class='job-edit-wrapper'>";
+                echo "  <a class='job-card' href='/{$lowongan['lowongan_id']}'>
+                            <div class='job-picture-parent'>
+                                <div class='job-picture'>
+                                    <img src='../public/assets/company_profile.svg' alt='job-picture'>
+                                </div>
+                                <div class='job-card-details'>
+                                    <h3>{$lowongan['posisi']}</h3>
+                                    <p>{$lowongan['company_name']}</p>
+                                    <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
+                                </div>
                             </div>
-                            <div class='job-card-details'>
-                                <h3>{$lowongan['posisi']}</h3>
-                                <p>{$lowongan['company_name']}</p>
-                                <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
-                            </div>
-                        </div>
-                    </div>";
+                        </a>";
                 
                 if (isset($_SESSION['user']) && ($_SESSION['user']->role === 'company')){
                     echo "
                         <div class='edit-card'>
-                            <a class='button' href='/{$lowongan['lowongan_id']}/edit'>Edit</a>
-                            <form method='post' action='/{$lowongan['lowongan_id']}/delete'>
-                                <button class='button delete-button'>Delete</button>
-                            </form>
+                            <div class='icon-button dropdown-hoverable'>
+                        ";
+                    echo '      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"><path fill="black" d="M176 416a112 112 0 1 1 0 224a112 112 0 0 1 0-224m336 0a112 112 0 1 1 0 224a112 112 0 0 1 0-224m336 0a112 112 0 1 1 0 224a112 112 0 0 1 0-224"></path></svg>';
+                    echo "        
+                            
+                            </div>
+                            <div class='list-dropdown-content'>
+                                <a class='button-dropdown-parent' href='/{$lowongan['lowongan_id']}/edit'>
+                                    <div>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path fill='black' d='M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z'></path></svg>
+                                    </div>
+                                    <div>Edit</div>
+                                </a>
+                                <hr>
+                                <button onclick='deleteJob($lowongan_id)' class='button-dropdown'>
+                                    <div>
+                                        <svg width='1em' height='1em' viewBox='0 0 24 24'><path fill='black' d='M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z'></path></svg>
+                                    </div>
+                                    <div>Delete</div>
+                                </button>
+                            </div>
+
                         </div>
                     ";
                 }
-                echo "</a>";
-                echo "<hr>";
+                ///{$lowongan['lowongan_id']}/delete
+                echo "<hr></div>";
             }
             
             // tombol pagination

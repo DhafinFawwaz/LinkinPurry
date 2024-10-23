@@ -89,6 +89,7 @@ class Route {
         $route = Route::clean($_SERVER['REQUEST_URI']);
         if($route == "") $route = self::$baseUnsedUrl;
         else if($route == self::$baseUnsedUrl) $route = "not-found";
+        $route = explode("?", $route)[0];
 
         $parts = parse_url($route);
         $route = $parts["path"];

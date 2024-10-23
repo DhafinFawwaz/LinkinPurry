@@ -164,7 +164,7 @@
         
     </section>
 
-    <script src="/public/js/detail-lowongan.js"></script>
+    <script src="/public/js/detail-lowongan-jobseeker.js"></script>
     
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
-    <link rel="stylesheet" href="../public/css/home-jobseeker.css">
+    <link rel="stylesheet" href="/public/css/home-jobseeker.css">
 </head>
 <body>
     <?php include 'component/toaster.php'; ?>
