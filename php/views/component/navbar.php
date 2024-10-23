@@ -6,12 +6,12 @@ $currentPage = $_SERVER['REQUEST_URI'];
 
 
 <header>
-    <link rel="stylesheet" href="../../public/css/navbar.css">
+    <link rel="stylesheet" href="/public/css/navbar.css">
     <nav>
         <?php if ($isAuthenticated): ?>
             <div class="logo">
                 <a href="/">
-                    <img src="../../public/assets/in_icon.svg" alt="LinkedIn Logo">
+                    <img src="/public/assets/in_icon.svg" alt="LinkedIn Logo">
                 </a>
             </div>
         <?php else: ?>
@@ -51,7 +51,7 @@ $currentPage = $_SERVER['REQUEST_URI'];
                 <!-- Jika belum login -->
                 <li class="nav-item">
                     <a href="/">
-                        <img src="../public/assets/jobs_icon.svg" alt="Jobs">
+                        <img src="/public/assets/jobs_icon.svg" alt="Jobs">
                         <span>Jobs</span>
                     </a>
                 </li>

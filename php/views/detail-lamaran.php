@@ -41,11 +41,11 @@ EOD;
             
 
             echo "<div class='file-container'>";
-            echo "<h4>CV</h4>";
+            echo "<a href='" . htmlspecialchars($data["lamaran"]["cv_path"]) . "' target='_blank' class='button-attachment'>CV</a>";
             echo "<embed src='" . htmlspecialchars($data["lamaran"]["cv_path"]) . "' />";
-            echo "<br>";
+            echo "<br><br>";
             if (!empty($data["lamaran"]["video_path"])) {
-                echo "<h4>Video</h4>";
+                echo "<a href='" . htmlspecialchars($data["lamaran"]["video_path"]) . "' target='_blank' class='button-attachment'>Video</a>";
                 echo "<video height='20rem' controls>";
                 echo "<source src='" . htmlspecialchars($data["lamaran"]["video_path"]) . "' type='video/mp4'>";
                 echo "</video>";

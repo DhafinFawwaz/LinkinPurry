@@ -66,6 +66,13 @@ class DetailLowonganController extends Controller {
         $userId = $_SESSION['user']->id;
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[0];
+
+        if(Lamaran::jobseekerHasApplied($userId, $lowongan_id)) {
+            Message::Error("Error", "You have already applied to this job");
+            $this->redirect("/" . $lowongan_id);
+            return;
+        }
+
         // nama unik
         $cvFilename = uniqid() . "_" . basename($_FILES['cv']['name']);
         $cv = new CV($cvFilename, $_FILES['cv']['tmp_name']);
@@ -89,6 +96,8 @@ class DetailLowonganController extends Controller {
         
         Lamaran::insertLamaran($userId, $lowongan_id, $cv, $video);
         
+        Message::Success("Success", "Application submitted successfully");
+
         $this->redirect("/" . $lowongan_id);
     }
 }

@@ -116,6 +116,9 @@ body {
 .icon-button:hover {
     background-color: #f3f2ee;
 }
+.icon-button:active {
+    background-color: #d7d7d7;
+}
 .edit-button {
     right: 0;
     position: absolute;
@@ -174,7 +177,7 @@ body {
     translate: 1rem -1rem;
 }
 .close-button>svg{
-    scale: 1.2;
+    scale: 1;
 }
 
 .show {
@@ -342,6 +345,11 @@ body {
     font-size: 1rem;
     font-weight: 600;
     color: #888888;
+}
+.email-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #999;
 }
 
 /* Styling untuk mobile devices dengan lebar maksimal 768px (misal untuk ukuran smartphone) */
