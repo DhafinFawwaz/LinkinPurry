@@ -49,6 +49,10 @@ body {
     margin-bottom: 15px;
 }
 
+.company-profile h2 {
+    margin-bottom: 0;
+}
+
 .company-profile img {
     width: 50px;
     height: 50px;
@@ -337,13 +341,16 @@ body {
 .upload-box .file-type {
     display: flex;
     align-items: center;
-    background-color: #0b66c3;
+    background-color: #cc112e;
     color: white;
     padding: 20px 8px;
     height: 100%;
     font-weight: 600;
 }
 .upload-box .file-type.mp4 {
+    background-color: #0073b1;
+}
+.upload-box .file-type.cv {
     background-color: #0073b1;
 }
 .upload-box span {
