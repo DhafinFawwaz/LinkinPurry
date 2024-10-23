@@ -74,8 +74,14 @@ class Lamaran extends Model {
         Model::DB()->query("SELECT * FROM \"Company_Detail\" JOIN \"Lowongan\" ON \"Company_Detail\".user_id=\"Lowongan\".company_id JOIN \"Lamaran\" USING(lowongan_id) WHERE company_id=$1 AND lamaran_id=$2 AND lowongan_id=$3", array($companyId, $lamaranId, $lowonganId));
         $row = Model::DB()->fetchRow();
         if(!$row) return null;
+
+        $video = null;
+        if ($row[15]) {
+            $video = new Video($row[15], null);
+        }
+
         if(!$row[17]) $row[17] = "";
-        return new Lamaran($row[12], -1, $row[0], new CV( $row[14], null), new Video($row[15], null), $row[16], $row[17], new DateTime($row[18]));
+        return new Lamaran($row[12], -1, $row[0], new CV( $row[14], null), $video, $row[16], $row[17], new DateTime($row[18]));
     }
 
     

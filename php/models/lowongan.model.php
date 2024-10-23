@@ -106,48 +106,6 @@ class Lowongan extends Model {
     }
 
     // untuk pagination
-    public static function countFilterLowongan($search, $jobType, $locationType, $company){
-        $query = "SELECT COUNT(*) AS total
-        FROM \"Lowongan\" l
-        JOIN \"User\" u ON l.company_id = u.user_id";
-        
-        $params = [];
-        $index = 1; // buat placeholder parameter PostgreSQL ($1, $2, dll)
-    
-        if (!empty($company)) {
-            $query .= " WHERE u.nama = $" . $index;
-            $params[] = $company;
-            $index++;
-        } else {
-            $query .= " WHERE l.is_open = true";
-        }
-
-        if (!empty($search)) {
-            $query .= " AND l.posisi ILIKE '%' || $" . $index . " || '%'";
-            $params[] = $search;
-            $index++;
-        }
-    
-        if (!empty($jobType)) {
-            $query .= " AND l.jenis_pekerjaan = $" . $index;
-            $params[] = $jobType;
-            $index++;
-        }
-    
-        if (!empty($locationType)) {
-            $query .= " AND l.jenis_lokasi = $" . $index;
-            $params[] = $locationType;
-            $index++;
-        }
-
-        self::DB()->query($query, $params);
-        $results = self::DB()->fetchAll();
-        foreach ($results as $c){
-            $count = $c['total']; // is there a better way to do this
-        }
-        return $count;
-    }
-
     public static function countFilterLowonganMultiple($search, $jobTypes, $locationTypes, $company) {
         $query = "SELECT COUNT(*) AS total
         FROM \"Lowongan\" l
@@ -188,57 +146,6 @@ class Lowongan extends Model {
     
         self::DB()->query($query, $params);
         return self::DB()->fetchAll()[0]['total'];
-
-    }
-
-    public static function filterLowongan($search, $jobType, $locationType, $sortByDate, $page, $company) { // page untuk pagination, company untuk filter user company (kalau jobseeker dibiarin kosong '')
-        $query = "SELECT l.*, u.nama as company_name, cd.lokasi as company_location 
-        FROM \"Lowongan\" l 
-        JOIN \"User\" u ON l.company_id = u.user_id
-        LEFT JOIN \"Company_Detail\" cd ON l.company_id = cd.user_id";
-        
-        $params = [];
-        $index = 1; // buat placeholder parameter PostgreSQL ($1, $2, dll)
-        
-        if (!empty($company)) {
-            $query .= " WHERE u.nama = $" . $index;
-            $params[] = $company;
-            $index++;
-        } else {
-            $query .= " WHERE l.is_open = true";
-        }
-
-        if (!empty($search)) {
-            $query .= " AND l.posisi ILIKE '%' || $" . $index . " || '%'";
-            $params[] = $search;
-            $index++;
-        }
-    
-        if (!empty($jobType)) {
-            $query .= " AND l.jenis_pekerjaan = $" . $index;
-            $params[] = $jobType;
-            $index++;
-        }
-    
-        if (!empty($locationType)) {
-            $query .= " AND l.jenis_lokasi = $" . $index;
-            $params[] = $locationType;
-            $index++;
-        }
-    
-        if ($sortByDate === 'asc') {
-            $query .= " ORDER BY l.created_at ASC";
-        } else {
-            $query .= " ORDER BY l.created_at DESC";
-        }
-    
-        $query .= " LIMIT 10 OFFSET $" . $index; $index++; // apakah masih perlu ++ lagi ??
-        
-        // asumsi $page sudah bertipe integer
-        $params[] = ($page - 1) * 10;
-
-        self::DB()->query($query, $params);
-        return self::DB()->fetchAll();
     }
     
     public static function filterLowonganMultiple($search, $jobTypes, $locationTypes, $sortByDate, $currentPage, $company) {

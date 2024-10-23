@@ -98,7 +98,7 @@
                         <span class="title-icon">></span>
                     </button>
                     <div id="sort-by-date" class="dropdown-content">
-                        <label><input type="radio" name="sort-by-date" value="desc" onchange="filterAndSortJobs()"> Newest First</label>
+                        <label><input type="radio" name="sort-by-date" value="desc" onchange="filterAndSortJobs()" checked> Newest First</label>
                         <label><input type="radio" name="sort-by-date" value="asc" onchange="filterAndSortJobs()"> Oldest First</label>
                     </div>
                 </div>
