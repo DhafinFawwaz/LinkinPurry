@@ -119,7 +119,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 .search-container input {
@@ -414,6 +413,7 @@ hr {
     .search-container {
         flex-direction: column;
         align-items: flex-start;
+        padding-inline: 12px;
     }
 
     .search-container input {
