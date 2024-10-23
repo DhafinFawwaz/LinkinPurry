@@ -23,6 +23,10 @@ class AttachmentLowongan extends Model {
         self::DB()->query("SELECT * FROM \"Attachment_Lowongan\" WHERE lowongan_id = $1", [$lowongan_id]);
         return self::DB()->fetchAll();
     }
+
+    public static function deleteAttachmentLowonganByLowonganId(int $lowongan_id) {
+        self::DB()->query("DELETE FROM \"Attachment_Lowongan\" WHERE lowongan_id = $1", [$lowongan_id]);
+    }
     
     public function jsonSerialize(): string {
         return json_encode($this);

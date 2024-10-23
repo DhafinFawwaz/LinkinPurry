@@ -53,7 +53,7 @@ class HomeJobseekerController extends Controller {
             foreach ($lowonganList as $lowongan) {
                 $lowongan_id = $lowongan['lowongan_id'];
                 // kondisi login dan guest
-                echo "<div class='job-edit-wrapper'>";
+                echo "<div id=$lowongan_id class='job-edit-wrapper'>";
                 echo "  <a class='job-card' href='/{$lowongan['lowongan_id']}'>
                             <div class='job-picture-parent'>
                                 <div class='job-picture'>
