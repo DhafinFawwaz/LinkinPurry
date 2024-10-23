@@ -31,18 +31,6 @@ Route::post("/login", [NotAuthenticated::class, LoginController::class]);
 Route::get("/register", [NotAuthenticated::class, Register::class]);
 Route::post("/register", [NotAuthenticated::class, Register::class]);
 
-
-// Route::get("/register/jobseeker", [NotAuthenticated::class, function(){
-//     return view("register/register-jobseeker.php");
-// }]);
-// Route::post("/register/jobseeker", [NotAuthenticated::class, RegisterJobseeker::class]);
-
-
-// Route::get("/register/company", [NotAuthenticated::class, function(){
-//     return view("register/register-company.php");
-// }]);
-// Route::post("/register/company", [NotAuthenticated::class, RegisterCompany::class]);
-
 Route::get("/", [HomeJobseekerController::class]);
 Route::post("/", [HomeJobseekerController::class]);
 

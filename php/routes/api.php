@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../lib/route.php';
 require_once __DIR__ . '/../lib/view.php';
 require_once __DIR__ . '/../models/apiresponse.php';
+require_once __DIR__ . '/../auth/company-only.php';
+require_once __DIR__ . '/../controllers/csv-export.controller.php';
 
 
 Route::get("/api/something", [NotAuthenticated::class, function(){
@@ -10,3 +12,5 @@ Route::get("/api/something", [NotAuthenticated::class, function(){
         "b" => 456
     ));
 }]);
+
+Route::get("/api/csv/{int}", [CompanyOnly::class, CSVExportController::class]);

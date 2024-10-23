@@ -51,34 +51,20 @@ class HomeJobseekerController extends Controller {
         if (isset($lowonganList) && !empty($lowonganList)) {
             foreach ($lowonganList as $lowongan) {
                 // kondisi login dan guest
-                echo "<div class='job-edit-wrapper'>";
-                if (isset($_SESSION['user'])) {
-                    echo "
-                        <a class='job-card' href='/{$lowongan['lowongan_id']}'>
-                    ";
-                } else {
-                    echo "
-                        <div class='job-card'>
-                    ";
-                }
-                echo "
-                    <div class='job-picture-parent'>
-                        <div class='job-picture'>
-                            <img src='../public/assets/company_profile.svg' alt='job-picture'>
+                echo "<a href='/{$lowongan['lowongan_id']}' class='job-edit-wrapper'>";
+                echo "<div class='job-card'>
+                        <div class='job-picture-parent'>
+                            <div class='job-picture'>
+                                <img src='../public/assets/company_profile.svg' alt='job-picture'>
+                            </div>
+                            <div class='job-card-details'>
+                                <h3>{$lowongan['posisi']}</h3>
+                                <p>{$lowongan['company_name']}</p>
+                                <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
+                            </div>
                         </div>
-                        <div class='job-card-details'>
-                            <h3>{$lowongan['posisi']}</h3>
-                            <p>{$lowongan['company_name']}</p>
-                            <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
-                        </div>
-                    </div>
-                ";
+                    </div>";
                 
-                if (isset($_SESSION['user'])) {
-                    echo "</a>";
-                } else {
-                    echo "</div>";
-                }
                 if (isset($_SESSION['user']) && ($_SESSION['user']->role === 'company')){
                     echo "
                         <div class='edit-card'>
@@ -89,7 +75,7 @@ class HomeJobseekerController extends Controller {
                         </div>
                     ";
                 }
-                echo "</div>";
+                echo "</a>";
                 echo "<hr>";
             }
             
