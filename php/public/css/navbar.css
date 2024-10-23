@@ -20,7 +20,8 @@ nav {
     align-self: center; */
     /* margin: 0 50px;
     padding: 0 24px; */
-    width: 70vw;
+    max-width: 50rem;
+    width: 100%;
 }
 
 nav ul {
@@ -117,6 +118,20 @@ nav ul li.active a::after {
 }
 .filter-group input[type="radio"], .filter-group input[type="checkbox"] {
     transform: translateY(1px);
+}
+
+
+
+#search-input {
+    outline: none;
+}
+#search-input:hover {
+    background-color: rgba(29, 104, 255, 0.05);
+}
+#search-input:focus {
+    background-color: rgba(23, 131, 255, 0.05);
+    border: 1px solid #0a66c2;
+    box-shadow: inset 0 0 0 1px #0a66c2;
 }
 
 

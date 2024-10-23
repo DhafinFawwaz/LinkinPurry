@@ -346,6 +346,11 @@ body {
     font-weight: 600;
     color: #888888;
 }
+.email-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #999;
+}
 
 /* Styling untuk mobile devices dengan lebar maksimal 768px (misal untuk ukuran smartphone) */
 @media (max-width: 768px) {
