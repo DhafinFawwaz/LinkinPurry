@@ -76,7 +76,7 @@
         <div id="applyModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeModal">&times;</span>
-                <h2>Apply to <?= htmlspecialchars($data["user"]["username"]) ?></h2>
+                <h2>Apply to <?= htmlspecialchars($data["company"]["username"]) ?></h2>
 
                 <form id="applicationForm" action="/<?= $data["lowongan"]["lowongan_id"] ?>" method="post" enctype="multipart/form-data">
                     <!-- resume  -->
