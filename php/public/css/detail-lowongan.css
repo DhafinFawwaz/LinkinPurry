@@ -100,6 +100,24 @@ body {
     margin-top: 32px;
     margin-bottom: 20px;
 }
+
+.applicant {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-block: 20px;
+}
+
+.applicant h2 {
+    margin-bottom: 10px;
+}
+
+hr {
+    margin: 5px 0;
+    border: 1px solid #dddddd80;
+}
+
 .job-type p {
     color: #666;
     font-size: 14px;
@@ -121,6 +139,7 @@ body {
     display: flex;
     /* align-items: center; */
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .job-description>a {
     font-size: 0.9rem;
@@ -149,23 +168,6 @@ body {
     gap: 0.5rem;
     display: flex;
 }
-
-/* 
-.apply-button {
-    width: 20%;
-    background-color: #0073b1;
-    color: white;
-    padding: 12px 0;
-    border: none;
-    border-radius: 30px;
-    text-align: center;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.apply-button:hover {
-    background-color: #005f8b;
-} */
 
 .apply-closed {
     color: #cc112e;
@@ -199,6 +201,10 @@ body {
     cursor: pointer;
 }
 
+#download-csv-button {
+    width: max-content;
+    height: max-content;
+}
 
 .add-button {
     background-color: #2cca0c;
@@ -557,6 +563,7 @@ label {
     }
 
     #job-details-wrapper {
+        width: 95%;
         margin-inline: 10px;
     }
 }
