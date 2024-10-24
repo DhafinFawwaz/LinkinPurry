@@ -28,17 +28,6 @@ class HomeController extends Controller {
     }
     
     public function filterLowongan() {
-        if(!in_array($_POST["jenis_pekerjaan"], ['Full Time', 'Part Time', 'Internship'])) {
-            http_response_code(400);
-            echo "";
-            exit;
-        }
-        if(!in_array($_POST["jenis_lokasi"], ['On-Site', 'Hybrid', 'Remote'])) {
-            http_response_code(400);
-            echo "";
-            exit;
-        }
-
         $search = $_POST['search'] ?? '';
         $jobTypes = explode(',', $_POST['jobTypes'] ?? '');
         $locationTypes = explode(',', $_POST['locationTypes'] ?? '');
