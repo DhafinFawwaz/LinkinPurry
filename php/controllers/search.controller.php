@@ -11,12 +11,13 @@ class SearchController extends Controller {
     }
     
     public function filterLowongan() {
+
         session_start();
         $search = $_GET['search'] ?? '';
         $jobTypes = explode(',', $_GET['jobTypes'] ?? '');
         $locationTypes = explode(',', $_GET['locationTypes'] ?? '');
         $sortByDate = $_GET['sortByDate'] ?? 'desc';
-        $currentPage = (int)$_GET['page'] ?? 1;
+        $currentPage = (int)($_GET['page'] ?? 1);
     
         $companyFilter = $_SESSION['user']->username ?? '';
         if (isset($_SESSION['user']) && ($_SESSION['user']->role === 'jobseeker')) {
