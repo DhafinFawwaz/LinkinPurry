@@ -14,7 +14,7 @@
     <div class="app__container">
         <main class="app__content">
             <div class="top__content">
-                Dapatkan manfaat maksimal dari dunia profesional Anda
+                Unlock the full potential of your professional world.
             </div>
     
             <div class="card">
