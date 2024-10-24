@@ -1,5 +1,3 @@
-
-
 CREATE OR REPLACE PROCEDURE create_user_company(
     email VARCHAR(255),
     password VARCHAR(255),
@@ -26,3 +24,17 @@ BEGIN
     UPDATE "Company_Detail" SET lokasi = new_lokasi, about = new_about WHERE user_id = user_id_to_update;
 END;
 $$ LANGUAGE plpgsql;
+
+/* function dan trigger untuk update updated_now pada "Lowongan" saat diupdate */
+CREATE OR REPLACE FUNCTION update_updated_at_lowongan_kerja_function()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_updated_at_lowongan_kerja
+BEFORE UPDATE ON "Lowongan"
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_lowongan_kerja_function();

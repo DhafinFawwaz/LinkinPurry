@@ -15,13 +15,17 @@ CREATE TABLE "Company_Detail" (
 );
 
 -- Tabel Lowongan
+
+CREATE TYPE job_type AS ENUM('Full Time', 'Part Time', 'Internship');
+CREATE TYPE location_type AS ENUM('On-Site', 'Hybrid', 'Remote');
+
 CREATE TABLE "Lowongan" (
     lowongan_id SERIAL PRIMARY KEY,
     company_id INT REFERENCES "User" (user_id) ON DELETE CASCADE,
     posisi VARCHAR(255) NOT NULL,
     deskripsi TEXT NOT NULL,
-    jenis_pekerjaan VARCHAR(100) CHECK (jenis_pekerjaan IN ('Full Time', 'Part Time', 'Internship')) NOT NULL,
-    jenis_lokasi VARCHAR(100) CHECK (jenis_lokasi IN ('On-Site', 'Hybrid', 'Remote')) NOT NULL,
+    jenis_pekerjaan job_type NOT NULL,
+    jenis_lokasi location_type NOT NULL,
     is_open BOOLEAN DEFAULT true,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

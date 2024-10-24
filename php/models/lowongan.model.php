@@ -216,7 +216,7 @@ class Lowongan extends Model {
     }
 
     public function save() {
-        self::DB()->query("UPDATE \"Lowongan\" SET posisi = $1, deskripsi = $2, jenis_pekerjaan = $3, jenis_lokasi = $4, is_open = $5, updated_at = NOW() WHERE lowongan_id = $6", [$this->posisi, $this->deskripsi, $this->jenis_pekerjaan, $this->jenis_lokasi, Model::phpBoolToPgBool($this->is_open), $this->lowongan_id]);
+        self::DB()->query("UPDATE \"Lowongan\" SET posisi = $1, deskripsi = $2, jenis_pekerjaan = $3, jenis_lokasi = $4, is_open = $5 WHERE lowongan_id = $6", [$this->posisi, $this->deskripsi, $this->jenis_pekerjaan, $this->jenis_lokasi, Model::phpBoolToPgBool($this->is_open), $this->lowongan_id]);
     }
 
     public function isLowonganExist() {
