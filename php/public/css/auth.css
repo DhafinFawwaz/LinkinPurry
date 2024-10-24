@@ -398,11 +398,14 @@ body {
     margin: 1rem 0 2rem 0;
     font-weight: normal;
     padding: 0 2rem 0 2rem;
+    align-self: center;
     text-align: center;
+    width: 50%;
 }
 @media only screen and (max-width: 769px) {
     .top__content{
         font-size: 2rem;
+        width: 80%;
     }
 }
 
