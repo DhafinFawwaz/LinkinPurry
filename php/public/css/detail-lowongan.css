@@ -48,7 +48,7 @@ body {
 }
 
 .company-profile h2 {
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .company-profile img {
@@ -60,7 +60,7 @@ body {
 
 .job-details h2 {
     font-size: 24px;
-    margin-bottom: 6px;
+    margin: 0;
 }
 
 .job-details p {
@@ -70,7 +70,9 @@ body {
 }
 .job-title-status {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
+    padding-top: 20px;
 }
 .open-label{
     background-color: #28a745;
@@ -92,6 +94,8 @@ body {
 }
 
 .job-description {
+    display: flex;
+    flex-direction:column;
     font-size: 14px;
     margin-top: 32px;
     margin-bottom: 20px;
@@ -113,10 +117,9 @@ body {
 
 .job-description {
     font-size: 14px;
-    margin-top: 32px;
-    margin-bottom: 20px;
+    margin-block: 0;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
 }
 .job-description>a {
@@ -135,6 +138,10 @@ body {
 .job-description h2 {
     font-size: 20px;
     margin-bottom: 10px;
+}
+
+.job-description p {
+    margin: 0;
 }
 
 .apply-button-action {
