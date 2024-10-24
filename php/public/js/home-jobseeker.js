@@ -1,4 +1,3 @@
-(() => {
 let lastPage = 1; // Used in filterAndSortJobs and deleteJob
 document.querySelectorAll('.collapsible-title').forEach(button => {
     button.addEventListener('click', function () {
@@ -89,4 +88,3 @@ function deleteJob(jobId) {
 
 filterAndSortJobs();
 
-})();
