@@ -7,6 +7,7 @@ require_once __DIR__ . '/../auth/authenticated.php';
 require_once __DIR__ . '/../controllers/csv-export.controller.php';
 require_once __DIR__ . '/../controllers/delete-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/download-file.controller.php';
+require_once __DIR__ . '/../controllers/search.controller.php';
 
 
 Route::get("/api/something", [NotAuthenticated::class, function(){
@@ -17,6 +18,7 @@ Route::get("/api/something", [NotAuthenticated::class, function(){
 }]);
 
 Route::get("/api/csv/{int}", [CompanyOnly::class, CSVExportController::class]);
+Route::get("/api/search", [SearchController::class]);
 
 
 Route::post("/api/{int}/delete", [CompanyOnly::class, DeleteLowonganController::class]);

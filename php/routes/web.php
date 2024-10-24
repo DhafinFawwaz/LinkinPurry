@@ -13,7 +13,7 @@ require_once __DIR__ . '/../controllers/detail-lamaran.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/edit-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/add-lowongan.controller.php';
-require_once __DIR__ . '/../controllers/home-jobseeker.controller.php';
+require_once __DIR__ . '/../controllers/home.controller.php';
 require_once __DIR__ . '/../controllers/riwayat-lamaran.controller.php';
 
 

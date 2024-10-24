@@ -36,7 +36,7 @@ function filterAndSortJobs(page = 1) {
     }
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/', true);
+    xhr.open('GET', `/api/search?search=${encodeURIComponent(searchQuery)}&jobTypes=${encodeURIComponent(jobTypes.join(','))}&locationTypes=${encodeURIComponent(locationTypes.join(','))}&sortByDate=${encodeURIComponent(sortByDate)}&page=${encodeURIComponent(page)}`, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.withCredentials = true;
     xhr.onload = function () {
@@ -46,7 +46,7 @@ function filterAndSortJobs(page = 1) {
         }
     };
 
-    xhr.send(`search=${encodeURIComponent(searchQuery)}&jobTypes=${encodeURIComponent(jobTypes.join(','))}&locationTypes=${encodeURIComponent(locationTypes.join(','))}&sortByDate=${encodeURIComponent(sortByDate)}&page=${encodeURIComponent(page)}`);
+    xhr.send(null);
 }
 
 

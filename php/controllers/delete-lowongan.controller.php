@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
+require_once __DIR__ . "/../controllers/search.controller.php";
+
 class DeleteLowonganController extends Controller {
     public function validatedHandle(){
 
@@ -19,6 +21,6 @@ class DeleteLowonganController extends Controller {
         Lowongan::deleteAttachmentLowonganByLowonganId($lowongan_id);
         $lowongan->delete();
         
-        (new HomeController())->filterLowongan();
+        (new SearchController())->filterLowongan();
     }
 }

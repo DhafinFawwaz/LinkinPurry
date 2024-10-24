@@ -107,7 +107,7 @@
 
     </main>
 
-    <script src="/public/js/home-jobseeker.js"></script>
+    <script src="/public/js/home.js"></script>
 </body>
 </html>
 

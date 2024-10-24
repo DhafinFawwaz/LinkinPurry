@@ -2,37 +2,21 @@
 require_once __DIR__ . "/../lib/controller.php";
 require_once __DIR__ . "/../models/lowongan.model.php"; 
 
-class HomeController extends Controller {
-    function requiredPostParams() {
-        return [
-            "search",
-            "jobTypes",
-            "locationTypes",
-            "sortByDate",
-            "page"
-        ];
-    }
+class SearchController extends Controller {
 
     public function validatedHandle() {
-        session_start();
-        /** @var User */
-        $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
+        if (isset($_GET['search'])) {
             return $this->filterLowongan();
-        }
-
-        return $this->view("home-jobseeker.php", [
-            "user" => $user
-        ]);
+        } else echo "";
     }
     
     public function filterLowongan() {
-        $search = $_POST['search'] ?? '';
-        $jobTypes = explode(',', $_POST['jobTypes'] ?? '');
-        $locationTypes = explode(',', $_POST['locationTypes'] ?? '');
-        $sortByDate = $_POST['sortByDate'] ?? 'desc';
-        $currentPage = (int)$_POST['page'] ?? 1;
+        session_start();
+        $search = $_GET['search'] ?? '';
+        $jobTypes = explode(',', $_GET['jobTypes'] ?? '');
+        $locationTypes = explode(',', $_GET['locationTypes'] ?? '');
+        $sortByDate = $_GET['sortByDate'] ?? 'desc';
+        $currentPage = (int)$_GET['page'] ?? 1;
     
         $companyFilter = $_SESSION['user']->username ?? '';
         if (isset($_SESSION['user']) && ($_SESSION['user']->role === 'jobseeker')) {
