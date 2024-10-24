@@ -279,9 +279,7 @@ body {
     background-color: #005b8f;
 }
 
-/* Modal styling */
 .modal {
-    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -289,8 +287,11 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.6); /* Dimmed background */
+    background-color: rgba(0,0,0,0.6);
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+
 .modal-content {
     background-color: #fff;
     margin: 5% auto;
@@ -299,49 +300,69 @@ body {
     max-width: 40rem;
     border-radius: 10px;
 }
+
 .modal-content h2 {
     font-size: 20px;
     margin-bottom: 25px;
     color: #000000E6;
 }
+
+.show {
+    visibility: visible;
+    opacity: 100%;
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.show>.modal-content {
+    transition-duration: inherit;
+    transition-timing-function: inherit;
+    scale: 1;
+}
+
+.hide>.modal-content {
+    transition-duration: inherit;
+    transition-timing-function: inherit;
+    scale: 0.5;
+}
+
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     /* font-weight: bold; */
 }
+
 .close:hover,
 .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
-/* .button {
-    padding: 10px 20px;
-    background-color: #0073b1;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.button:hover {
-    background-color: #005582;
-} */
+
 .form-group {
     margin-bottom: 30px;
 }
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
     font-size: 16px;
     color: #000000E6;
 }
+
 .form-group label span {
     color: #666;
     font-size: 12px;
 }
+
 .form-group input[type="file"] {
     display: none; /* Hide the actual file input */
 }
+
 .upload-box {
     display: flex;
     border-radius: 10px;
@@ -351,10 +372,12 @@ body {
     overflow: hidden;
     align-items: stretch;
 }
+
 .upload-box:hover {
     cursor: pointer;
     background-color: rgba(23, 131, 255, 0.05);
 }
+
 .upload-box .file-type {
     align-items: center;
     background-color: #cc112e;
@@ -365,12 +388,15 @@ body {
     align-items: center;
     min-height: 5rem;
 }
+
 .upload-box .file-type.mp4 {
     background-color: #0073b1;
 }
+
 .upload-box .file-type.cv {
     background-color: #0073b1;
 }
+
 .upload-box span {
     color: #000000E6;
     margin-left: 20px;
@@ -386,10 +412,18 @@ label {
 #resumeFileName {
     font-size: 14px;
     color: #666;
+    align-content: center;
+}
+
+#videoFileName {
+    font-size: 14px;
+    color: #666;
+    align-content: center;
 }
 
 
 .replace-btn {
+    cursor: pointer;
     border:  2px solid #0A66C2;
     background-color: #ffffff;
     color: #0A66C2;

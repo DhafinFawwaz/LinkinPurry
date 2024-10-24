@@ -70,7 +70,7 @@
         </div>
         
         <!-- modal structure (popup) -->
-        <div id="applyModal" class="modal">
+        <div id="applyModal" class="modal hide">
             <div class="modal-content">
                 <span class="close" id="closeModal">&times;</span>
                 <h2>Apply to <?= htmlspecialchars($data["company"]["username"]) ?></h2>
@@ -86,7 +86,7 @@
                             <span id="resumeFileName">No file chosen</span>
                         </div>
                         <button type="button" class="replace-btn" id="uploadResumeBtn">Upload resume</button>
-                        <input type="file" id="cv" name="cv" accept=".pdf" onchange="updateFileName('cv', 'resumeFileName')">
+                        <input type="file" id="cv" name="cv" accept=".pdf">
                         <div id="error-message" class="error-message"></div>
                     </div>
 
@@ -100,7 +100,7 @@
                             <span id="videoFileName">No file chosen</span>
                         </div>
                         <button type="button" class="replace-btn" id="uploadVideoBtn">Upload video</button>
-                        <input type="file" id="video" name="video" accept="video/mp4" onchange="updateFileName('video', 'videoFileName')">
+                        <input type="file" id="video" name="video" accept="video/mp4">
                     </div>
 
                     <div class="submit-button">
