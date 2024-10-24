@@ -20,22 +20,24 @@ nav {
     align-self: center; */
     /* margin: 0 50px;
     padding: 0 24px; */
-    max-width: 50rem;
+    /* max-width: 50rem; */
     width: 100%;
-    /* max-width: 70vw; */
+    max-width: 68vw;
 }
 
 nav ul {
     margin: 0;
     list-style-type: none;
     display: flex;
-    gap: 2rem;
+    gap: 20px;
+    padding: 0;
 }
 
 
 nav ul li a {
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: #00000099;
     text-decoration: none;
     text-align: center;
@@ -47,8 +49,9 @@ nav ul li a:hover {
 }
 
 nav ul li a img {
-    border-radius: 25px;
+    border-radius: 50%;
     height: 24px;
+    width: 24px;
 }
 
 .logo img {
@@ -64,7 +67,7 @@ nav ul li a.btn-sign-in {
     font-size: 16px;
     font-weight: bold;
     color: #00000099;
-    min-width: max-content;
+    width: max-content;
 }
 
 nav ul li a.btn-sign-in {
@@ -110,7 +113,7 @@ nav ul li.active a::after {
     width: 100%;
     display: flex;
     justify-content: center;
-    width: 4.5rem;
+    width: 80px;
 }
 .nav-item>a:hover {
     color: black;
@@ -149,6 +152,7 @@ nav ul li.active a::after {
 
     nav {
         width: 100vw;
+        max-width: 100%;
     }
 
     nav ul {
