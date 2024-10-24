@@ -140,4 +140,13 @@ Now, you can access the server at `http://localhost:8080`.
 1. All Responsive Web Design
 2. UI/UX seperti LinkedIn
 3. Data Export
-4. Google Lighthouse
+4. Google Lighthouse:
+![lighthouse1](screenshots\1.png)
+![lighthouse1](screenshots\2.png)
+![lighthouse1](screenshots\3.png)
+![lighthouse1](screenshots\4.png)
+![lighthouse1](screenshots\5.png)
+![lighthouse1](screenshots\6.png)
+![lighthouse1](screenshots\7.png)
+![lighthouse1](screenshots\8.png)
+![lighthouse1](screenshots\9.png)
