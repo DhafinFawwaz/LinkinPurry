@@ -38,7 +38,7 @@ function filterAndSortJobs(page = 1) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
+    xhr.withCredentials = true;
     xhr.onload = function () {
         if (xhr.status === 200) {
             const jobList = document.querySelector('.job-list');
