@@ -60,9 +60,9 @@ class HomeJobseekerController extends Controller {
                                     <img src='../public/assets/company_profile.svg' alt='job-picture'>
                                 </div>
                                 <div class='job-card-details'>
-                                    <h3>{$lowongan['posisi']}</h3>
-                                    <p>{$lowongan['company_name']}</p>
-                                    <p class='loc'>" . ($lowongan['company_location'] ?: 'Location not specified') . "</p>
+                                    <h3>" . htmlspecialchars($lowongan['posisi']) . "</h3>
+                                    <p>" . htmlspecialchars($lowongan['company_name']) . "</p>
+                                    <p class='loc'>" . (htmlspecialchars($lowongan['company_location']) ?: 'Location not specified') . "</p>
                                 </div>
                             </div>
                         </a>";
