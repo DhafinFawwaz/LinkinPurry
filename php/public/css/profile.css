@@ -232,14 +232,19 @@ body {
     border-radius: 10rem;
     border: 1px solid #0a66c2;
 }
-.outline-button:hover {
+.outline-button:hover:enabled {
     background: #0a66c2;
     color: white;
 }
-.outline-button:active {
+.outline-button:active:enabled {
     border: 1px solid #054a8f;
     background: #054a8f;
     color: white;
+}
+.outline-button:disabled {
+    border: 1px solid #aaa;
+    color: #ccc;
+    cursor: not-allowed;
 }
 
 
@@ -268,9 +273,15 @@ body {
     color: white;
 }
 .button1:active {
-    background: #054a8f;
+    background: #03396e;
     color: white;
 }
+.button1:disabled {
+    background-color: #aaa;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
 
 
 .profile-form {

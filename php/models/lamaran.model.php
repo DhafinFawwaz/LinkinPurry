@@ -183,9 +183,7 @@ class Lamaran extends Model {
         return true;
     }
     public static function isLamaranFileSubmittedToCompany($company_id, $file_type, $file_path) {
-        if($file_type == "videos") {
-            $file_type = "video";
-        }
+        if($file_type == "videos") $file_type = "video";
         self::DB()->query(
             "SELECT * FROM \"Lamaran\" l
             JOIN \"Lowongan\" lw ON l.lowongan_id = lw.lowongan_id
