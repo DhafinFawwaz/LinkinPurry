@@ -553,7 +553,7 @@ label {
 /* mobile devices */
 @media (max-width: 768px) {
     .modal-content{
-        width: 100%;
+        width: 95%;
     }
 
     #job-details-wrapper {
