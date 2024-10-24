@@ -521,4 +521,8 @@ label {
     .modal-content{
         width: 100%;
     }
+
+    #job-details-wrapper {
+        margin-inline: 10px;
+    }
 }
