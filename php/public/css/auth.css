@@ -135,7 +135,7 @@ html {
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    margin: 0 auto
+    margin: 10vh auto;
 }
 
 .content__title {
@@ -398,7 +398,7 @@ body {
 .top__content{
     font-size: 2.8rem;
     margin: 1rem 0 2rem 0;
-    font-weight: 600;
+    font-weight: normal;
     padding: 0 2rem 0 2rem;
     text-align: center;
 }

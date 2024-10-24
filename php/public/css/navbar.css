@@ -9,7 +9,7 @@ header {
     /* padding: 10px 0; */
     width: 100%;
     border-bottom: 1px solid #ddd;
-    padding-top: 0.5rem;
+    padding-block: 5px;
 }
 
 nav {
@@ -22,6 +22,7 @@ nav {
     padding: 0 24px; */
     max-width: 50rem;
     width: 100%;
+    /* max-width: 70vw; */
 }
 
 nav ul {
@@ -63,16 +64,24 @@ nav ul li a.btn-sign-in {
     font-size: 16px;
     font-weight: bold;
     color: #00000099;
+    min-width: max-content;
 }
 
 nav ul li a.btn-sign-in {
-    border: 1px solid #0073b1;
+    border: 1px solid #0b66c3;
     border-radius: 24px;
     color: #0966c3;
 }
 
+nav ul li a.btn-sign-in:hover {
+    color: #fff;
+    background-color: #0b66c3;
+    /* make smooth hover transition */
+    transition: background-color 0.3s ease;
+}
+
 nav ul li.active a {
-    color: #0073b1;
+    color: #0b66c3;
 }
 
 
@@ -161,6 +170,7 @@ nav ul li.active a::after {
         min-width: max-content;
         font-size: 16px;
         padding: 4px 8px;
+        margin-right: 8px;
     }
 
     .logo {

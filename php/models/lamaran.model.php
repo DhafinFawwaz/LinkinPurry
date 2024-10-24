@@ -140,6 +140,25 @@ class Lamaran extends Model {
         return self::DB()->fetchAll();
     }
 
+    public static function deleteAllLamaranCvAndVideosByLowonganId($lowongan_id) {
+        try {
+            self::DB()->query("SELECT * FROM \"Lamaran\" WHERE lowongan_id = $1", [$lowongan_id]);
+            $listLamaran = self::DB()->fetchAll();
+            foreach ($listLamaran as $Lamaran) {
+                $cv_path = "." . $Lamaran['cv_path'];
+                if (file_exists($cv_path)) {
+                    unlink($cv_path);
+                }
+                if (!empty($Lamaran['video_path'])){
+                    $video_path = "." . $Lamaran['video_path'];
+                    if (file_exists($video_path)) {
+                        unlink($video_path);
+                    }
+                }
+            }
+        } catch (Exception $e) {}
+    }
+
     public static function getAllLamaranAndUserByLowonganId($lowongan_id) {
         self::DB()->query(
             "SELECT *

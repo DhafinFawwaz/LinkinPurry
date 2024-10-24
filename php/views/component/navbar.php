@@ -8,7 +8,13 @@ $currentPage = $_SERVER['REQUEST_URI'];
 <header>
     <link rel="stylesheet" href="/public/css/navbar.css">
     <nav>
-        <?php if ($isAuthenticated): ?>
+        <div class="logo">
+            <a href="/">
+                <img src="/public/assets/in_icon.svg" alt="LinkedIn Logo">
+            </a>
+        </div>
+        <!-- kalau mau diganti ke purry -->
+        <!-- <?php if ($isAuthenticated): ?>
             <div class="logo">
                 <a href="/">
                     <img src="/public/assets/in_icon.svg" alt="LinkedIn Logo">
@@ -17,10 +23,10 @@ $currentPage = $_SERVER['REQUEST_URI'];
         <?php else: ?>
             <div class="logo">
                 <a href="/login">
-                    <?php require 'linkedin-logo-medium.php'; ?>
+                    <?php require 'linkinpurry-logo.php'; ?>
                 </a>
             </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
         <ul>
             <?php if ($isAuthenticated): ?>
                 <!-- Jika sudah login -->
@@ -50,7 +56,7 @@ $currentPage = $_SERVER['REQUEST_URI'];
             <?php else: ?>
                 <!-- Jika belum login -->
                 <li class="nav-item">
-                    <a href="/">
+                    <a href="/" class="job-icon">
                         <img src="/public/assets/jobs_icon.svg" alt="Jobs">
                         <span>Jobs</span>
                     </a>
@@ -59,7 +65,7 @@ $currentPage = $_SERVER['REQUEST_URI'];
                     <a href="/register" class="btn-join-now">Join Now</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/login" class="btn-sign-in">Sign In</a>
+                    <a href="/login" class="btn-sign-in">Login</a>
                 </li>
             <?php endif; ?>
         </ul>
