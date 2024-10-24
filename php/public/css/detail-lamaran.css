@@ -394,12 +394,13 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 24px;
     font-weight: 700;
-    text-align: center;
+    /* text-align: center; */
+    /* margin-bottom: 20px; */
 }
 h2 {
-    font-size: 1.4rem;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.5rem;
 }
@@ -417,11 +418,12 @@ h4 {
 section {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 section>div {
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
     margin-bottom: 1rem;
     /* margin-left: 1rem;
     margin-right: 1rem; */
@@ -433,6 +435,11 @@ section>div {
     padding: 1rem;
     height: unset;
     border: 1px solid #ddd;
+}
+
+.position-title {
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
 }
 
 .file-container {
@@ -490,14 +497,26 @@ section>div {
     cursor: not-allowed
 }
 
+#button-reject {
+  background-color: #ff1717;
+}
+
 #quilleditor {
     height: 10rem;
 }
 
 .profile-container {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
 }
+
+.profile-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
 .img-container {
     width: 4rem;
     height: 4rem;
@@ -508,6 +527,11 @@ section>div {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
 }
 
 .waiting {
@@ -567,3 +591,11 @@ section>div {
 }
 
 /* #endregion global css */
+
+/* mobile size */
+@media only screen and (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
