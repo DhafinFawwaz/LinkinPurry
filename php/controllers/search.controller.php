@@ -92,6 +92,7 @@ class SearchController extends Controller {
                 }
                 ///{$lowongan['lowongan_id']}/delete
                 echo "<hr></div>";
+                echo "<hr>";
             }
             
             // tombol pagination
