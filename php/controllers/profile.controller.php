@@ -2,7 +2,13 @@
 require_once __DIR__ . "/../lib/controller.php";
 require_once __DIR__ . "/../models/company.model.php";
 class ProfileController extends Controller {
-    public function handle(){
+    function requiredPostParams() {
+        return [
+            "username"
+        ];
+    }
+
+    public function validatedHandle(){
         /** @var User */
         $user = $_SESSION['user'];
         if($user->role === "company") {

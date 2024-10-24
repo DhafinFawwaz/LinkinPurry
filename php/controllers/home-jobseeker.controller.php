@@ -2,8 +2,18 @@
 require_once __DIR__ . "/../lib/controller.php";
 require_once __DIR__ . "/../models/lowongan.model.php"; 
 
-class HomeJobseekerController extends Controller {
-    public function handle() {
+class HomeController extends Controller {
+    function requiredPostParams() {
+        return [
+            "search",
+            "jobTypes",
+            "locationTypes",
+            "sortByDate",
+            "page"
+        ];
+    }
+
+    public function validatedHandle() {
         session_start();
         /** @var User */
         $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
@@ -18,6 +28,17 @@ class HomeJobseekerController extends Controller {
     }
     
     public function filterLowongan() {
+        if(!in_array($_POST["jenis_pekerjaan"], ['Full Time', 'Part Time', 'Internship'])) {
+            http_response_code(400);
+            echo "";
+            exit;
+        }
+        if(!in_array($_POST["jenis_lokasi"], ['On-Site', 'Hybrid', 'Remote'])) {
+            http_response_code(400);
+            echo "";
+            exit;
+        }
+
         $search = $_POST['search'] ?? '';
         $jobTypes = explode(',', $_POST['jobTypes'] ?? '');
         $locationTypes = explode(',', $_POST['locationTypes'] ?? '');

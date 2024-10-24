@@ -3,8 +3,15 @@ require_once __DIR__ . "/../lib/controller.php";
 require_once __DIR__ . "/../lib/sanitizer.php";
 require_once __DIR__ . "/../models/lamaran.model.php";
 require_once __DIR__ . "/../models/user.model.php";
-class LamaranController extends Controller {
-    public function handle(){
+class DetailLamaranController extends Controller {
+    function requiredPostParams() {
+        return [
+            "status",
+            "status_reason"
+        ];
+    }
+
+    public function validatedHandle(){
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             return $this->handlePost();
         } else {
@@ -14,14 +21,11 @@ class LamaranController extends Controller {
 
 
     public function handlePost() {
-        if(!isset($_POST["status"])) {
-            $this->redirect("/not-found");
-            return;
+        if(!in_array($_POST["status"], ['accepted', 'rejected', 'waiting'])) {
+            Message::Error("Error", "Invalid status");
+            return $this->refreshPage();
         }
-        if(!isset($_POST["status_reason"])) {
-            $this->redirect("/not-found");
-            return;
-        }
+        
         $user = $this->getCurrentUser();
         if($user->role == 'jobseeker') {
             $this->redirect("/not-found");

@@ -2,13 +2,50 @@
 require_once __DIR__ . '/../lib/view.php';
 
 abstract class Controller implements IHandler{
+    function requiredPostParams() {
+        return [];
+    }
+
+    function handle() {
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $errorParams = [];
+            $requiredParams = $this->requiredPostParams();
+            foreach($requiredParams as $param) {
+                if(!isset($_POST[$param])) {
+                    $errorParams[] = $param;
+                }
+            }
+            if(count($errorParams) > 0) {
+                $this->errorHandle($errorParams);
+                return;
+            }
+        }
+        $this->validatedHandle();
+    }
+
+    function prettify($str) {
+        return ucwords(str_replace("_", " ", $str));
+    }
+
+    function errorHandle($errorParams) {
+        
+        for($i = 0; $i < count($errorParams); $i++) {
+            $errorParams[$i] = $this->prettify($errorParams[$i]);
+        }
+        $error_str = join(", ", $errorParams);
+
+        Message::Error("Error", "Missing parameters: $error_str");
+        $this->refreshPage();
+    }
+    abstract function validatedHandle();
+
     protected function view(string $path, $data = null){ 
         view($path, $data); 
         $_SESSION["message"] = null;
     }
     function redirect($url, $statusCode = 303)
     {
-        header('Location: ' . $url, replace: true);
+        header('Location: ' . $url, true, $statusCode);
         exit();
     }
 

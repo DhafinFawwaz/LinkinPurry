@@ -3,7 +3,11 @@ require_once __DIR__ . "/../models/user.model.php";
 require_once __DIR__ . "/../models/message.model.php";
 require_once __DIR__ . "/../lib/controller.php";
 class LoginController extends Controller {
-    public function handle(){
+    function requiredPostParams() {
+        return [];
+    }
+
+    public function validatedHandle(){
         $data = array();
         $data["form"] = $_POST;
 

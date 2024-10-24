@@ -4,7 +4,7 @@ require_once __DIR__ . "/../models/lamaran.model.php";
 
 class RiwayatLamaranController extends Controller {
 
-    public function handle() {
+    public function validatedHandle() {
         $user = $_SESSION['user'];
         $user_id = $user->id;
 

@@ -2,20 +2,38 @@
 require_once __DIR__ . "/../lib/controller.php";
 require_once __DIR__ . "/../models/user.model.php";
 require_once __DIR__ . "/../models/company.model.php";
-class Register extends Controller {
+class RegisterController extends Controller {
+    function requiredPostParams() {
+        return [
+            "username",
+            "email",
+            "password",
+            "confirmpassword",
+            "role"
+        ];
+    }
 
     private static function hasLetterAndNumber($str) { 
         return preg_match('/[a-zA-Z]/', $str) 
             && preg_match('/[0-9]/', $str); 
     } 
 
-    public function handle(){
+    public function validatedHandle(){
         $data["form"] = $_POST;
 
         if($_SERVER["REQUEST_METHOD"] == "GET") {
             if(!isset($data["form"]["roles"])) $data["form"]["roles"] = 'jobseeker';
             $this->view("register.php", $data);
             return;
+        } 
+        
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if(!in_array($_POST["role"], ['jobseeker', 'company'])) {
+                $data["error"]["role"] = 'Invalid role';
+                Message::Error("Error", "Invalid role");
+                $this->view("register.php", $data);
+                return;
+            }
         }
         
         

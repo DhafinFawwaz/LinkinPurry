@@ -4,7 +4,7 @@ require_once __DIR__ . "/../models/attachment-lowongan.model.php";
 require_once __DIR__ . "/../models/company.model.php";
 
 class DetailLowonganController extends Controller {
-    public function handle(){
+    public function validatedHandle(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return $this->handlePost();
         }

@@ -1,7 +1,16 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
 class AddLowonganController extends Controller {
-    public function handle(){
+    function requiredPostParams() {
+        return [
+            "posisi",
+            "deskripsi",
+            "jenis_pekerjaan",
+            "jenis_lokasi"
+        ];
+    }
+    
+    public function validatedHandle(){
 
         $user =$this->getCurrentUser();
         $data["user"] = (array)$user;
@@ -10,6 +19,14 @@ class AddLowonganController extends Controller {
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             $attachments = [];
+            if(!in_array($_POST["jenis_pekerjaan"], ['Full Time', 'Part Time', 'Internship'])) {
+                Message::Error("Error", "Invalid job type");
+                return $this->refreshPage();
+            }
+            if(!in_array($_POST["jenis_lokasi"], ['On-Site', 'Hybrid', 'Remote'])) {
+                Message::Error("Error", "Invalid location type");
+                return $this->refreshPage();
+            }
             
             if(isset($_FILES["attachments"]) && !!$_FILES["attachments"]["name"][0]) {
                 $names = $_FILES["attachments"]["name"];

@@ -3,7 +3,16 @@ require_once __DIR__ . "/../lib/controller.php";
 require_once __DIR__ . "/../lib/sanitizer.php";
 
 class EditLowonganController extends Controller {
-    public function handle(){
+    function requiredPostParams() {
+        return [
+            "posisi",
+            "deskripsi",
+            "jenis_pekerjaan",
+            "jenis_lokasi"
+        ];
+    }
+
+    public function validatedHandle(){
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[0];
 
@@ -32,6 +41,15 @@ class EditLowonganController extends Controller {
                 return $this->redirect("/".$lowongan_id);
             }
             if($crud_type == "edit") {
+                if(!in_array($_POST["jenis_pekerjaan"], ['Full Time', 'Part Time', 'Internship'])) {
+                    Message::Error("Error", "Invalid job type");
+                    return $this->refreshPage();
+                }
+                if(!in_array($_POST["jenis_lokasi"], ['On-Site', 'Hybrid', 'Remote'])) {
+                    Message::Error("Error", "Invalid location type");
+                    return $this->refreshPage();
+                }
+
                 $posisi = $_POST["posisi"];
                 $deskripsi = $_POST["deskripsi"];
                 $jenis_pekerjaan = $_POST["jenis_pekerjaan"];

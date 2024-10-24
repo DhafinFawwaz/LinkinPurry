@@ -3,7 +3,7 @@ require_once __DIR__ . "/../lib/controller.php";
 require_once __DIR__ . "/../models/lamaran.model.php";
 
 class DownloadFileController extends Controller {
-    public function handle(){
+    public function validatedHandle(){
         $user = $this->getCurrentUser();    
         $path = $this->getUrlPath();
         $file_type = $path[1];

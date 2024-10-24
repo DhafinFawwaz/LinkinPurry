@@ -11,7 +11,7 @@ class CSVExportController extends Controller {
         }
     }  
 
-    public function handle(){
+    public function validatedHandle(){
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[2];
         if($lowongan_id == null) {

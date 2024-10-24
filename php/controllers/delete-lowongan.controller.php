@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../lib/controller.php";
 class DeleteLowonganController extends Controller {
-    public function handle(){
+    public function validatedHandle(){
 
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[1];
@@ -19,6 +19,6 @@ class DeleteLowonganController extends Controller {
         Lowongan::deleteAttachmentLowonganByLowonganId($lowongan_id);
         $lowongan->delete();
         
-        (new HomeJobseekerController())->filterLowongan();
+        (new HomeController())->filterLowongan();
     }
 }

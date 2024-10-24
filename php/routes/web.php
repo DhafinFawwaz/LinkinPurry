@@ -11,7 +11,6 @@ require_once __DIR__ . '/../controllers/register.controller.php';
 require_once __DIR__ . '/../controllers/logout.controller.php';
 require_once __DIR__ . '/../controllers/detail-lamaran.controller.php';
 require_once __DIR__ . '/../controllers/detail-lowongan.controller.php';
-require_once __DIR__ . '/../controllers/home-company.controller.php';
 require_once __DIR__ . '/../controllers/edit-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/add-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/home-jobseeker.controller.php';
@@ -20,6 +19,7 @@ require_once __DIR__ . '/../controllers/riwayat-lamaran.controller.php';
 
 
 Route::on404(function(){
+    http_response_code(404);
     return view("404.php");
 });
 
@@ -28,11 +28,11 @@ Route::get("/login", [NotAuthenticated::class, function(){
 }]);
 Route::post("/login", [NotAuthenticated::class, LoginController::class]);
 
-Route::get("/register", [NotAuthenticated::class, Register::class]);
-Route::post("/register", [NotAuthenticated::class, Register::class]);
+Route::get("/register", [NotAuthenticated::class, RegisterController::class]);
+Route::post("/register", [NotAuthenticated::class, RegisterController::class]);
 
-Route::get("/", [HomeJobseekerController::class]);
-Route::post("/", [HomeJobseekerController::class]);
+Route::get("/", [HomeController::class]);
+Route::post("/", [HomeController::class]);
 
 Route::get("/riwayat-lamaran", [JobseekerOnly::class, RiwayatLamaranController::class]);
 Route::post("/riwayat-lamaran", [JobseekerOnly::class, RiwayatLamaranController::class]);
@@ -54,6 +54,6 @@ Route::post("/add",  [CompanyOnly::class, AddLowonganController::class]);
 Route::post("/{int}/{string}",  [CompanyOnly::class, EditLowonganController::class]);
 
 // /lowongan_id/lamaran_id
-Route::get("/{int}/{int}",  [Authenticated::class, LamaranController::class]);
-Route::post("/{int}/{int}",  [Authenticated::class, LamaranController::class]);
+Route::get("/{int}/{int}",  [Authenticated::class, DetailLamaranController::class]);
+Route::post("/{int}/{int}",  [Authenticated::class, DetailLamaranController::class]);
 
