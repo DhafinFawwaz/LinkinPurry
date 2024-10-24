@@ -62,7 +62,22 @@ class DetailLowonganController extends Controller {
         return $this->view("detail-lowongan.php", $data);
     }
 
+    function validateFiles() {
+        if($this->detectFileType($_FILES["cv"]["tmp_name"]) != "PDF") {
+            Message::Error("Error", "CV must be a pdf file");
+            return $this->refreshPage();
+        }
+        if(isset($_FILES["video"]) && $_FILES["video"]["error"] !== UPLOAD_ERR_NO_FILE) {
+            if($this->detectFileType($_FILES["video"]["tmp_name"]) != "Video") {
+                Message::Error("Error", "Video must be a video file");
+                return $this->refreshPage();
+            }
+        }
+    
+    }
     public function handlePost() {
+        $this->validateFiles();
+
         $userId = $_SESSION['user']->id;
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[0];

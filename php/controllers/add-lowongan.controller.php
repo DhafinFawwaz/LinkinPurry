@@ -17,6 +17,12 @@ class AddLowonganController extends Controller {
 
                 $i = 0;
                 for($i = 0; $i < count($names); $i++) {
+                    $type = $this->detectFileType($tmp_names[$i]);
+                    if($type != "Image") {
+                        Message::Error("Error", "Attachment must be an image");
+                        return $this->refreshPage();
+                    }
+
                     $name = uniqid() . "_" . basename($names[$i]);
                     $attachments[] = new Attachment($name, $tmp_names[$i]);
                 }

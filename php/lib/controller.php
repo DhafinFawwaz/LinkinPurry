@@ -31,4 +31,22 @@ abstract class Controller implements IHandler{
         $user = $_SESSION["user"];
         return $user;
     }
+
+   
+    function detectFileType($file) {
+        
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_file($finfo, $file);
+        finfo_close($finfo);
+    
+        if (strpos($mimeType, 'image/') === 0) {
+            return 'Image';
+        } else if ($mimeType === 'application/pdf') {
+            return 'PDF';
+        } else if (strpos($mimeType, 'video/') === 0) {
+            return 'Video';
+        }
+    
+        return '';
+    }
 }
