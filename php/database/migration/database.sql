@@ -1,9 +1,11 @@
+CREATE TYPE role_type AS ENUM('jobseeker', 'company');
+
 -- Tabel User
 CREATE TABLE "User" (
     user_id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role VARCHAR(20) CHECK (role IN ('jobseeker', 'company')) NOT NULL,
+    role role_type NOT NULL,
     nama VARCHAR(255) NOT NULL
 );
 
