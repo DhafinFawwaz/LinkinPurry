@@ -12,13 +12,18 @@
     <?php include 'component/navbar.php'; ?>
 
     <section>
+        <div class="position-title">
+            <?php echo "<h1>" . htmlspecialchars($data["lowongan"]["position"]) . "</h1>"; ?>
+        </div> 
+
         <div>
             
         <?php 
-            echo "<h1>" . htmlspecialchars($data["lowongan"]["position"]) . "</h1>";
+            // echo "<h1>" . htmlspecialchars($data["lowongan"]["position"]) . "</h1>";
 
             echo <<<EOD
             <div class="profile-container">
+                <div class="profile-wrapper">
                 <div class="img-container">
                     <img src="/public/assets/jobseeker_profile.svg" alt="profile-picture">
                 </div>
@@ -27,7 +32,8 @@ EOD;
             echo "<h2>" . htmlspecialchars($data["jobseeker"]["username"]) . "</h2>";
             echo "<h3>" . htmlspecialchars($data["jobseeker"]["role"]) . "</h3>";
             echo "<h4>" . htmlspecialchars($data["jobseeker"]["email"]) . "</h4>";
-
+            echo "</div></div>";
+            
             echo "<div class='status-container'>";
 
             if($data["lamaran"]["status"] == 'waiting') {
@@ -37,7 +43,7 @@ EOD;
             } else if($data["lamaran"]["status"] == 'rejected') {
                 echo "<div class='rejected'>Rejected</div>";
             }
-            echo "</div></div></div>";
+            echo "</div></div>";
             
 
             echo "<div class='file-container'>";
@@ -67,7 +73,7 @@ EOD;
         
         <div class='submit-button-container'>
             <button class="button1" type="submit" name="status" value="accepted">Accept</button>
-            <button class="button1" type="submit" name="status" value="rejected">Reject</button>
+            <button id="button-reject" class="button1" type="submit" name="status" value="rejected">Reject</button>
         </div>
     </form>
 EOD;
