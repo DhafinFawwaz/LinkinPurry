@@ -80,6 +80,7 @@ function deleteJob(jobId) {
         if (xhr.status === 200) {
             const jobList = document.querySelector('.job-list');
             jobList.innerHTML = xhr.responseText;
+            try { startToast("Success", "Job deleted successfully", "success");} catch(e){}
         }
     };
 

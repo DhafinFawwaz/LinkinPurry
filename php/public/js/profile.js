@@ -58,8 +58,7 @@ function updateProfile() {
             if(locationInput) currentLocation = locationInput.value;
             if(aboutInput) currentAbout = aboutInput.value;
 
-            try { startToast("Success", "Profile updated successfully", "success");
-            } catch(e){}
+            try { startToast("Success", "Profile updated successfully", "success");} catch(e){}
         }
     };
 
