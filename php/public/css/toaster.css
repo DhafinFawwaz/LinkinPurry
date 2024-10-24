@@ -33,18 +33,18 @@
 .toast-progress-error {
     height: 0.25em;
     background-color: #DC2626; 
-    transition-timing-function: linear;
 }
 
 .toast-progress-success {
     height: 0.25em;
     background-color: #16A34A;
-    transition-timing-function: linear;
 }
 
 .toast-progress-info {
     height: 0.25em;
     background-color: #F59E0B;
+}
+#toast-progress {
     transition-timing-function: linear;
 }
 
