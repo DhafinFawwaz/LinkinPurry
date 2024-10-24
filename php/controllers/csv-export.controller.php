@@ -15,12 +15,14 @@ class CSVExportController extends Controller {
         $pathArr = $this->getUrlPath();
         $lowongan_id = $pathArr[2];
         if($lowongan_id == null) {
+            http_response_code(400);
             return json_encode(["error" => "lowongan_id is required"]);
         }
 
         $user = $this->getCurrentUser();
 
         if(!Lowongan::isLowonganIdOwnedByCompany($user->id, $lowongan_id)) {
+            http_response_code(403);
             return json_encode(["error" => "lowongan_id is not owned by this company"]);
         }
         $lowongan = Lowongan::getLowonganById($lowongan_id);

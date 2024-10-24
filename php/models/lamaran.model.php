@@ -151,6 +151,33 @@ class Lamaran extends Model {
         return self::DB()->fetchAll();
     }
 
+    public static function isLamaranFileOwnedByUser($user_id, $file_type, $file_path) {
+        if($file_type == "videos") $file_type = "video";
+        self::DB()->query(
+            "SELECT * FROM \"Lamaran\" l
+            JOIN \"User\" u ON l.user_id = u.user_id
+            WHERE u.user_id = $1 AND l.".$file_type."_path = $2",
+            [$user_id, $file_path]
+        );
+        $rows = self::DB()->fetchRow();
+        if(empty($rows)) return false;
+        return true;
+    }
+    public static function isLamaranFileSubmittedToCompany($company_id, $file_type, $file_path) {
+        if($file_type == "videos") {
+            $file_type = "video";
+        }
+        self::DB()->query(
+            "SELECT * FROM \"Lamaran\" l
+            JOIN \"Lowongan\" lw ON l.lowongan_id = lw.lowongan_id
+            WHERE lw.company_id = $1 AND l.".$file_type."_path = $2",
+            [$company_id, $file_path]
+        );
+        $rows = self::DB()->fetchRow();
+        if(empty($rows)) return false;
+        return true;
+    }
+
 
     public function jsonSerialize(): string {
         return json_encode($this);
