@@ -28,20 +28,29 @@ class HomeController extends Controller {
     }
     
     public function filterLowongan() {
-        if(!in_array($_POST["jenis_pekerjaan"], ['Full Time', 'Part Time', 'Internship'])) {
-            http_response_code(400);
-            echo "";
-            exit;
+        $jobTypes = explode(',', $_POST['jobTypes'] ?? '');
+        if (!empty($jobTypes[0])){
+            foreach($jobTypes as $jobType){
+                if(!in_array($jobType, ['Full Time', 'Part Time', 'Internship'])){
+                    http_response_code(400);
+                    echo "";
+                    exit;
+                }
+            }
         }
-        if(!in_array($_POST["jenis_lokasi"], ['On-Site', 'Hybrid', 'Remote'])) {
-            http_response_code(400);
-            echo "";
-            exit;
+
+        $locationTypes = explode(',', $_POST['locationTypes'] ?? '');
+        if (!empty($locationTypes[0])){
+            foreach($locationTypes as $locationType){
+                if(!in_array($locationType, ['On-Site', 'Hybrid', 'Remote'])){
+                    http_response_code(400);
+                    echo "";
+                    exit;
+                }
+            }
         }
 
         $search = $_POST['search'] ?? '';
-        $jobTypes = explode(',', $_POST['jobTypes'] ?? '');
-        $locationTypes = explode(',', $_POST['locationTypes'] ?? '');
         $sortByDate = $_POST['sortByDate'] ?? 'desc';
         $currentPage = (int)$_POST['page'] ?? 1;
     
