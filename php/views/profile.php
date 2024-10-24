@@ -19,7 +19,7 @@
                     <?php require "component/close-icon.php"; ?>
                 </button>
             </div>
-            <form class="profile-form" action="/profile" method="post">
+            <div class="profile-form" action="/profile" method="post">
                 <div class="form__input">
                     <input id="username" name="username" required="" autofocus="" type="text" value="<?php if(isset($data["form"]["username"])) echo $data["form"]["username"] ?>"/>
                     <label for="username">Nama:</label>
@@ -45,10 +45,10 @@ EOT;
                 ?>
                 
                 <div class="edit-container">
-                    <button class="button1" id="save-profile-button" type="submit" formnovalidate>Save Changes</button>
-                    <button class="outline-button" id="cancel-profile-button" type="button">Cancel</button>
+                    <button id="update-button" class="button1" id="save-profile-button">Save Changes</button>
+                    <button class="outline-button" id="cancel-profile-button">Cancel</button>
                 </div>
-            </form>
+            </div>
 
             
         </div>
@@ -70,7 +70,7 @@ EOT;
                         <?php require "component/edit-icon.php"; ?>
                     </button>
                 </div>
-                <div class="profile-info">
+                <div id="profile-container" class="profile-info">
                     <?php 
                         echo "<h1>".htmlspecialchars($data["form"]["username"])."</h1>"; 
                         echo "<h2 class='email-title'>".htmlspecialchars($data["form"]["email"])."</h1>"; 

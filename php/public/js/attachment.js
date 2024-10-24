@@ -1,3 +1,5 @@
+(() => {
+
 const attachmentContainer = document.getElementById("attachment-container");
 const attachmentInput = document.getElementById("attachment-input");
 
@@ -18,3 +20,5 @@ attachmentInput.addEventListener("change", () => {
         reader.readAsDataURL(files[i]);
     }
 });
+
+})();

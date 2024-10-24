@@ -87,3 +87,4 @@ function deleteJob(jobId) {
 }
 
 filterAndSortJobs();
+
