@@ -163,7 +163,8 @@ html {
         max-width: 416px;
         box-sizing: border-box;
         box-shadow: unset;
-        padding: 0 20px
+        padding: 0 20px;
+        border: none;
     }
 }
 
@@ -242,7 +243,7 @@ html {
 }
 .footer__base__wrapper {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
     margin: auto
 }
@@ -253,10 +254,6 @@ html {
     line-height: 1.33333;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.9);
-}
-.copyright > svg {
-    height: 1.4rem;
-    width: 5.9rem;
 }
 
 .form__input>label {
