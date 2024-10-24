@@ -1,4 +1,5 @@
-const usernameInput = document.getElementById("username");
+(() => {
+    const usernameInput = document.getElementById("username");
 const usernameMessage = document.getElementById("username-message");
 const emailInput = document.getElementById("email");
 const emailMessage = document.getElementById("email-message");
@@ -105,3 +106,5 @@ if(locationInput) locationInput.addEventListener("input", validateForm);
 if(aboutInput) aboutInput.addEventListener("input", validateForm);
 
 validateForm();
+
+})();

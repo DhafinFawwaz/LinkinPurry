@@ -1,3 +1,4 @@
+(() => {
 var modal = document.getElementById("applyModal");
 var btn = document.getElementById("applyBtn");
 var span = document.getElementById("closeModal");
@@ -74,3 +75,5 @@ applicationForm.addEventListener("submit", function(event) {
         resumeErrorMessage.textContent = "A resume is required";
     }
 });
+
+})();

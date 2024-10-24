@@ -1,3 +1,4 @@
+(() => {
 const cancelProfileButton = document.getElementById("cancel-profile-button");
 const usernameInput = document.getElementById("username");
 const locationInput = document.getElementById("location");
@@ -71,3 +72,5 @@ function updateProfile() {
 
 const updateButton = document.getElementById("update-button");
 updateButton.addEventListener("click", updateProfile);
+
+})();

@@ -1,3 +1,4 @@
+(() => {
 // ngirim request AJAX ke /home-company
 function filterAndSortJobs(page = 1) {
     const searchQuery = document.getElementById('search-input').value;
@@ -26,3 +27,5 @@ function debouncedSearch() {
 }
 
 filterAndSortJobs();
+
+})();
