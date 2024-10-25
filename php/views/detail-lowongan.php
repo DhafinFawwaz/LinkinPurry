@@ -117,7 +117,7 @@
                 if (!empty($data["attachmentLowongan"])) {
                     foreach ($data["attachmentLowongan"] as $attachment) {
                         $src = $attachment["file_path"];
-                        echo "<div><img src='$src' /></div>";
+                        echo "<div><img src='$src' alt='attachment image'/></div>";
                     }
                 }
             ?>
