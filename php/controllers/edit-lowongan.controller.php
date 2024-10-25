@@ -4,12 +4,7 @@ require_once __DIR__ . "/../lib/sanitizer.php";
 
 class EditLowonganController extends Controller {
     function requiredPostParams() {
-        return [
-            "posisi",
-            "deskripsi",
-            "jenis_pekerjaan",
-            "jenis_lokasi"
-        ];
+        return [];
     }
 
     public function validatedHandle(){

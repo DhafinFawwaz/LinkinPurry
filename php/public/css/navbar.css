@@ -65,7 +65,7 @@ nav ul li a.btn-sign-in {
     padding: 8px 16px;
     text-decoration: none;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     color: #00000099;
     width: max-content;
 }

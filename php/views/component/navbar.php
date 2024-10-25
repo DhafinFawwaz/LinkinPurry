@@ -8,13 +8,7 @@ $currentPage = $_SERVER['REQUEST_URI'];
 <header>
     <link rel="stylesheet" href="/public/css/navbar.css">
     <nav>
-        <div class="logo">
-            <a href="/">
-                <img src="/public/assets/in_icon.svg" alt="LinkedIn Logo">
-            </a>
-        </div>
-        <!-- kalau mau diganti ke purry -->
-        <!-- <?php if ($isAuthenticated): ?>
+        <?php if ($isAuthenticated): ?>
             <div class="logo">
                 <a href="/">
                     <img src="/public/assets/in_icon.svg" alt="LinkedIn Logo">
@@ -26,7 +20,7 @@ $currentPage = $_SERVER['REQUEST_URI'];
                     <?php require 'linkinpurry-logo.php'; ?>
                 </a>
             </div>
-        <?php endif; ?> -->
+        <?php endif; ?>
         <ul>
             <?php if ($isAuthenticated): ?>
                 <!-- Jika sudah login -->

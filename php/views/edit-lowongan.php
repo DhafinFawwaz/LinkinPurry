@@ -70,7 +70,7 @@
                         foreach($data["attachmentLowongan"] as $attachment) {
                             echo "<div>";
                             $attachmentFilePath = $attachment['file_path'];
-                            echo "<img src=$attachmentFilePath>";
+                            echo "<img src=$attachmentFilePath alt='attachment image'>";
                             echo "</div>";
                         }
                     ?>

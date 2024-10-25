@@ -1,7 +1,7 @@
 (() => {
 var modal = document.getElementById("applyModal");
+var modalClass = document.getElementsByClassName("modal")[0];
 var btn = document.getElementById("applyBtn");
-var span = document.getElementById("closeModal");
 
 const applicationForm = document.getElementById("applicationForm");
 const resumeFileName = document.getElementById("resumeFileName");
@@ -31,23 +31,24 @@ function resetForm() {
 }
 
 // tampilkan popup
-btn.onclick = function() {
-    modal.style.display = "block";
-    // clear error message
+btn.addEventListener("click", function() {
+    modalClass.classList.remove("hide");
+    modalClass.classList.add("show");
     errorMessages.style.display = "none";
-}
+});
 
 // tutup popup
-closeModal.onclick = function() {
-    modal.style.display = "none";
-    console.log("anu");
+closeModal.addEventListener("click", function() {
+    modalClass.classList.remove("show");
+    modalClass.classList.add("hide");
     resetForm();
-}
+});
 
 // tutup popup saat klik daerah luar
 window.onclick = function(event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+        modalClass.classList.remove("show");
+        modalClass.classList.add("hide");
         resetForm();
     }
 }
@@ -59,6 +60,15 @@ function updateFileName(inputId, labelId) {
     var fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
     label.textContent = fileName;
 }
+
+resumeInput.addEventListener('change', function() {
+    updateFileName('cv', 'resumeFileName');
+});
+
+videoInput.addEventListener('change', function() {
+    updateFileName('video', 'videoFileName');
+});
+
 
 // error message
 applicationForm.addEventListener("submit", function(event) {

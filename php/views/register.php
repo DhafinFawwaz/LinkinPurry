@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Linkedin</title>
+    <title>Register - LinkinPurry</title>
     <meta name="description" content="Register a new account">
 
     <link rel="stylesheet" href="/public/css/auth.css">
@@ -16,7 +16,7 @@
     <div class="app__container">
         <main class="app__content">
             <div class="top__content">
-                Dapatkan manfaat maksimal dari dunia profesional Anda
+                Unlock the full potential of your professional world.
             </div>
     
             <div class="card">
@@ -79,7 +79,7 @@
 
             <br>
             <div class="register__container">
-                <span>Sudah di LinkedIn? <a href="/login" class="button3">Login</a></span>
+                <span>Sudah di LinkinPurry? <a href="/login" class="button3">Login</a></span>
                 
             </div>
         </main>
@@ -87,7 +87,7 @@
         <footer class="footer__base">
             <div class="footer__base__wrapper">
                 <p class="copyright">
-                    <?php require_once 'views/component/linkedin-logo-small.php'; ?>
+                    <?php require_once 'views/component/linkinpurry-dark-logo.php'; ?>
                 </p>
                 © 2024
             </div>

@@ -2,7 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -110,6 +111,7 @@ main {
 
 .profile-info h1 {
     font-size: 20px;
+    font-weight: 600;
     margin-top: 10px;
 }
 
@@ -169,6 +171,7 @@ main {
 /* Job Picks Section */
 #job-picks h2 {
     font-size: 20px;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
@@ -213,6 +216,7 @@ main {
 
 .job-card h3 {
     font-size: 16px;
+    font-weight: 600;
     margin-bottom: 5px;
     color: #0B65C2;
 }
@@ -230,7 +234,7 @@ main {
 
 hr {
     margin: 5px 0;
-    border: 1px solid #ddd;
+    border: 1px solid #dddddd80;
 }
 
 
@@ -290,7 +294,7 @@ hr {
 
 .filter-container p {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
