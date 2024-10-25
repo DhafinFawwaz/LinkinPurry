@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Lowongan - <?= htmlspecialchars($data["lowongan"]["posisi"]) ?></title>
+    <meta name="description" content="Edit job for <?= htmlspecialchars($data["lowongan"]["posisi"]) ?>">
 
     <link rel="stylesheet" href="/public/css/detail-lowongan.css">
     <link rel="stylesheet" href="/public/css/edit-lowongan.css">

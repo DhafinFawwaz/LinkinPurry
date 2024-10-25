@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Details - <?= htmlspecialchars($data["lowongan"]["posisi"]) ?></title>
+    <meta name="description" content="Job details for <?= htmlspecialchars($data["lowongan"]["posisi"]) ?>">
 
     <link rel="stylesheet" href="/public/css/detail-lowongan.css">
     <link rel="stylesheet" href="/public/css/riwayat-lamaran.css">

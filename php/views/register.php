@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Linkedin</title>
+    <meta name="description" content="Register a new account">
 
     <link rel="stylesheet" href="/public/css/auth.css">
 </head>

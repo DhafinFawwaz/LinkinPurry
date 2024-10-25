@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Vacancy - <?= htmlspecialchars($data["user"]["username"]) ?></title>
+    <meta name="description" content="Add new job">
 
     <link rel="stylesheet" href="/public/css/detail-lowongan.css">
     <link rel="stylesheet" href="/public/css/edit-lowongan.css">
