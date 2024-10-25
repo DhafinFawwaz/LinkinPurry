@@ -35,6 +35,10 @@ Navigating to the project directory:
 ```bash
 cd ./if3110-tubes-2024-k02-06
 ```
+Rename env.example file to env:
+```bash
+mv .env.example .env
+```
 ## 🔨 Run the Server
 Make sure Docker is installed and running on your machine. Then, run the following command to start the server:
 
@@ -113,10 +117,10 @@ Now, you can access the server at `http://localhost:8080`.
 | ------------------------------ | -------- |
 | Login                          | 13522084 |
 | Register                       | 13522084 |
-| Home (Jobseeker)               |          |
-| Home (Company)                 | 13522084, 13522064 |
+| Home (Jobseeker)               | 13522074 |
+| Home (Company)                 | 13522064, 13522084 |
 | Tambah Lowongan (Company)      | 13522084 |
-| Detail Lowongan (Company)      | 13522084 |
+| Detail Lowongan (Company)      | 13522064, 13522084 |
 | Detail Lamaran (Company)       | 13522084 |
 | Edit Lowongan (Company)        | 13522084 |
 | Detail Lowongan (Jobseeker)    |          |
@@ -147,10 +151,10 @@ Now, you can access the server at `http://localhost:8080`.
 | ------------------------------ | -------- |
 | Login                          | 13522084 |
 | Register                       | 13522084 |
-| Home (Jobseeker)               |          |
-| Home (Company)                 | 13522084, 13522064 |
+| Home (Jobseeker)               | 13522074 |
+| Home (Company)                 | 13522064, 13522084 |
 | Tambah Lowongan (Company)      | 13522084 |
-| Detail Lowongan (Company)      | 13522084 |
+| Detail Lowongan (Company)      | 13522064, 13522084 |
 | Detail Lamaran (Company)       | 13522084 |
 | Edit Lowongan (Company)        | 13522084 |
 | Detail Lowongan (Jobseeker)    |          |
