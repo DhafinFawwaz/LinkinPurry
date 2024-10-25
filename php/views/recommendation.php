@@ -57,6 +57,9 @@
                 </div>
     
                 <div class="job-list">
+                    <?php 
+                        if(empty($data["lowonganList"])) echo "<p><br>No recommended jobs available at the moment.</p>";
+                    ?>
                     <?php foreach ($data["lowonganList"] as $lowongan) : ?>
                         <div id=<?= $lowongan["lowongan_id"]; ?> class='job-edit-wrapper'>
                             <a class='job-card' href='/<?= $lowongan["lowongan_id"]; ?>'>
