@@ -56,6 +56,10 @@ class Database {
         return pg_fetch_all($this->queryResult);
     }
 
+    public function fetchResult() {
+        return pg_fetch_result($this->queryResult, 0);
+    }
+
     public function isTableExists(string $table) {
         $query = "SELECT EXISTS (
             SELECT 1

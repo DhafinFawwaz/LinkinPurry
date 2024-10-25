@@ -25,6 +25,16 @@ $currentPage = $_SERVER['REQUEST_URI'];
             <?php if ($isAuthenticated): ?>
                 <!-- Jika sudah login -->
                 <?php $isJobseeker = ($_SESSION['user']->role == 'jobseeker'); ?>
+
+                <?php if ($isJobseeker): ?>
+                    <li class="nav-item <?= $currentPage == '/recommendation' ? 'active' : '' ?>">
+                        <a href="/recommendation">
+                            <?php require 'recommendation-icon.php'; ?>
+                            <span>Recommendation</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
                 <li class="nav-item <?= $currentPage == '/' ? 'active' : '' ?>">
                     <a href="/">
                         <?php require 'job-icon.php'; ?>

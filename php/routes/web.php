@@ -15,6 +15,7 @@ require_once __DIR__ . '/../controllers/edit-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/add-lowongan.controller.php';
 require_once __DIR__ . '/../controllers/home.controller.php';
 require_once __DIR__ . '/../controllers/riwayat-lamaran.controller.php';
+require_once __DIR__ . '/../controllers/recommendation.controller.php';
 
 
 
@@ -56,4 +57,7 @@ Route::post("/{int}/{string}",  [CompanyOnly::class, EditLowonganController::cla
 // /lowongan_id/lamaran_id
 Route::get("/{int}/{int}",  [Authenticated::class, DetailLamaranController::class]);
 Route::post("/{int}/{int}",  [Authenticated::class, DetailLamaranController::class]);
+
+Route::get("/recommendation",  [JobseekerOnly::class, RecommendationController::class]);
+
 
