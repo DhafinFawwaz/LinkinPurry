@@ -210,6 +210,10 @@ main {
     padding-block: 12px;
 }
 
+.job-card-details p {
+    color:#444;
+}
+
 .job-card-details .loc {
     color: #777;
 }

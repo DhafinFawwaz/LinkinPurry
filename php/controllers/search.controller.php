@@ -56,7 +56,7 @@ class SearchController extends Controller {
                                 </div>
                                 <div class='job-card-details'>
                                     <h3>" . htmlspecialchars($lowongan['posisi']) . "</h3>
-                                    <p>" . htmlspecialchars($lowongan['company_name']) . "</p>
+                                    <p>" . htmlspecialchars($lowongan['company_name']) . " (" . $lowongan['jenis_pekerjaan'] . ")" ."</p>
                                     <p class='loc'>" . htmlspecialchars($lowongan['company_location']) . " (" . $lowongan['jenis_lokasi'] . ")" . "</p>
                                 </div>
                             </div>
