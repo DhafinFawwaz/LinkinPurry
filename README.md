@@ -155,10 +155,10 @@ Now, you can access the server at `http://localhost:8080`.
 ![lighthouse1](screenshots\10.png)
 * Halaman edit lowongan sesudah:
 ![lighthouse1](screenshots\11.png)
-Accessibility meningkat setelah dilakukan penambahan atribut alt pada tag img dan dilakukan peningkatan kontras antara warna teks dengan warna background.
+Skor lighthouse meningkat setelah dilakukan penambahan atribut alt pada tag img dan dilakukan peningkatan kontras antara warna teks dengan warna background. Perbaikan juga dilakukan dengan melengkapi deskripsi meta.
 
 * Halaman detail lowongan (company) sebelum:
 ![lighthouse1](screenshots\12.png)
 * Halaman detail lowongan (company) sesudah:
 ![lighthouse1](screenshots\13.png)
-Accessibility meningkat setelah dipastikan semua attachment gambar dalam tag img diberikan atribut alt.
+Skor lighthouse meningkat setelah dipastikan semua attachment gambar dalam tag img diberikan atribut alt.  Perbaikan juga dilakukan dengan melengkapi deskripsi meta.
