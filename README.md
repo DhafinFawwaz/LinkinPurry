@@ -123,15 +123,16 @@ Now, you can access the server at `http://localhost:8080`.
 | Detail Lowongan (Company)      | 13522064, 13522084 |
 | Detail Lamaran (Company)       | 13522084 |
 | Edit Lowongan (Company)        | 13522084 |
-| Detail Lowongan (Jobseeker)    |          |
-| Lamaran (Jobseeker)            |          |
-| Riwayat (Jobseeker)            |          |
+| Detail Lowongan (Jobseeker)    | 13522074 |
+| Lamaran (Jobseeker)            | 13522074 |
+| Riwayat (Jobseeker)            | 13522074 |
 | Profil (Company)               | 13522084 |
 | Autentikasi Pengguna           | 13522084 |
 | Navigation Bar                 | 13522074, 13522084 |
-| Pengelolaan Lowongan Pekerjaan | 13522064 |
-| Pencarian Lowongan Pekerjaan   | 13522064 |
-| Melamar pekerjaan              |          |
+| Filter Lowongan Pekerjaan      | 13522074, 13522064 |
+| Sort Lowongan Pekerjaan        | 13522074, 13522064 |
+| Pencarian Lowongan Pekerjaan   | 13522074, 13522064 |
+| Melamar pekerjaan              | 13522074 |
 | Penyimpanan file Binary        | 13522074, 13522084 |
 | Pagination                     | 13522064 |
 | Rich Text Editor               | 13522084 |
@@ -157,17 +158,18 @@ Now, you can access the server at `http://localhost:8080`.
 | Detail Lowongan (Company)      | 13522064, 13522084 |
 | Detail Lamaran (Company)       | 13522084 |
 | Edit Lowongan (Company)        | 13522084 |
-| Detail Lowongan (Jobseeker)    |          |
-| Lamaran (Jobseeker)            |          |
-| Riwayat (Jobseeker)            |          |
+| Detail Lowongan (Jobseeker)    | 13522074 |
+| Lamaran (Jobseeker)            | 13522074 |
+| Riwayat (Jobseeker)            | 13522074 |
 | Profil (Company)               | 13522084 |
 | Autentikasi Pengguna           | 13522084 |
 | Navigation Bar                 | 13522074, 13522084 |
-| Pengelolaan Lowongan Pekerjaan | 13522064 |
-| Pencarian Lowongan Pekerjaan   | 13522064 |
-| Melamar pekerjaan              |          |
+| Filter Lowongan Pekerjaan      | 13522074, 13522064 |
+| Sort Lowongan Pekerjaan        | 13522074, 13522064 |
+| Pencarian Lowongan Pekerjaan   | 13522074, 13522064 |
+| Melamar pekerjaan              | 13522074 |
 | Penyimpanan file Binary        | 13522074, 13522084 |
-| Pagination                     | 13522064 |
+| Pagination                     | 13522074, 13522064 |
 | Rich Text Editor               | 13522084 |
 | Keamanan                       | 13522064, 13522074, 13522084 |
 | Error handling                 | 13522084 |
@@ -194,6 +196,7 @@ Now, you can access the server at `http://localhost:8080`.
 ![lighthouse1](screenshots\7.png)
 ![lighthouse1](screenshots\8.png)
 ![lighthouse1](screenshots\9.png)
+![lighthouse1](screenshots\404.png)
 
 * Halaman edit lowongan sebelum:
 ![lighthouse1](screenshots\10.png)
