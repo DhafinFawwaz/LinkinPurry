@@ -187,25 +187,25 @@ Now, you can access the server at `http://localhost:8080`.
 2. UI/UX seperti LinkedIn
 3. Data Export
 4. Google Lighthouse:
-![lighthouse1](screenshots\1.png)
-![lighthouse1](screenshots\2.png)
-![lighthouse1](screenshots\3.png)
-![lighthouse1](screenshots\4.png)
-![lighthouse1](screenshots\5.png)
-![lighthouse1](screenshots\6.png)
-![lighthouse1](screenshots\7.png)
-![lighthouse1](screenshots\8.png)
-![lighthouse1](screenshots\9.png)
-![lighthouse1](screenshots\404.png)
+![lighthouse1](screenshots/1.png)
+![lighthouse1](screenshots/2.png)
+![lighthouse1](screenshots/3.png)
+![lighthouse1](screenshots/4.png)
+![lighthouse1](screenshots/5.png)
+![lighthouse1](screenshots/6.png)
+![lighthouse1](screenshots/7.png)
+![lighthouse1](screenshots/8.png)
+![lighthouse1](screenshots/9.png)
+![lighthouse1](screenshots/404.png)
 
 * Halaman edit lowongan sebelum:
-![lighthouse1](screenshots\10.png)
+![lighthouse1](screenshots/10.png)
 * Halaman edit lowongan sesudah:
-![lighthouse1](screenshots\11.png)
+![lighthouse1](screenshots/11.png)
 Skor lighthouse meningkat setelah dilakukan penambahan atribut alt pada tag img dan dilakukan peningkatan kontras antara warna teks dengan warna background. Perbaikan juga dilakukan dengan melengkapi deskripsi meta.
 
 * Halaman detail lowongan (company) sebelum:
-![lighthouse1](screenshots\12.png)
+![lighthouse1](screenshots/12.png)
 * Halaman detail lowongan (company) sesudah:
-![lighthouse1](screenshots\13.png)
+![lighthouse1](screenshots/13.png)
 Skor lighthouse meningkat setelah dipastikan semua attachment gambar dalam tag img diberikan atribut alt.  Perbaikan juga dilakukan dengan melengkapi deskripsi meta.
