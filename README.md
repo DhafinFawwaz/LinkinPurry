@@ -109,31 +109,71 @@ Now, you can access the server at `http://localhost:8080`.
 
 ## 📄 Member's Job Description
 ### Server-side
-| Fitur                    | NIM      |
-| ------------------------ | -------- |
-| Login                    |13522000|
-| Register                 |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
+| Fitur                          | NIM      |
+| ------------------------------ | -------- |
+| Login                          | 13522084 |
+| Register                       | 13522084 |
+| Home (Jobseeker)               |          |
+| Home (Company)                 | 13522084, 13522064 |
+| Tambah Lowongan (Company)      | 13522084 |
+| Detail Lowongan (Company)      | 13522084 |
+| Detail Lamaran (Company)       | 13522084 |
+| Edit Lowongan (Company)        | 13522084 |
+| Detail Lowongan (Jobseeker)    |          |
+| Lamaran (Jobseeker)            |          |
+| Riwayat (Jobseeker)            |          |
+| Profil (Company)               | 13522084 |
+| Autentikasi Pengguna           | 13522084 |
+| Navigation Bar                 | 13522074, 13522084 |
+| Pengelolaan Lowongan Pekerjaan | 13522064 |
+| Pencarian Lowongan Pekerjaan   | 13522064 |
+| Melamar pekerjaan              |          |
+| Penyimpanan file Binary        | 13522074, 13522084 |
+| Pagination                     | 13522064 |
+| Rich Text Editor               | 13522084 |
+| Keamanan                       | 13522064, 13522074, 13522084 |
+| Error handling                 | 13522084 |
+| Responsivitas                  | 13522084 |
+| Docker                         | 13522084 |
+| All Responsive Web Design      | 13522074 |
+| UI/UX Seperti Linkedin         | 13522074, 13522084 |
+| Data Export                    | 13522084 |
+| Simple Job Recommendation      | 13522084 |
+| Google lighthouse              | 13522074, 13522084 |
 
 
 ### Client-side
-| Fitur                    | NIM      |
-| ------------------------ | -------- |
-| Login                    |          |
-| Register                 |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
-|                          |          |
+| Fitur                          | NIM      |
+| ------------------------------ | -------- |
+| Login                          | 13522084 |
+| Register                       | 13522084 |
+| Home (Jobseeker)               |          |
+| Home (Company)                 | 13522084, 13522064 |
+| Tambah Lowongan (Company)      | 13522084 |
+| Detail Lowongan (Company)      | 13522084 |
+| Detail Lamaran (Company)       | 13522084 |
+| Edit Lowongan (Company)        | 13522084 |
+| Detail Lowongan (Jobseeker)    |          |
+| Lamaran (Jobseeker)            |          |
+| Riwayat (Jobseeker)            |          |
+| Profil (Company)               | 13522084 |
+| Autentikasi Pengguna           | 13522084 |
+| Navigation Bar                 | 13522074, 13522084 |
+| Pengelolaan Lowongan Pekerjaan | 13522064 |
+| Pencarian Lowongan Pekerjaan   | 13522064 |
+| Melamar pekerjaan              |          |
+| Penyimpanan file Binary        | 13522074, 13522084 |
+| Pagination                     | 13522064 |
+| Rich Text Editor               | 13522084 |
+| Keamanan                       | 13522064, 13522074, 13522084 |
+| Error handling                 | 13522084 |
+| Responsivitas                  | 13522084 |
+| Docker                         | 13522084 |
+| All Responsive Web Design      | 13522074 |
+| UI/UX Seperti Linkedin         | 13522074, 13522084 |
+| Data Export                    | 13522084 |
+| Simple Job Recommendation      | 13522084 |
+| Google lighthouse              | 13522074, 13522084 |
 
 
 ## ✨ Completed Bonus
